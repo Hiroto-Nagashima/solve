@@ -1,24 +1,36 @@
-# README
+# アプリ名
+Solve
+## サイト概要
+英語学習系SNS。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### サイトテーマ
+学んだ英語の知識をアウトプットする場所として、自分で英語の問題を作成してそれを他のユーザーたちに解いてもらえるSNSです。
+ユーザーは自分で英語の問題を作成できるし、他のユーザーが作った問題を解くことができます。
+勉強になる問題を出してくれるユーザーをフォローすれば、毎日良問を解くことができ、インプット的な学習もできます。
 
-Things you may want to cover:
+### テーマを選んだ理由
+英語を勉強するときに、学んだ知識をアウトプットすることはとても大切です。しかし、インプットに比べ、学んだことをアウトプットすることはとても負荷がかかって大変です。そこで、楽しみながら英語をアウトプットする場さえあれば、学習者の英語のアウトプットを促進できると考え、このテーマを選びました。
 
-* Ruby version
+### ターゲットユーザ
+英語を学習する一般ユーザー
+中学生、高校生が授業や家庭学習で使う
 
-* System dependencies
+### 主な利用シーン
+日常的な英語学習。特に英文法の勉強や資格試験対策
+学校のカリキュラムの一環として、生徒全員(中学生や高校生)に会員登録させ、
+勉強した英文法に関する問題を自分で作成し、他の生徒に解いてもらう
 
-* Configuration
+## 設計書
 
-* Database creation
+### 機能一覧
+https://docs.google.com/spreadsheets/d/1x7lI6W7AvJ2ZBi2aJsuT1IpOyrcckliGbQp0C_29wFY/edit?usp=sharing
 
-* Database initialization
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：React
+- 仮想環境：Vagrant,VirtualBox
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+Font awesome
