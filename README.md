@@ -29,8 +29,8 @@ https://docs.google.com/spreadsheets/d/1x7lI6W7AvJ2ZBi2aJsuT1IpOyrcckliGbQp0C_29
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
-- JSライブラリ：React
+- JSライブラリ：jQuery
 - 仮想環境：Vagrant,VirtualBox
 
 ## 使用素材
-Font awesome
+*Font awesome
