@@ -33,4 +33,4 @@ https://docs.google.com/spreadsheets/d/1x7lI6W7AvJ2ZBi2aJsuT1IpOyrcckliGbQp0C_29
 - 仮想環境：Vagrant,VirtualBox
 
 ## 使用素材
-*Font awesome
+- Font awesome
