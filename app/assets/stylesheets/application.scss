@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+.jumbotron-extend {
+    position: relative;
+    height: 100vh;
+    min-height: 300px;
+    min-height: 300px;
+    background: url(bulb.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.title{
+    font-size: 100px;
+    color: white;
+    margin-bottom: 20px;
+}
