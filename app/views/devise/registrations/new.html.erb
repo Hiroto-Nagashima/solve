@@ -1,56 +1,56 @@
-<div class="container my-5 mx-auto">
-    <div class="row my-3">
+<div class = "container my-5 mx-auto">
+    <div class = "row my-3">
        <h2>新規登録</h2>
     </div>
 
     <%= form_with model:resource, url:user_registration_path, local: true do |f| %>
-    <div class="row my-4">
-       <div class="col-3 mr-0">
+    <div class = "row my-4">
+       <div class = "col-3 mr-0">
           <p>User Name</p>
        </div>
-       <div class="col-7">
+       <div class = "col-7">
           <%= f.text_field :name, autofocus: true,autocomplete: "name" %>
        </div>
      </div>
    
-     <div class="row my-4">
-       <div class="col-3 mr-0">
+     <div class = "row my-4">
+       <div class = "col-3 mr-0">
           <p>Email</p>
        </div>
-       <div class="col-7">
+       <div class = "col-7">
           <%= f.text_field :email, autofocus: true,autocomplete: "email" %>
        </div>
      </div>
-     <div class="row my-3">
-       <div class="col-3 mr-0">
+     <div class = "row my-3">
+       <div class = "col-3 mr-0">
          <p>Password(6文字以上)</p>
        </div>
-       <div class="col-7">
+       <div class = "col-7">
           <%= f.password_field :password %>
        </div>
       </div>
 
-      <div class="row my-3">
-       <div class="col-3 mr-0">
+      <div class = "row my-3">
+       <div class = "col-3 mr-0">
          <p>Password(comfirmation)</p>
        </div>
-       <div class="col-7">
+       <div class = "col-7">
           <%= f.password_field :password_comformation%>
        </div>
       </div>
 
-       <div class="row">
-         <div class="col-4 mx-auto">
+       <div class = "row">
+         <div class = "col-4 mx-auto">
             <%= f.submit "登録" ,class:"btn btn-warning"%>
             <% end %>
          </div>
        </div>
 
-       <div class="row mt-5 mb-2 mx-5">
+       <div class = "row mt-5 mb-2 mx-5">
           <h4>既に登録済みの方</h4>
        </div>
-       <div class="row mx-5">
-         <div class="col-5 offset-md-3">
+       <div class = "row mx-5">
+         <div class = "col-5 offset-md-3">
             <p><%=link_to"こちら",new_user_session_path %>から会員登録を行ってください</p>
          </div>
        </div>
