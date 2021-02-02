@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'posts/index'
-  get 'posts/show'
-  get 'posts/new'
   devise_for :users
 
   devise_scope :user do
@@ -10,7 +7,12 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  
+
+  resources :posts
+
+  resources :questions, only: [:create, :update , :destroy ,:edit]
+
+  resources :comments, only: [:create, :destroy ]
   root 'homes#top'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
