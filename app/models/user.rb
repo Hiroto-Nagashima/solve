@@ -12,5 +12,9 @@ class User < ApplicationRecord
   end
 
   attachment :profile_image
+  has_many :relationships
+  has_many :scores
+  has_many :comments
+  has_many :lil
 
 end

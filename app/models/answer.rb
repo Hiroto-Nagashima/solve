@@ -1,3 +1,4 @@
 class Answer < ApplicationRecord
-  has_many 
+  belongs_to :scores
+  belongs_to :questions
 end
