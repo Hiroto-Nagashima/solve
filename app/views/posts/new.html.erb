@@ -1,2 +1,81 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<div class="container my-5 mx-auto">
+    <div class="row my-3">
+       <h2>New Post</h2>
+    </div>
+
+    <%= form_with model:@post, url:posts_path, local: true do |f| %>
+     <div class="row my-4">
+       <div class="col-3 mr-0">
+          <p>つぶやき</p>
+       </div>
+       <div class="col-7">
+          <%= f.text_area :content, autofocus: true %>
+       </div>
+     </div>
+     <% @post.questions.each do |question| %>
+     <div class="row my-4">
+       <div class="col-3 mr-0">
+          <p>ジャンル</p>
+       </div>
+       <div class="col-7">
+          <%= f.select :genre, [["単語", "単語"], ["文法", "文法"]], include_blank: "選択して下さい" %>
+       </div>
+     </div>
+
+     <div class="row my-4">
+       <div class="col-3 mr-0">
+          <p>問題文（指示）</p>
+       </div>
+       <div class="col-7">
+          <%= f.text_field :direction, autofocus: true %>
+       </div>
+     </div>
+
+     <div class="row my-4">
+       <div class="col-3 mr-0">
+          <p>問題</p>
+       </div>
+       <div class="col-7">
+          <%= f.text_field :question, autofocus: true,autocomplete: "email" %>
+       </div>
+     </div>
+
+     <div class="row my-4">
+       <div class="col-3 mr-0">
+          <p>正解</p>
+       </div>
+       <div class="col-7">
+          <%= f.text_field :correct_answer, autofocus: true %>
+       </div>
+     </div>
+
+     <div class="row my-4">
+       <div class="col-3 mr-0">
+          <p>不正解</p>
+       </div>
+       <div class="col-3">
+          <%= f.text_field :wrong_answers, autofocus: true%>
+       </div>
+       <div class="col-3">
+          <%= f.text_field :wrong_answers, autofocus: true%>
+       </div>
+     </div>
+
+     <div class="row my-4">
+       <div class="col-3 mr-0">
+          <p>解説</p>
+       </div>
+       <div class="col-7">
+          <%= f.text_area :explanation, autofocus: true,autocomplete: "email" %>
+       </div>
+     </div>
+
+     <div class="row">
+       <div class="col-4 mx-auto">
+          <%= f.submit "新規作成" ,class:"btn btn-warning"%>
+          <% end %>
+       </div>
+     </div>
+
+</div>
+

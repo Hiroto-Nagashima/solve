@@ -15,6 +15,6 @@ class User < ApplicationRecord
   has_many :relationships
   has_many :scores
   has_many :comments
-  has_many :lil
+  has_many :lilks
 
 end
