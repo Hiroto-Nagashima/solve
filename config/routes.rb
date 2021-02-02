@@ -15,10 +15,12 @@ Rails.application.routes.draw do
   resources :comments, only: [:create, :destroy ]
 
   resources :likes, only: [:create, :destroy ,:index]
-  
+
   resources :scores, only: [:create, :destroy ]
-  
+
   resources :relationships, only: [:create, :destroy ]
+
+  resources :answers, only: [:create, :destroy ]
   root 'homes#top'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
