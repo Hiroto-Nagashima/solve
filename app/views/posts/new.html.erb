@@ -1,4 +1,4 @@
-<div class="container my-5 mx-auto">
+<div class="container my-5 mr-0">
     <div class="row my-3">
        <h2>New Post</h2>
     </div>
@@ -12,7 +12,7 @@
           <%= f.text_area :content, autofocus: true %>
        </div>
      </div>
-     <% @post.questions.each do |question| %>
+
      <div class="row my-4">
        <div class="col-3 mr-0">
           <p>ジャンル</p>
@@ -27,7 +27,9 @@
           <p>問題文（指示）</p>
        </div>
        <div class="col-7">
-          <%= f.text_field :direction, autofocus: true %>
+          <%= fields_for @post.questions.build do |question| %>
+            <%= question.text_field :direction %>
+          <% end %>
        </div>
      </div>
 
@@ -36,7 +38,7 @@
           <p>問題</p>
        </div>
        <div class="col-7">
-          <%= f.text_field :question, autofocus: true,autocomplete: "email" %>
+          <%= f.text_field :question, autofocus: true%>
        </div>
      </div>
 
@@ -54,10 +56,10 @@
           <p>不正解</p>
        </div>
        <div class="col-3">
-          <%= f.text_field :wrong_answers, autofocus: true%>
+          <%= f.text_field :wrong_choices, autofocus: true%>
        </div>
        <div class="col-3">
-          <%= f.text_field :wrong_answers, autofocus: true%>
+          <%= f.text_field :wrong_choices, autofocus: true%>
        </div>
      </div>
 
@@ -66,9 +68,12 @@
           <p>解説</p>
        </div>
        <div class="col-7">
-          <%= f.text_area :explanation, autofocus: true,autocomplete: "email" %>
+          <%= f.text_area :explanation, autofocus: true %>
+
        </div>
      </div>
+
+
 
      <div class="row">
        <div class="col-4 mx-auto">

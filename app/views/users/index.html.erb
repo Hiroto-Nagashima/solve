@@ -1,0 +1,11 @@
+<% @posts.each do |post| %>
+<div>
+  <%= attachment_image_tag post.user ,:profile_image %>
+  <p><%= post.user.name%></p>
+  <p><%= post.created_at %></p>
+  <p><%= post.content %></p>
+  <button type = "button" class="btn btn-warning btn-lg">
+    <i class = "far fa-lightbulb"></i>
+  </button>
+</div>
+<% end %>
