@@ -21,7 +21,7 @@ class PostsController < ApplicationController
       #   question.correct_answer = params[:post][:correct_answer]
       #   question.save
       # end
-    
+
     redirect_to users_path
   end
 
@@ -33,6 +33,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:content)
   end
   def question_params
-    params.require(:question).permit(:direction,:correct_answer)
+    wrong_choices = params[:question][:wrong_choices].join(",")
+    params.require(:question).permit(:direction,:question,:correct_choice,:genre,:explanation).merge(wrong_choices: wrong_choices)
   end
 end

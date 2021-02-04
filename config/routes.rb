@@ -10,12 +10,12 @@ Rails.application.routes.draw do
 
   resources :posts do
    resources :comments, only: [:create, :destroy ]
+   resource :likes, only: [:create, :destroy ,:index]
   end
 
   resources :questions, only: [:create, :update , :destroy ,:edit]
 
 
-  resources :likes, only: [:create, :destroy ,:index]
 
   resources :scores, only: [:create, :destroy ]
 

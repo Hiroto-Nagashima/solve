@@ -8,4 +8,7 @@
     <i class = "far fa-lightbulb"></i>
   </button>
 </div>
+<div id="likes_buttons_<%= post.id %>">
+    <%= render partial: 'likes/like', locals: { post: post} %>
+</div>
 <% end %>

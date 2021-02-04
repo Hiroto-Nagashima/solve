@@ -18,7 +18,9 @@
           <p>ジャンル</p>
        </div>
        <div class="col-7">
-          <%= f.select :genre, [["単語", "単語"], ["文法", "文法"]], include_blank: "選択して下さい" %>
+           <%= fields_for @post.questions.build do |question| %>
+            <%= question.select :genre, [["単語", "単語"], ["文法", "文法"]], include_blank: "選択して下さい" %>
+          <% end %>
        </div>
      </div>
 
@@ -38,7 +40,9 @@
           <p>問題</p>
        </div>
        <div class="col-7">
-          <%= f.text_field :question, autofocus: true%>
+          <%= fields_for @post.questions.build do |question| %>
+            <%= question.text_field :question %>
+          <% end %>
        </div>
      </div>
 
@@ -47,7 +51,9 @@
           <p>正解</p>
        </div>
        <div class="col-7">
-          <%= f.text_field :correct_answer, autofocus: true %>
+          <%= fields_for @post.questions.build do |question| %>
+            <%= question.text_field :correct_choice %>
+          <% end %>
        </div>
      </div>
 
@@ -56,10 +62,14 @@
           <p>不正解</p>
        </div>
        <div class="col-3">
-          <%= f.text_field :wrong_choices, autofocus: true%>
+          <%= fields_for @post.questions.build do |question| %>
+            <%= question.text_field :wrong_choices,name:"question[wrong_choices][]" %>
+          <% end %>
        </div>
        <div class="col-3">
-          <%= f.text_field :wrong_choices, autofocus: true%>
+          <%= fields_for @post.questions.build do |question| %>
+            <%= question.text_field :wrong_choices,name:"question[wrong_choices][]" %>
+          <% end %>
        </div>
      </div>
 
@@ -68,13 +78,11 @@
           <p>解説</p>
        </div>
        <div class="col-7">
-          <%= f.text_area :explanation, autofocus: true %>
-
+          <%= fields_for @post.questions.build do |question| %>
+            <%= question.text_area :explanation %>
+          <% end %>
        </div>
      </div>
-
-
-
      <div class="row">
        <div class="col-4 mx-auto">
           <%= f.submit "新規作成" ,class:"btn btn-warning"%>
