@@ -44,7 +44,7 @@
     <% if user_signed_in? %>
     <div class = "side-bar">
       <div class="container">
-         <%= attachment_image_tag current_user, :profile_image, :fill,size: "150x150", fallback: "no_image.jpg"%>
+         <%= attachment_image_tag current_user, :profile_image ,size: "150x150", fallback: "no_image.jpg"%>
          <table class="table">
            <tbody>
              <tr>
