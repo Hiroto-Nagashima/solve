@@ -8,7 +8,8 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-    <div class="container-fluid border-bottom">
+    <div class="container-fluid border-bottom header">
+      <% if user_signed_in? && !(controller.action_name == "top" && controller.controller_name == "homes") %>
           <header class="row d-block">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container">
@@ -24,7 +25,7 @@
                                 <%= link_to "MyPage", user_path(current_user.id) ,class: 'nav-link fas fa-home text-dark'%></i>
                               </li>
                                <li class="nav-item">
-                                <%= link_to "Favorites", users_path ,class: 'nav-link fas fa-heart text-dark'%>
+                                <%= link_to "Favorites" ,likes_index_path,class: 'nav-link fas fa-heart text-dark'%>
                               </li>
                                <li class="nav-item">
                                 <%= link_to "Ranking" ,root_path,class: 'nav-link fas fa-trophy text-dark'%>
@@ -41,7 +42,7 @@
   <body>
     <div class = "side-bar">
       <div class="container">
-         <%= attachment_image_tag @user, :profile_image, :fill,size: "150x150", fallback: "no_image.jpg"%>
+         <%= attachment_image_tag @user, :profile_image,size: "150x150", fallback: "no_image.jpg"%>
          <table class="table">
            <tbody>
              <tr>
@@ -70,13 +71,14 @@
             <%= link_to "",edit_user_path(@user.id) ,class: 'btn btn-warning  fas fa-user-cog'%>
           </div>
           <div class = "btnAjuster">
-            <%= link_to 'MAKE!' , class: "btn btn-warning "%>
+            <%= link_to 'MAKE!' ,new_post_path, class: "btn btn-warning "%>
           </div>
           <div class = "btnAjuster">
             <%= link_to 'Intro' , class: "btn btn-warning "%>
           </div>
       </div>
     </div>
+    <%end%>
     <%= yield %>
   </body>
 </html>

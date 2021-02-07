@@ -18,6 +18,27 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+header {
+	/*Strictly Necessary */
+	position: fixed;
+	width: 75%;
+	height: 100px; /*Adjust the hight to your purposes*/
+	background: white;
+	border-radius: 7px;
+}
+
+#rightSideWrapper {
+	/*Strictly Necessary */
+	width: 75%;
+	float: right;
+
+}
+
+.ContentBox{
+	margin-top: 100px; /*The height of the   header*/
+	display: flex;
+	flex-flow: row wrap;
+}
 .jumbotron-extend {
     position: relative;
     height: 100vh;
@@ -35,15 +56,24 @@
 .nav-link{
   font-size: 20px;
 }
-.side-bar{
-  height: 100vh;
-  // position: fixed;
-  width: 20%;
-//   background-color: #F0E68C;
-  padding: 10px;
 
+.side-bar {
+	/*Strictly Necessary */
+	position:fixed;
+	height: 100%;
+	width: 20%;
+	margin: 0px;
+
+  /*Aesthetics*/
+  // background: lightblue;
+  border-radius: 7px;
 }
 
+body {
+  /*Strictly Necessary */
+  flex: 0 1 100%;
+
+}
 .makeBtn{
   margin: 30px auto;
 }
@@ -54,7 +84,4 @@
   width: 80px;
   text-align: center;
 }
-.btnAjuster {
 
-
-}

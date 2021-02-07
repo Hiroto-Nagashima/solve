@@ -8,14 +8,57 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-    <div class="container-fluid border-bottom header">
+  <% if user_signed_in? %>
+  <div class = "side-bar">
+    <div class="">
+      <%= link_to users_path do %>
+        <%= image_tag 'logo.jpg',size:'120x120'  %>
+        <%end%>
+       <%= attachment_image_tag current_user, :profile_image ,size: "100x100", fallback: "no_image.jpg"%>
+       <table class="table">
+         <tbody>
+           <tr>
+             <th>name</th>
+             <th><%= "#{current_user.name}" %></th>
+           </tr>
+           <tr>
+             <th>Today's Score</th>
+             <th><%= current_user.introduction %></th>
+           </tr>
+           <tr>
+             <th>Follow</th>
+             <th></th>
+           </tr>
+           <tr>
+             <th>Follower</th>
+             <th></th>
+           </tr>
+           <tr>
+             <th>introduction</th>
+             <th><%= current_user.introduction %></th>
+           </tr>
+         </tbody>
+       </table>
+        <div class = "btnAjuster">
+          <%= link_to "",edit_user_path(current_user.id) ,class: 'btn btn-warning fas fa-user-cog' %>
+        </div>
+        <div class = "btnAjuster">
+          <%= link_to 'MAKE!',new_post_path , class: 'btn btn-warning' %>
+        </div>
+        <div class = "btnAjuster">
+          <%= link_to 'Intro', class: 'btn btn-warning' %>
+        </div>
+    </div>
+  </div>
+  <%end%>
+
+  <div id = "rightSideWrapper">
+    <div class=" border-bottom">
       <% if user_signed_in? && !(controller.action_name == "top" && controller.controller_name == "homes") %>
-          <header class="row d-block">
+          <header class="row ">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="container">
-                    <%= link_to users_path, target: "_blank" do %>
-                    <%= image_tag 'logo.jpg',size:'90x90'  %>
-                    <%end%>
+                <div class="">
+
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -25,7 +68,7 @@
                                 <%= link_to "MyPage", user_path(current_user.id) ,class: 'nav-link fas fa-home text-dark'%></i>
                               </li>
                                <li class="nav-item">
-                                <%= link_to "Favorites" ,class: 'nav-link fas fa-heart text-dark'%>
+                                <%= link_to "Favorites" ,likes_index_path,class: 'nav-link fas fa-heart text-dark'%>
                               </li>
                                <li class="nav-item">
                                 <%= link_to "Ranking" ,root_path,class: 'nav-link fas fa-trophy text-dark'%>
@@ -38,49 +81,12 @@
                 </div>
            </nav>
         </header>
-    <% end %>
-  </div>
-  <body>
-    <% if user_signed_in? %>
-    <div class = "side-bar">
-      <div class="container">
-         <%= attachment_image_tag current_user, :profile_image ,size: "150x150", fallback: "no_image.jpg"%>
-         <table class="table">
-           <tbody>
-             <tr>
-               <th>name</th>
-               <th><%= "#{current_user.name}" %></th>
-             </tr>
-             <tr>
-               <th>Today's Score</th>
-               <th><%= current_user.introduction %></th>
-             </tr>
-             <tr>
-               <th>Follow</th>
-               <th></th>
-             </tr>
-             <tr>
-               <th>Follower</th>
-               <th></th>
-             </tr>
-             <tr>
-               <th>introduction</th>
-               <th><%= current_user.introduction %></th>
-             </tr>
-           </tbody>
-         </table>
-          <div class = "btnAjuster">
-            <%= link_to "",edit_user_path(current_user.id) ,class: 'btn btn-warning fas fa-user-cog' %>
-          </div>
-          <div class = "btnAjuster">
-            <%= link_to 'MAKE!',new_post_path , class: 'btn btn-warning' %>
-          </div>
-          <div class = "btnAjuster">
-            <%= link_to 'Intro', class: 'btn btn-warning' %>
-          </div>
-      </div>
+      <% end %>
     </div>
-    <%end%>
-    <%= yield %>
-  </body>
+    <body>
+      <div class ="ContentBox">
+          <%= yield %>
+      </div>
+    </body>
+  </div>
 </html>

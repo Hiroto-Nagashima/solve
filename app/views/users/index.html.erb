@@ -5,7 +5,7 @@
     <p><%= post.user.name%></p>
     <p><%= post.created_at %></p>
     <p><%= post.content %></p>
-    <button type = "button" class="btn btn-warning btn-lg">
+    <button type = "button" class="btn btn-warning btn-lg startBtn">
       <i class = "far fa-lightbulb"></i>
     </button>
   </div>
@@ -16,19 +16,22 @@
   <div class="row">
       <ul>
           <li class="comment-create">
-              <h3 class="text-left title">コメント</h3>
+              <h3>コメント</h3>
           </li>
           <li id="comments_area">
-              <%= render partial: 'comments/index', locals: { comments: @comments , post: post ,comment: @comment} %>
+              <%= render partial: 'comments/index', locals: { comments: post.comments.order(created_at: :desc) , post: post ,comment: @comment} %>
           </li>
       </ul>
       <hr>
       <% if user_signed_in? %>
           <div class="comment-create">
-              <h3 class="text-left">レビューを投稿する</h3>
+              <h3>投稿</h3>
               <%= render partial: 'comments/form', locals: {comment: @comment, post: post } %>
           </div>
       <% end %>
   </div>
 </div>
 <% end %>
+<script src="question.js"></script>
+<%= include_gon %>
+<%= javascript_include_tag "question" %>

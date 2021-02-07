@@ -1,0 +1,27 @@
+<section id="container" class="hidden">
+  <div id="question">
+    <p><%= question.direction%></p>
+    <p><%= question.question%></p>
+  </div>
+  <ul id="choices">
+    <li><%= question.correctAnswer%></li>
+    <% question.wrong_choices.split(",").each do|wrong_choice|%>
+      <li><%= wrong_choice %></li>
+      <li><%= wrong_choice %></li>
+    <%end%>
+  </ul>
+</section>
+
+
+<section id="result" class="hidden">
+  <p></p>
+  <div id="replayBtn">Replay?</div>
+  <a href="" id="exitBtn">exit</a>
+</section>
+
+<section id="answer" class="hidden">
+  <h2 id="CorW"></h2>
+  <p id="correctAnswer"></p>
+  <p id="detail"></p>
+  <div id="btn">Next</div>
+</section>

@@ -5,14 +5,14 @@
     <li class="comment-container">
         <div class="comment-box">
             <div class="comment-avatar">
-                <%= attachment_image_tag comment.user, :profile_image, fallback: "no_image.jpeg", class:"comment-image", size: "10x10" %>
+                <%= attachment_image_tag comment.user, :profile_image, fallback: "no_image.jpeg", class:"comment-image", size: "30x30" %>
             </div>
             <div class="comment-text">
                 <p><%= link_to "@#{comment.user.name}" %></p>
                 <div class="comment-entry">
                     <%= comment.content %>
                     <% if comment.user == current_user %>
-                        <%= link_to post_comment_path(post), method: :delete, remote: true, class: "comment_destroy" do %>
+                        <%= link_to post_comment_path(post, comment), method: :delete, remote: true, class: "comment_destroy" do %>
                             <i class="fas fa-trash" style="color: black;"></i>
                         <% end %>
                     <% end %>
