@@ -20,6 +20,14 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comments = @post.comments
   end
+  
+  def eachComment
+    target_id = params[:post_id] 
+
+    target_comment_list = Comment.where(post_id: target_id)
+
+    render json: target_comment_list.to_json
+  end
 
   private
     def comment_params

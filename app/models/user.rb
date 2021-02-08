@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_many :scores
   has_many :comments
   has_many :lilks
+  has_many :posts
   # => "SELECT \"users\".* FROM \"users\" INNER JOIN \"relationships\" ON \"users\".\"id\" = \"relationships\".\"user_id\" WHERE \"relationships\".\"user_id\" = 1"
   # => "SELECT \"users\".* FROM \"users\" INNER JOIN \"relationships\" ON \"users\".\"id\" = \"relationships\".\"follower_id\" WHERE \"relationships\".\"user_id\" = 1"
 end

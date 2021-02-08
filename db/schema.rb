@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_05_101424) do
+ActiveRecord::Schema.define(version: 2021_02_07_095414) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "score_id"
@@ -45,13 +45,14 @@ ActiveRecord::Schema.define(version: 2021_02_05_101424) do
   create_table "questions", force: :cascade do |t|
     t.integer "genre"
     t.string "correct_choice"
-    t.text "wrong_choices"
     t.text "explanation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "question"
     t.text "direction"
     t.integer "post_id"
+    t.string "first_wrong_choice"
+    t.string "second_wrong_choice"
     t.index ["post_id"], name: "index_questions_on_post_id"
   end
 

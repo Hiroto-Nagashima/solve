@@ -1,14 +1,9 @@
 <section id="container" class="hidden">
   <div id="question">
-    <p><%= question.direction%></p>
-    <p><%= question.question%></p>
+    <p id="direction"></p>
+    <p id="question_sentense"></p>
   </div>
   <ul id="choices">
-    <li><%= question.correctAnswer%></li>
-    <% question.wrong_choices.split(",").each do|wrong_choice|%>
-      <li><%= wrong_choice %></li>
-      <li><%= wrong_choice %></li>
-    <%end%>
   </ul>
 </section>
 

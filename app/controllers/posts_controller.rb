@@ -33,7 +33,6 @@ class PostsController < ApplicationController
     params.require(:post).permit(:content)
   end
   def question_params
-    wrong_choices = params[:question][:wrong_choices].join(",")
-    params.require(:question).permit(:direction,:question,:correct_choice,:genre,:explanation).merge(wrong_choices: wrong_choices)
+    params.require(:question).permit(:direction,:question,:correct_choice,:first_wrong_choice,:second_wrong_choice,:genre,:explanation)
   end
 end

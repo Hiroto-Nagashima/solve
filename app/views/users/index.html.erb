@@ -1,37 +1,43 @@
 <% @posts.each do |post| %>
-<div class = "container">
-  <div class = row>
-    <%= attachment_image_tag post.user ,:profile_image ,size: "40x40" %>
-    <p><%= post.user.name%></p>
-    <p><%= post.created_at %></p>
-    <p><%= post.content %></p>
-    <button type = "button" class="btn btn-warning btn-lg startBtn">
-      <i class = "far fa-lightbulb"></i>
-    </button>
+<div class = "eachPost">
+  <div class = "post-wrapper">
+    <div class = "post-head">
+      <%= attachment_image_tag post.user ,:profile_image ,size: "40x40" ,class:"userImg"%>
+      <p class = "userName"><%= post.user.name%></p>
+      <p class = "postedDate"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+    </div>
+  
+    <p class = "postedContent"><%= post.content %></p>
+  
+    <div class = "post-footer">
+      <div>
+        <i class="far fa-comment"></i>
+        <%= post.comments.count %>件
+        <h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" data-id= <%= post.id %>>コメント</h6>
+      </div>
+  
+      <button type = "button" class="btn btn-warning btn-lg startBtn" data-id= <%= post.id %>>
+        <i class = "far fa-lightbulb"></i>
+      </button>
+  
+      <div id="likes_buttons_<%= post.id %>" class = "likesInPost">
+          <%= render partial: 'likes/like', locals: { post: post} %>
+      </div>
+    </div>
   </div>
-
-  <div id="likes_buttons_<%= post.id %>">
-      <%= render partial: 'likes/like', locals: { post: post} %>
-  </div>
-  <div class="row">
-      <ul>
-          <li class="comment-create">
-              <h3>コメント</h3>
-          </li>
-          <li id="comments_area">
-              <%= render partial: 'comments/index', locals: { comments: post.comments.order(created_at: :desc) , post: post ,comment: @comment} %>
-          </li>
-      </ul>
-      <hr>
-      <% if user_signed_in? %>
-          <div class="comment-create">
-              <h3>投稿</h3>
-              <%= render partial: 'comments/form', locals: {comment: @comment, post: post } %>
-          </div>
-      <% end %>
+  <div class="comment-list ">
+    <%= render partial: 'comments/index', locals: { comments: post.comments.order(created_at: :desc) , post: post ,comment: @comment} %>
+    <% if user_signed_in? %>
+        <div class="comment-create">
+            <h3>投稿</h3>
+            <%= render partial: 'comments/form', locals: {comment: @comment, post: post } %>
+        </div>
+    <% end %>
   </div>
 </div>
 <% end %>
-<script src="question.js"></script>
-<%= include_gon %>
-<%= javascript_include_tag "question" %>
+
+<div class="question_list hidden">
+  <%= render partial: 'questions/show' %>
+</div>
+

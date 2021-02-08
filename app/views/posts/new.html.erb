@@ -63,12 +63,12 @@
        </div>
        <div class="col-3">
           <%= fields_for @post.questions.build do |question| %>
-            <%= question.text_field :wrong_choices,name:"question[wrong_choices][]" %>
+            <%= question.text_field :first_wrong_choice%>
           <% end %>
        </div>
        <div class="col-3">
           <%= fields_for @post.questions.build do |question| %>
-            <%= question.text_field :wrong_choices,name:"question[wrong_choices][]" %>
+            <%= question.text_field :second_wrong_choice%>
           <% end %>
        </div>
      </div>

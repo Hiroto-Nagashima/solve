@@ -3,9 +3,8 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
     @comment = Comment.new
     @posts = Post.all
-    @posts.each do |post|
-      @comments = post.comments.order(created_at: :desc)
-    end
+
+
   end
 
   def show
