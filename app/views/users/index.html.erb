@@ -3,26 +3,27 @@
   <div class = "post-wrapper">
     <div class = "post-head">
       <%= attachment_image_tag post.user ,:profile_image ,size: "40x40" ,class:"userImg"%>
-      <p class = "userName"><%= post.user.name%></p>
+      <p class = "userName"><%= link_to post.user.name , user_path(post.user)%></p>
       <p class = "postedDate"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
     </div>
-  
+
     <p class = "postedContent"><%= post.content %></p>
-  
+
     <div class = "post-footer">
-      <div>
-        <i class="far fa-comment"></i>
-        <%= post.comments.count %>件
-        <h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" data-id= <%= post.id %>>コメント</h6>
-      </div>
-  
-      <button type = "button" class="btn btn-warning btn-lg startBtn" data-id= <%= post.id %>>
-        <i class = "far fa-lightbulb"></i>
-      </button>
-  
       <div id="likes_buttons_<%= post.id %>" class = "likesInPost">
           <%= render partial: 'likes/like', locals: { post: post} %>
       </div>
+
+      <button type = "button" class="btn btn-warning btn-lg startBtn" data-id= <%= post.id %>>
+        <i class = "far fa-lightbulb"></i>
+      </button>
+
+      <div class="commentBtn">
+        <i class="far fa-comment"></i>
+        <%= post.comments.count %>件
+        <h6>コメント</h6>
+      </div>
+
     </div>
   </div>
   <div class="comment-list ">

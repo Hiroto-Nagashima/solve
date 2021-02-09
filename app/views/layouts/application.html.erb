@@ -7,8 +7,6 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%#= include_gon %>
-    <%#= javascript_include_tag "application" %>
   </head>
   <% if user_signed_in? %>
   <div class = "side-bar">
@@ -46,12 +44,15 @@
     <div class = "btnAjuster">
       <%= link_to 'MAKE!',new_post_path , class: 'btn' %>
     </div>
+     <div>
+      <%#= render "follow_form" %>
+     </div>
   </div>
   <%end%>
 
+  <% if user_signed_in? && !(controller.action_name == "top" && controller.controller_name == "homes") %>
   <div id = "rightSideWrapper">
     <div>
-      <% if user_signed_in? && !(controller.action_name == "top" && controller.controller_name == "homes") %>
           <header>
             <nav class="navbar navbar-expand-lg navbar-light">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

@@ -13,79 +13,9 @@
        </div>
      </div>
 
-     <div class="row my-4">
-       <div class="col-3 mr-0">
-          <p>ジャンル</p>
-       </div>
-       <div class="col-7">
-           <%= fields_for @post.questions.build do |question| %>
-            <%= question.select :genre, [["単語", "単語"], ["文法", "文法"]], include_blank: "選択して下さい" %>
-          <% end %>
-       </div>
-     </div>
-
-     <div class="row my-4">
-       <div class="col-3 mr-0">
-          <p>問題文（指示）</p>
-       </div>
-       <div class="col-7">
-          <%= fields_for @post.questions.build do |question| %>
-            <%= question.text_field :direction %>
-          <% end %>
-       </div>
-     </div>
-
-     <div class="row my-4">
-       <div class="col-3 mr-0">
-          <p>問題</p>
-       </div>
-       <div class="col-7">
-          <%= fields_for @post.questions.build do |question| %>
-            <%= question.text_field :question %>
-          <% end %>
-       </div>
-     </div>
-
-     <div class="row my-4">
-       <div class="col-3 mr-0">
-          <p>正解</p>
-       </div>
-       <div class="col-7">
-          <%= fields_for @post.questions.build do |question| %>
-            <%= question.text_field :correct_choice %>
-          <% end %>
-       </div>
-     </div>
-
-     <div class="row my-4">
-       <div class="col-3 mr-0">
-          <p>不正解</p>
-       </div>
-       <div class="col-3">
-          <%= fields_for @post.questions.build do |question| %>
-            <%= question.text_field :first_wrong_choice%>
-          <% end %>
-       </div>
-       <div class="col-3">
-          <%= fields_for @post.questions.build do |question| %>
-            <%= question.text_field :second_wrong_choice%>
-          <% end %>
-       </div>
-     </div>
-
-     <div class="row my-4">
-       <div class="col-3 mr-0">
-          <p>解説</p>
-       </div>
-       <div class="col-7">
-          <%= fields_for @post.questions.build do |question| %>
-            <%= question.text_area :explanation %>
-          <% end %>
-       </div>
-     </div>
      <div class="row">
        <div class="col-4 mx-auto">
-          <%= f.submit "新規作成" ,class:"btn btn-warning"%>
+          <%= f.submit "問題作成へ" ,class: "btn"%>
           <% end %>
        </div>
      </div>

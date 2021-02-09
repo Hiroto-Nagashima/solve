@@ -298,10 +298,8 @@ body {
   flex-direction: row;
   justify-content: space-evenly;
 }
-.comment-list.hidden{
-  min-height: 200px;
-}
-.more{
+
+.commentBtn{
   cursor: pointer;
 }
 .comment-list{

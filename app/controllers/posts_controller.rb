@@ -10,19 +10,28 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def create
+  def update
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.questions.build(question_params)
-    @post.save
-      # @post.questions.each do |question|
-      #   question.post_id = @post.id
-      #   question.direction = params[:question][:direction]
-      #   question.correct_answer = params[:post][:correct_answer]
-      #   question.save
-      # end
+    @post.update
 
-    redirect_to users_path
+    redirect_to posts_confirm_path
+  end
+  def create
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    if @post.save
+      redirect_to new_question_path
+    else
+      render "new"
+    end
+  end
+
+
+  def confirm
+    @posts = Post.where(user_id: current_user.id)
+    @post = @posts.last
   end
 
   def destroy
@@ -32,6 +41,7 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:content)
   end
+
   def question_params
     params.require(:question).permit(:direction,:question,:correct_choice,:first_wrong_choice,:second_wrong_choice,:genre,:explanation)
   end

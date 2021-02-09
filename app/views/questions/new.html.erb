@@ -1,0 +1,72 @@
+<div class="container mr-0">
+    <div class="row my-3">
+       <h2>New Question</h2>
+    </div>
+
+    <%= form_with model:@question, url:questions_path, local: true do |f| %>
+     <div class="row my-4">
+       <div class="col-3 mr-0">
+          <p>ジャンル</p>
+       </div>
+       <div class="col-7">
+          <%= f.select :genre, [["単語", "単語"], ["文法", "文法"]], include_blank: "選択して下さい" %>
+       </div>
+     </div>
+
+     <div class="row my-4">
+       <div class="col-3 mr-0">
+          <p>問題文（指示）</p>
+       </div>
+       <div class="col-7">
+          <%= f.text_field :direction %>
+       </div>
+     </div>
+
+     <div class="row my-4">
+       <div class="col-3 mr-0">
+          <p>問題</p>
+       </div>
+       <div class="col-7">
+         <%= f.text_field :question %>
+       </div>
+     </div>
+
+     <div class="row my-4">
+       <div class="col-3 mr-0">
+          <p>正解</p>
+       </div>
+       <div class="col-7">
+            <%= f.text_field :correct_choice %>
+       </div>
+     </div>
+
+     <div class="row my-4">
+       <div class="col-3 mr-0">
+          <p>不正解</p>
+       </div>
+       <div class="col-3">
+          <%= f.text_field :first_wrong_choice%>
+       </div>
+       <div class="col-3">
+            <%= f.text_field :second_wrong_choice%>
+       </div>
+     </div>
+
+     <div class="row my-4">
+       <div class="col-3 mr-0">
+          <p>解説</p>
+       </div>
+       <div class="col-7">
+          <%= f.text_area :explanation %>
+       </div>
+     </div>
+
+     <div class="row">
+       <div class="col-4 mx-auto">
+          <%= f.submit "確認画面へ" ,class: "btn"%>
+          <% end %>
+       </div>
+     </div>
+
+
+</div>
