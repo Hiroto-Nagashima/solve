@@ -14,20 +14,22 @@
           <%= render partial: 'likes/like', locals: { post: post} %>
       </div>
 
-      <button type = "button" class="btn btn-warning btn-lg startBtn" data-id= <%= post.id %>>
+      <button type = "button" class="btn startBtn" data-id= <%= post.id %>>
         <i class = "far fa-lightbulb"></i>
       </button>
 
-      <div class="commentBtn">
+      <div class="commentBtn" data-id= <%= post.id %>>
         <i class="far fa-comment"></i>
-        <%= post.comments.count %>件
+        <p class = "commentAmount_<%= post.id %>"><%= post.comments.count %>件</p>
         <h6>コメント</h6>
       </div>
 
     </div>
   </div>
-  <div class="comment-list ">
-    <%= render partial: 'comments/index', locals: { comments: post.comments.order(created_at: :desc) , post: post ,comment: @comment} %>
+  <div class="comment-list comment-list_<%= post.id %> ">
+    <div class = "comments_area_<%= post.id %>">
+      <%= render partial: 'comments/index', locals: { comments: post.comments.order(created_at: :desc) , post: post ,comment: @comment} %>
+    </div>
     <% if user_signed_in? %>
         <div class="comment-create">
             <h3>投稿</h3>
@@ -37,8 +39,8 @@
   </div>
 </div>
 <% end %>
-
 <div class="question_list hidden">
-  <%= render partial: 'questions/show' %>
+  <%= render partial: 'questions/show' ,locals: {score: @score} %>
 </div>
+
 

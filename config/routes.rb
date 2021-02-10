@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get '/likes/index', to: 'likes#index'
 
   resources :questions, only: [:create,:destroy,:new]
+  get '/questions/go', to: 'questions#go'
+  post '/questions/save_choice', to: 'questions#save_choice'
 
   resources :scores, only: [:create, :destroy ]
 
@@ -27,7 +29,6 @@ Rails.application.routes.draw do
   resources :answers, only: [:create, :destroy ]
   root 'homes#top'
 
-  get '/questions/go', to: 'questions#go'
 
   get '/comments/eachComment', to: 'comments#eachComment'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

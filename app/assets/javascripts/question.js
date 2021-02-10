@@ -6,13 +6,14 @@ $(function(){
       url: `questions/go?post_id=${post_id}`,
       dataType : 'json',
     }).done(function (data){
+      console.log(data)
       $('#direction').text(data[0]['direction']);
 
       $('#question_sentense').text(data[0]['question']);
 
       array = shuffle(["correct_choice","first_wrong_choice","second_wrong_choice"]);
       $.each(array, function(index, val) {
-      $('#choices').append("<li>" + data[0][val] + "</li>");
+      $('#choices').append("<li post_id =" + post_id  + " question_id =" + data[0]['id']  + " class =" + val + ">" + data[0][val] + "</li>");
     });
 
       $('.question_list').removeClass('hidden');
@@ -20,6 +21,32 @@ $(function(){
     }).fail(function (data) {
       alert('Bye');
     });  });
+
+
+  $('#choices').on('click',"li", function() {
+    let post_id = $(this).attr("post_id");
+    let question_id = $(this).attr("question_id");
+    let choice_class = $(this).attr("class");
+
+    $.ajax({
+      url: 'questions/save_choice',
+      dataType : 'json',
+      type:'POST',
+      data : {"post_id" : post_id , "question_id" : question_id ,"choice_class" : choice_class},
+    }).done(function (data){
+        console.log(data)
+      if(data['choice_class'] == 'correct_choice'){
+        $('#Correct_or_Wrong').text("正解！！");
+        $('#detail').text(data['question']['explanation']);
+
+      }else{
+        $('#Correct_or_Wrong').text("残念！！");
+      }
+      $('#answer').removeClass('hidden');
+    }).fail(function (data) {
+      alert('Bye');
+    });
+  });
 
 });
 

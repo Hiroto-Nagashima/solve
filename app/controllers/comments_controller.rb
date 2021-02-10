@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
-    @comments = @post.comments
     @comment = @post.comments.build(comment_params)
     @comment.user_id = current_user.id
     @comment.save
-    render :index
+    @comments = @post.comments
+
   end
 
   def destroy
@@ -13,16 +13,15 @@ class CommentsController < ApplicationController
     @comments = @post.comments
     @comment = Comment.find(params[:id])
     @comment.destroy
-    render :index
   end
 
   def index
     @post = Post.find(params[:post_id])
     @comments = @post.comments
   end
-  
+
   # def eachComment
-  #   target_id = params[:post_id] 
+  #   target_id = params[:post_id]
 
   #   target_comment_list = Comment.where(post_id: target_id)
 

@@ -125,7 +125,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 10000;
+  z-index: 3000;
 }
 .container.hidden {
   transform: translateY(-1500px);
@@ -233,6 +233,7 @@ body {
   border-radius: 4px;
   text-align: center;
   min-height: 400px;
+  z-index: 4000;
   /* transition: 0.4s; */
 }
 
