@@ -26,9 +26,11 @@ class QuestionsController < ApplicationController
     target_question_list = Question.where(post_id: target_id)
 
     render json: target_question_list.to_json
+
   end
 
   def save_choice
+    @post = Post.find(params[:post_id])
     choice_class = params[:choice_class]
     question = Question.find(params[:question_id])
     score = Score.new
@@ -40,12 +42,20 @@ class QuestionsController < ApplicationController
       answer.personal_answer = params[:choice_class]
       answer.question_id = params[:question_id]
       answer.score_id = score.id
-      answer.save!
+      answer.save
 
-      render json: {choice_class: choice_class , question: question }.to_json
+      render json: {choice_class: choice_class , question: question ,questions: @post.questions}.to_json
     else
       redirect_to users_path
     end
+  end
+
+  def continue
+    score = current_user.scores.last
+    post_id = score.post_id
+    @post = Post.find_by(id: post_id)
+    questions = @post.questions
+    render json: questions.to_json
   end
 
   def question_params

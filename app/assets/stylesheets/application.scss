@@ -122,7 +122,7 @@ body {
   border-radius: 4px;
   padding: 16px;
   position: fixed;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 3000;
@@ -225,7 +225,7 @@ body {
   background: #fff;
   padding: 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  top: 50px;
+  top: 200px;
   /* 絶対配置ではmargin: auto;だけではだめで、left: 0;、right: 0が必要 */
   left: 0;
   right: 0;
@@ -260,6 +260,7 @@ body {
   background: #fff;
   border-radius: 4px;
   padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
 }
 .post-wrapper{

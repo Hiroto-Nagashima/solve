@@ -1,12 +1,15 @@
+let post_id = 0
+let questionAmount = 0
 $(function(){
   $('.startBtn').on('click', function() {
-    let post_id = $(this).data('id');
+     post_id = $(this).data('id');
 
     $.ajax({
       url: `questions/go?post_id=${post_id}`,
       dataType : 'json',
     }).done(function (data){
-      console.log(data)
+      questionAmount =　$(data).length - 1;
+      console.log(questionAmount)
       $('#direction').text(data[0]['direction']);
 
       $('#question_sentense').text(data[0]['question']);
@@ -20,7 +23,8 @@ $(function(){
 
     }).fail(function (data) {
       alert('Bye');
-    });  });
+     });
+    });
 
 
   $('#choices').on('click',"li", function() {
@@ -38,9 +42,14 @@ $(function(){
       if(data['choice_class'] == 'correct_choice'){
         $('#Correct_or_Wrong').text("正解！！");
         $('#detail').text(data['question']['explanation']);
+        nextBtn();
 
       }else{
         $('#Correct_or_Wrong').text("残念！！");
+        $('#correctAnswer').text("正解は" + data['question']['correct_choice'] + "!");
+        $('#detail').text(data['question']['explanation']);
+        nextBtn();
+
       }
       $('#answer').removeClass('hidden');
     }).fail(function (data) {
@@ -48,7 +57,26 @@ $(function(){
     });
   });
 
-});
+  $('#nextBtn').on('click', function() {
+  $.ajax({
+      url: 'questions/continue',
+      dataType : 'json',
+    }).done(function (data){
+        currentNum++
+        setquiz(data);
+
+        // $('#answer').removeClass('hidden');
+    }).fail(function (data) {
+      alert('Bye');
+    });
+      $('#answer').addClass('hidden');
+
+   });
+
+
+ });
+
+  let currentNum = 0
 
   const shuffle =(arr) => {
     ///最後の要素は合計要素数-1で取得できる
@@ -62,3 +90,23 @@ $(function(){
 
     return arr;
   }
+
+  const setquiz =(data)=> {
+      $('#direction').text(data[currentNum]['direction']);
+
+      $('#question_sentense').text(data[currentNum]['question']);
+
+      $('#choices').empty();
+      array = shuffle(["correct_choice","first_wrong_choice","second_wrong_choice"]);
+      $.each(array, function(index, val) {
+      $('#choices').append("<li post_id =" + post_id  + " question_id =" + data[currentNum]['id']  + " class =" + val + ">" + data[currentNum][val] + "</li>");
+    });
+  }
+
+  const nextBtn =()=>{
+    if(currentNum == questionAmount){
+          $('#nextBtn').text("Show Score");
+        }else{
+           $('#nextBtn').text("Next");
+        }
+    }

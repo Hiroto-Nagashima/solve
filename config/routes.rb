@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :questions, only: [:create,:destroy,:new]
   get '/questions/go', to: 'questions#go'
   post '/questions/save_choice', to: 'questions#save_choice'
+  get '/questions/continue', to: 'questions#continue'
 
   resources :scores, only: [:create, :destroy ]
 

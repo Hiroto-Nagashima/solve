@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :relationships
   has_many :followings, through: :relationships
 
-  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
+  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follower_id'
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
   has_many :scores
@@ -24,15 +24,15 @@ class User < ApplicationRecord
   end
 
   def following?(user)
-    relationships.find_by(user_id: user.id)
+    relationships.find_by(follower_id: user.id)
   end
 
   def follow(user)
-    relationships.create!(user_id: user.id)
+    relationships.create!(follower_id: user.id)
   end
 
   def unfollow(user)
-    relationships.find_by(user_id: user.id).destroy
+    relationships.find_by(follower_id: user.id).destroy
   end
 
   # => "SELECT \"users\".* FROM \"users\" INNER JOIN \"relationships\" ON \"users\".\"id\" = \"relationships\".\"user_id\" WHERE \"relationships\".\"user_id\" = 1"
