@@ -9,14 +9,14 @@ $(function(){
       dataType : 'json',
     }).done(function (data){
       questionAmount =　$(data).length - 1;
-      console.log(questionAmount)
+      console.log(data)
       $('#direction').text(data[0]['direction']);
 
       $('#question_sentense').text(data[0]['question']);
 
       array = shuffle(["correct_choice","first_wrong_choice","second_wrong_choice"]);
       $.each(array, function(index, val) {
-      $('#choices').append("<li post_id =" + post_id  + " question_id =" + data[0]['id']  + " class =" + val + ">" + data[0][val] + "</li>");
+      $('#choices').append("<li post_id =" + post_id  + " question_id =" + data[0]['id']  + " class =" + val + " currentNum =" + currentNum + ">" + data[0][val] +"</li>");
     });
 
       $('.question_list').removeClass('hidden');
@@ -36,22 +36,27 @@ $(function(){
       url: 'questions/save_choice',
       dataType : 'json',
       type:'POST',
-      data : {"post_id" : post_id , "question_id" : question_id ,"choice_class" : choice_class},
+      data : {"post_id" : post_id , "question_id" : question_id ,"choice_class" : choice_class, "currentNum": currentNum},
     }).done(function (data){
         console.log(data)
       if(data['choice_class'] == 'correct_choice'){
-        $('#Correct_or_Wrong').text("正解！！");
-        $('#detail').text(data['question']['explanation']);
+        $('.Correct_or_Wrong').text("正解！！");
+        $('.detail').text(data['question']['explanation']);
         nextBtn();
 
       }else{
-        $('#Correct_or_Wrong').text("残念！！");
-        $('#correctAnswer').text("正解は" + data['question']['correct_choice'] + "!");
-        $('#detail').text(data['question']['explanation']);
+        $('.Correct_or_Wrong').text("残念！！");
+        $('.correctAnswer').text("正解は" + data['question']['correct_choice'] + "!");
+        $('.detail').text(data['question']['explanation']);
         nextBtn();
 
       }
-      $('#answer').removeClass('hidden');
+      if(currentNum == questionAmount){
+        $('#final-answer').removeClass('hidden');
+      }else{
+        $('#answer').removeClass('hidden');
+      }
+
     }).fail(function (data) {
       alert('Bye');
     });
@@ -65,7 +70,6 @@ $(function(){
         currentNum++
         setquiz(data);
 
-        // $('#answer').removeClass('hidden');
     }).fail(function (data) {
       alert('Bye');
     });
@@ -73,6 +77,23 @@ $(function(){
 
    });
 
+
+   $('#lastBtn').on('click', function() {
+  $.ajax({
+      url: 'questions/result',
+      type:'PATCH',
+      dataType : 'json',
+    }).done(function (data){
+      console.log(data)
+      let total_question = questionAmount + 1
+     $('#total_score').text(data['score'] + "/" + total_question);
+
+    }).fail(function (data) {
+      alert('Bye');
+    });
+      $('#result').removeClass('hidden');
+
+   });
 
  });
 
@@ -105,7 +126,7 @@ $(function(){
 
   const nextBtn =()=>{
     if(currentNum == questionAmount){
-          $('#nextBtn').text("Show Score");
+          $('#lastBtn').text("Show Score");
         }else{
            $('#nextBtn').text("Next");
         }

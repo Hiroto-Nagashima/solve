@@ -1,5 +1,8 @@
 class PostsController < ApplicationController
   def index
+    @user = User.find(current_user.id)
+    @comment = Comment.new
+    @posts = Post.all.order(created_at: :desc)
   end
 
   def show
@@ -39,10 +42,10 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit(:content, :genre)
   end
 
   def question_params
-    params.require(:question).permit(:direction,:question,:correct_choice,:first_wrong_choice,:second_wrong_choice,:genre,:explanation)
+    params.require(:question).permit(:direction,:question,:correct_choice,:first_wrong_choice,:second_wrong_choice,:explanation)
   end
 end

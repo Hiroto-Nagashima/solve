@@ -1,4 +1,4 @@
-<div class="container mr-0">
+<div class="container mt-5 setquiz">
     <div class="row my-3">
        <h2>Confirmation</h2>
     </div>
@@ -18,9 +18,7 @@
           <p>ジャンル</p>
        </div>
        <div class="col-7">
-           <%= fields_for @post.questions.build do |question| %>
-            <%= question.select :genre, [["単語", "単語"], ["文法", "文法"]], include_blank: "選択して下さい" %>
-          <% end %>
+            <%= f.select :genre, [["単語", "単語"], ["文法", "文法"]], include_blank: "選択して下さい" %>
        </div>
      </div>
 

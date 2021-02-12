@@ -1,27 +1,26 @@
-
-<% comments.first(2).each do |comment| %>
-  <% unless comment.id.nil? %>
-    <li class="comment-container">
-        <div class="comment-box">
-            <div class="comment-avatar">
-                <%= attachment_image_tag comment.user, :profile_image, fallback: "no_image.jpeg", class:"comment-image", size: "30x30" %>
-            </div>
-            <div class="comment-text">
-                <p><%= link_to "@#{comment.user.name}" %></p>
-                <div class="comment-entry">
-                    <%= comment.content %>
-                    <% if comment.user == current_user %>
-                        <%= link_to post_comment_path(post, comment), method: :delete, remote: true, class: "comment_destroy" do %>
-                            <i class="fas fa-trash" style="color: black;"></i>
-                        <% end %>
-                    <% end %>
-                </div>
-                <span class="comment-date pull-right">
-                      <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
-                </span>
-            </div>
+<% comments.each do |comment| %>
+<% unless comment.id.nil? %>
+<div class="comment-head">
+    <%= attachment_image_tag comment.user, :profile_image, fallback: "no_image.jpeg", class:"comment-image", size: "30x30" %>
+    <p class = "comment-user-name"><%= link_to "#{comment.user.name}" %></p>
+</div>
+<div>
+    <div class="comment-text">
+        <%= comment.content %>
+    </div>
+    <div class = "comment-footer">
+        <div class="comment-date">
+          <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
         </div>
-    </li>
-  <% end %>
+        <div class = "comment-dust">
+            <% if comment.user == current_user %>
+                <%= link_to post_comment_path(post, comment), method: :delete, remote: true, class: "comment_destroy" do %>
+                    <i class="fas fa-trash" style="color: black;"></i>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>
+<% end %>
 <% end %>
 

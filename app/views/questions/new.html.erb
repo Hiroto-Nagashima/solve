@@ -1,17 +1,10 @@
-<div class="container mr-0">
+<div class="container setquiz">
     <div class="row my-3">
        <h2>New Question</h2>
     </div>
 
     <%= form_with model:@question, url:questions_path, local: true do |f| %>
-     <div class="row my-4">
-       <div class="col-3 mr-0">
-          <p>ジャンル</p>
-       </div>
-       <div class="col-7">
-          <%= f.select :genre, [["単語", "単語"], ["文法", "文法"]], include_blank: "選択して下さい" %>
-       </div>
-     </div>
+
 
      <div class="row my-4">
        <div class="col-3 mr-0">

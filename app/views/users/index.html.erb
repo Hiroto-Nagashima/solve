@@ -1,9 +1,10 @@
-<% @posts.each do |post| %>
+<% current_user.@posts.each do |post| %>
 <div class = "eachPost">
   <div class = "post-wrapper">
     <div class = "post-head">
       <%= attachment_image_tag post.user ,:profile_image ,size: "40x40" ,class:"userImg"%>
-      <p class = "userName"><%= link_to post.user.name , user_path(post.user)%></p>
+      <p><%= link_to post.user.name , user_path(post.user) ,class: "userName"%></p>
+      <p class = "postedGenre"><<%= post.genre %>></p>
       <p class = "postedDate"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
     </div>
 
@@ -15,13 +16,12 @@
       </div>
 
       <button type = "button" class="btn startBtn" data-id= <%= post.id %>>
-        <i class = "far fa-lightbulb"></i>
+        <i class = "far fa-lightbulb fa-2x"></i>
       </button>
 
       <div class="commentBtn" data-id= <%= post.id %>>
-        <i class="far fa-comment"></i>
+        <i class="far fa-comment fa-lg"></i>
         <p class = "commentAmount_<%= post.id %>"><%= post.comments.count %>件</p>
-        <h6>コメント</h6>
       </div>
 
     </div>
@@ -32,7 +32,7 @@
     </div>
     <% if user_signed_in? %>
         <div class="comment-create">
-            <h3>投稿</h3>
+            <h5>Comment</h5>
             <%= render partial: 'comments/form', locals: {comment: @comment, post: post } %>
         </div>
     <% end %>

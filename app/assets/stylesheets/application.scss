@@ -17,16 +17,29 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'ヒラギノ角ゴシック','Hiragino Sans',YuGothic,'Yu Gothic','Arial', sans-serif;
 
+}
 header {
 	/*Strictly Necessary */
 	position: fixed;
-	width: 75%;
-	height: 50px; /*Adjust the hight to your purposes*/
+	width: 100%;
+	height: 85px; /*Adjust the hight to your purposes*/
 	background: white;
 	z-index: 1000;
-	border-bottom: 1px solid #ccc;
-	background: #DDDDDD;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	padding-left: 5%;
+
+}
+.add-question{
+  position: fixed;
+  top: 80%;
+  right: 5%;
+  color: black;
 }
 .navbar-nav{
   margin-left: auto;
@@ -38,12 +51,9 @@ header {
 	float: right;
 
 }
+.list-wrapper{
 
-// .ContentBox{
-// 	margin-top: 50px; /*The height of the   header*/
-// 	display: flex;
-// 	flex-flow: row wrap;
-// }
+}
 .jumbotron-extend {
     position: relative;
     height: 100vh;
@@ -53,22 +63,14 @@ header {
     background-size: cover;
 }
 
-.title{
-    font-size: 100px;
-    color: white;
-    margin-bottom: 20px;
-}
-.nav-link{
-  font-size: 20px;
-}
-
 .side-bar {
 	/*Strictly Necessary */
 	position:fixed;
 	height: 100%;
 	width: 25%;
 	margin: 0px;
-
+	margin-top: 85px;
+  padding: 3%;
   /*Aesthetics*/
   // background: #DDDDDD;
   border-radius: 7px;
@@ -218,6 +220,7 @@ body {
   border-radius: 4px;
   text-align: center;
   transition: 0.4s;
+  z-index: 6000;
 }
 #answer {
   position: absolute;
@@ -236,12 +239,33 @@ body {
   z-index: 4000;
   /* transition: 0.4s; */
 }
+#final-answer {
+  position: absolute;
+  width: 400px;
+  background: #fff;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  top: 200px;
+  /* 絶対配置ではmargin: auto;だけではだめで、left: 0;、right: 0が必要 */
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+  min-height: 400px;
+  z-index: 5000;
+  /* transition: 0.4s; */
+}
 
 #result.hidden {
   transform: translateY(-1500px);
 }
 #answer.hidden {
   transform: translateY(-800px);
+}
+
+#final-answer.hidden {
+  transform: translateY(-4000px);
 }
 
 #result > p {
@@ -273,20 +297,26 @@ body {
   // z-index: 100;
 }
 .eachPost:first-child{
-   margin-top: 60px;
+   margin-top: 120px;
  }
 .postedContent{
   min-height: 60px;
-  border: 2px solid #ccc;
   font-size: 20px;
-  padding: 5px;
+  padding: 10px;
+  margin: 10px auto;
+
+}
+.postedGenre{
+  margin: 0 auto;
+  font-size: 20px;
 }
 .post-head{
   display: flex;
   flex-direction: row;
 }
 .userName{
-  font-size: 25px;
+  font-size: 20px;
+  color: black;
 }
 .userImg{
   margin-left: 0;
@@ -303,10 +333,121 @@ body {
 
 .commentBtn{
   cursor: pointer;
+  display: flex;
 }
 .comment-list{
-  border: 2px solid #ccc;
   margin: 0 auto;
   background: #fff;
 
+}
+.comment-head{
+  display: flex;
+}
+.comment-box{
+  padding: 3%;
+  margin: 3%;
+  border-top: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+}
+.comment-footer{
+  display: flex;
+  justify-content: flex-end;
+}
+.comment-text{
+  margin: 5% auto;
+}
+.comment-user-name > a{
+  margin: 0 30px;
+  width: 70%;
+  color: black;
+}
+.input-area{
+  width: 80%;
+
+}
+.fa-lg{
+  color: black;
+}
+.likes-amount > a{
+  color: black;
+}
+.likesInPost{
+  display: flex;
+}
+.setquiz{
+  margin: 150px auto;
+}
+#hm-icon {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 10;
+}
+.menu-trigger,
+.menu-trigger span {
+  display: inline-block;
+  transition: all .4s;
+  box-sizing: border-box;
+}
+.menu-trigger {
+  position: relative;
+  width: 50px;
+  height: 44px;
+}
+.menu-trigger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #000;
+  border-radius: 4px;
+}
+.menu-trigger span:nth-child(1) {
+  top: 0;
+}
+.menu-trigger span:nth-child(2) {
+  top: 20px;
+}
+.menu-trigger span:nth-child(3) {
+  bottom: 0;
+}
+.menu-trigger.active span:nth-child(1) {
+  -webkit-transform: translateY(20px) rotate(-45deg);
+  transform: translateY(20px) rotate(-45deg);
+  background-color: #000;
+}
+.menu-trigger.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-trigger.active span:nth-child(3) {
+  -webkit-transform: translateY(-20px) rotate(45deg);
+  transform: translateY(-20px) rotate(45deg);
+  background-color: #000;
+}
+
+
+#sp-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: white;
+  color: white;
+  width: 30%;
+  display: none;
+  z-index: 9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#sp-menu li {
+
+
+  text-align: center;
+  margin: 20%;
+  list-style: none;
+}
+#sp-menu a {
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
 }

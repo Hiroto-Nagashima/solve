@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  enum genre: { 単語:0, 文法:1 ,その他:2 }
   has_many :scores,dependent: :destroy
   has_many :comments,dependent: :destroy
   has_many :questions,dependent: :destroy

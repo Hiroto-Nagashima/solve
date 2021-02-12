@@ -30,6 +30,7 @@ class QuestionsController < ApplicationController
   end
 
   def save_choice
+    currentNum = params[:currentNum]
     @post = Post.find(params[:post_id])
     choice_class = params[:choice_class]
     question = Question.find(params[:question_id])
@@ -37,17 +38,22 @@ class QuestionsController < ApplicationController
     score.post_id = params[:post_id]
     score.user_id = current_user.id
     score.score = 0
-    if score.save
+    if currentNum == "0"
+      score.save
       answer = Answer.new
       answer.personal_answer = params[:choice_class]
       answer.question_id = params[:question_id]
       answer.score_id = score.id
       answer.save
+    else
+      answer = Answer.new
+      answer.personal_answer = params[:choice_class]
+      answer.question_id = params[:question_id]
+      answer.score_id = current_user.scores.last.id
+      answer.save
+    end
 
       render json: {choice_class: choice_class , question: question ,questions: @post.questions}.to_json
-    else
-      redirect_to users_path
-    end
   end
 
   def continue
@@ -58,7 +64,15 @@ class QuestionsController < ApplicationController
     render json: questions.to_json
   end
 
+  def result
+    score = current_user.scores.last
+    correct_answers = Answer.where(score_id: score.id , personal_answer: "correct_choice")
+    score.score = correct_answers.size
+    score.save
+    render json: score.to_json
+  end
+
   def question_params
-    params.require(:question).permit(:direction,:question,:correct_choice,:first_wrong_choice,:second_wrong_choice,:genre,:explanation)
+    params.require(:question).permit(:direction,:question,:correct_choice,:first_wrong_choice,:second_wrong_choice,:explanation)
   end
 end
