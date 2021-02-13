@@ -49,3 +49,4 @@ class PostsController < ApplicationController
     params.require(:question).permit(:direction,:question,:correct_choice,:first_wrong_choice,:second_wrong_choice,:explanation)
   end
 end
+

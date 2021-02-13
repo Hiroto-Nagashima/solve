@@ -10,6 +10,13 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     render :layout => 'compact'
+    
+    current_todays_score_box = []
+    @current_todays_scores = @user.scores.where(created_at: Time.zone.now.all_day)
+    @current_todays_scores.each do |current_todays_score|
+      current_todays_score_box << current_todays_score.score
+    end
+    @current_todays_score = current_todays_score_box.inject(:+)
   end
 
   def edit

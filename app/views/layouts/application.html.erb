@@ -8,7 +8,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <% if user_signed_in? %>
+  <% if user_signed_in?  && !(controller.action_name == "top" && controller.controller_name == "homes")%>
   <div class = "side-bar">
    <div class = "sidebar-head">
      <div><%= attachment_image_tag current_user, :profile_image ,size: "100x100", fallback: "no_image.jpg"%></div>
@@ -18,7 +18,7 @@
      <tbody>
        <tr>
          <th>Today's Score</th>
-         <th><%= current_user.introduction %></th>
+         <th><%= @current_todays_score %></th>
        </tr>
        <tr>
          <th>Follow</th>
@@ -40,22 +40,22 @@
   <% if user_signed_in? && !(controller.action_name == "top" && controller.controller_name == "homes") %>
     <div>
         <header>
-            <%= link_to posts_path do %>
+            <%= link_to posts_path ,data: {"turbolinks"=>false} do %>
              <%= image_tag 'logo.jpg',size:'80x80'  %>
             <%end%>
             <div id="sp-menu">
               <ul>
                   <li>
-                    <%= link_to "MyPage", user_path(current_user.id) ,class: 'fas fa-home'%></i>
+                    <%= link_to "MyPage", user_path(current_user.id) ,class: 'fas fa-home',data: {"turbolinks"=>false}%></i>
                   </li>
                    <li>
-                    <%= link_to "Favorites" ,likes_index_path,class: 'fas fa-heart'%>
+                    <%= link_to "Favorites" ,likes_index_path,class: 'fas fa-heart',data: {"turbolinks"=>false}%>
                   </li>
                    <li>
-                    <%= link_to "Ranking" ,ranks_index_path,class: 'fas fa-trophy'%>
+                    <%= link_to "Ranking" ,ranks_index_path,class: 'fas fa-trophy',data: {"turbolinks"=>false}%>
                   </li>
                   <li>
-                    <%= link_to "Edit",edit_user_path(current_user.id) ,class: 'fas fa-user-cog' %>
+                    <%= link_to "Edit",edit_user_path(current_user.id) ,class: 'fas fa-user-cog' ,data: {"turbolinks"=>false}%>
                   </li>
                    <li>
                     <%= link_to "logout", destroy_user_session_path, method: :delete ,class: 'fas fa-sign-out-alt' %>

@@ -24,6 +24,9 @@
   font-family: 'ヒラギノ角ゴシック','Hiragino Sans',YuGothic,'Yu Gothic','Arial', sans-serif;
 
 }
+body,html{
+  height: 100%;
+}
 header {
 	/*Strictly Necessary */
 	position: fixed;
@@ -63,14 +66,11 @@ font-size: 20px;
 	/*Strictly Necessary */
 	width: 75%;
 	float: right;
-	height: 100%;
+	min-height: 100%;
 	background: #C2EEFF;
-	padding-bottom: 300px;
 }
-// .list-wrapper{
 
-// }
-.jumbotron-extend {
+.home-wrap {
     position: relative;
     height: 100vh;
     min-height: 300px;
@@ -455,8 +455,6 @@ body {
 }
 
 #sp-menu li {
-
-
   text-align: center;
   margin: 20%;
   list-style: none;
@@ -466,4 +464,53 @@ body {
   text-decoration: none;
   font-weight: bold;
   color: black;
+}
+
+#rank-wrap{
+  width: 90%;
+  max-width: 800px;
+  margin: 100px;
+}
+#tab-menu {
+  display: flex;
+  margin-bottom: 0;
+}
+
+#tab-menu li {
+  list-style-type: none;
+  width: 25%;
+}
+
+#tab-menu li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 20px;
+  text-align: center;
+  background: #000;
+  border: 1px solid #000;
+  border-bottom: none;
+}
+
+#tab-menu .active {
+  background: #fff;
+  color: #000;
+}
+
+#tab-contents {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#tab-contents .tab {
+  width: 100%;
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #000;
+  border-top: none;
+}
+
+#tab-contents p {
+  color: #000;
+  line-height: 2.5;
 }

@@ -6,7 +6,8 @@ class Post < ApplicationRecord
   has_many :likes,dependent: :destroy
   belongs_to :user
   accepts_nested_attributes_for :questions, allow_destroy: true
-  
+  validates :content,:genre, presence: true
+
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
   end

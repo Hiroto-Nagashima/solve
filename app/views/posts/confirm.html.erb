@@ -22,14 +22,14 @@
        </div>
      </div>
 
+    <%= f.fields_for :questions do |question| %>
      <div class="row my-4">
        <div class="col-3 mr-0">
           <p>問題文（指示）</p>
        </div>
        <div class="col-7">
-          <%= fields_for @post.questions.build do |question| %>
-            <%= question.text_field :direction %>
-          <% end %>
+          <%= question.text_field :direction %>
+
        </div>
      </div>
 
@@ -38,9 +38,7 @@
           <p>問題</p>
        </div>
        <div class="col-7">
-          <%= fields_for @post.questions.build do |question| %>
             <%= question.text_field :question %>
-          <% end %>
        </div>
      </div>
 
@@ -49,9 +47,9 @@
           <p>正解</p>
        </div>
        <div class="col-7">
-          <%= fields_for @post.questions.build do |question| %>
+
             <%= question.text_field :correct_choice %>
-          <% end %>
+
        </div>
      </div>
 
@@ -60,14 +58,14 @@
           <p>不正解</p>
        </div>
        <div class="col-3">
-          <%= fields_for @post.questions.build do |question| %>
+
             <%= question.text_field :first_wrong_choice%>
-          <% end %>
+
        </div>
        <div class="col-3">
-          <%= fields_for @post.questions.build do |question| %>
+
             <%= question.text_field :second_wrong_choice%>
-          <% end %>
+
        </div>
      </div>
 
@@ -76,25 +74,26 @@
           <p>解説</p>
        </div>
        <div class="col-7">
-          <%= fields_for @post.questions.build do |question| %>
             <%= question.text_area :explanation %>
-          <% end %>
        </div>
      </div>
+     <% end %>
      <div class="row">
        <div class="col-4 mx-auto">
           <%= f.submit "内容を変更" ,class:"btn btn-warning"%>
-          <% end %>
        </div>
      </div>
+    <% end %>
+
      <div class="row">
        <div class="col-4 mx-auto">
-          <%= link_to "問題追加", new_question_path, class: "btn"%>
+          <%= link_to "問題追加", new_question_path, class: "btn",data: {"turbolinks"=>false}%>
        </div>
      </div>
+
      <div class="row">
        <div class="col-4 mx-auto">
-          <%= link_to "確定", users_path, class: "btn"%>
+          <%= link_to "確定", users_path, class: "btn" ,data: {"turbolinks"=>false}%>
        </div>
      </div>
 

@@ -1,2 +1,32 @@
-<h1>Ranks#index</h1>
-<p>Find me in app/views/ranks/index.html.erb</p>
+<div data-turbolinks="false">
+  <div id="rank-wrap">
+    <h1>Rank</h1>
+    <ul id="tab-menu">
+      <li><a href="#tab1" class="active">週間いいね(単語)</a></li>
+      <li><a href="#tab2" class="">週間いいね(文法)</a></li>
+      <li><a href="#tab3" class="">月間いいね</a></li>
+      <li><a href="#tab4" class="">月間スコア</a></li>
+    </ul>
+    <div id="tab-contents">
+      <div id="tab1" class="tab">
+        <% @weekly_tango_likes.each do |wtl|%>
+        <p><%= wtl.user.name %></p>
+        <%end%>
+        <p>TAB1のテキストが入ります。</p>
+      </div>
+
+      <div id="tab2" class="tab">
+        <p>TAB2のテキストが入ります。TAB2のテキストが入ります。</p>
+      </div>
+
+      <div id="tab3" class="tab">
+        <p>TAB3のテキストが入ります。TAB3のテキストが入ります。TAB3のテキストが入ります。</p>
+      </div>
+
+      <div id="tab4" class="tab">
+        <p>TAB4のテキストが入ります。TAB4のテキストが入ります。TAB4のテキストが入ります。TAB4のテキストが入ります。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
