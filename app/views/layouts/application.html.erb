@@ -10,12 +10,12 @@
   </head>
   <% if user_signed_in? %>
   <div class = "side-bar">
+   <div class = "sidebar-head">
+     <div><%= attachment_image_tag current_user, :profile_image ,size: "100x100", fallback: "no_image.jpg"%></div>
+     <div class = "name"><%= current_user.name %></div>
+   </div>
    <table class="table">
      <tbody>
-       <tr>
-         <th><%= attachment_image_tag current_user, :profile_image ,size: "100x100", fallback: "no_image.jpg"%></th>
-         <th><%= "#{current_user.name}" %></th>
-       </tr>
        <tr>
          <th>Today's Score</th>
          <th><%= current_user.introduction %></th>
@@ -52,7 +52,7 @@
                     <%= link_to "Favorites" ,likes_index_path,class: 'fas fa-heart'%>
                   </li>
                    <li>
-                    <%= link_to "Ranking" ,root_path,class: 'fas fa-trophy'%>
+                    <%= link_to "Ranking" ,ranks_index_path,class: 'fas fa-trophy'%>
                   </li>
                   <li>
                     <%= link_to "Edit",edit_user_path(current_user.id) ,class: 'fas fa-user-cog' %>

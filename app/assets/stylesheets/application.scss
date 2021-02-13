@@ -35,6 +35,20 @@ header {
 	padding-left: 5%;
 
 }
+.sidebar-head{
+  position: relative;
+  display: flex;
+  margin: 3% auto;
+}
+.name{
+position: absolute;
+top: 50%;
+left: 50%;
+-webkit-transform : translate(-50%,-50%);
+transform : translate(-50%,-50%);
+margin-left: 5%;
+font-size: 20px;
+}
 .add-question{
   position: fixed;
   top: 80%;
@@ -49,11 +63,13 @@ header {
 	/*Strictly Necessary */
 	width: 75%;
 	float: right;
-
+	height: 100%;
+	background: #C2EEFF;
+	padding-bottom: 300px;
 }
-.list-wrapper{
+// .list-wrapper{
 
-}
+// }
 .jumbotron-extend {
     position: relative;
     height: 100vh;
@@ -72,7 +88,7 @@ header {
 	margin-top: 85px;
   padding: 3%;
   /*Aesthetics*/
-  // background: #DDDDDD;
+  background: #F8F8FF;
   border-radius: 7px;
 }
 
