@@ -1,63 +1,64 @@
-<div data-turbolinks="false">
-  <div id="rank-wrap">
-    <h1>Rank</h1>
-    <ul id="tab-menu">
-      <li><a href="#tab1" class="active">週間いいね(単語)</a></li>
-      <li><a href="#tab2" class="">週間いいね(文法)</a></li>
-      <li><a href="#tab3" class="">月間いいね</a></li>
-      <li><a href="#tab4" class="">月間スコア</a></li>
-    </ul>
-    <div id="tab-contents">
-      <div id="tab1" class="tab">
-        <% @weekly_tango_likes.each_with_index do |wtl,i|%>
-        <div class = "weekly_tango_likes">
-          <p><%= i + 1 %></p>
-          <p><%= wtl.user.name %></p>
-          <p><%= wtl.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-          <button type = "button" class="btn startBtn" data-id= <%= wtl.id %>>
-          <i class = "far fa-lightbulb fa-2x"></i>
-          </button>
-          <p><i class="fas fa-heart fa-lg"></i><%= wtl.likes.size %></p>
-        </div>
-        <%end%>
-      </div>
-
-      <div id="tab2" class="tab">
-        <% @weekly_bunpou_likes.each_with_index do |wbl,i|%>
-        <div class = "weekly_tango_likes">
-          <p><%= i + 1 %></p>
-          <p><%= wbl.user.name %></p>
-          <p><%= wbl.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-          <button type = "button" class="btn startBtn" data-id= <%= wbl.id %>>
-          <i class = "far fa-lightbulb fa-2x"></i>
-          </button>
-          <p><i class="fas fa-heart fa-lg"></i><%= wbl.likes.size %></p>
-        </div>
-        <%end%>
-      </div>
-
-      <div id="tab3" class="tab">
-        <% @monthly_likes.each_with_index do |ml,i|%>
-        <div class = "weekly_tango_likes">
-          <p><%= i + 1 %></p>
-          <p><%= ml.user.name %></p>
-          <p><%= ml.genre %></p>
-          <p><%= ml.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-          <button type = "button" class="btn startBtn" data-id= <%= ml.id %>>
-          <i class = "far fa-lightbulb fa-2x"></i>
-          </button>
-          <p><i class="fas fa-heart fa-lg"></i><%= ml.likes.size %></p>
-        </div>
-        <%end%>
-      </div>
-
-      <div id="tab4" class="tab">
-        <% @monthly_scores.each_with_index do |ms,i|%>
+<div id="rank-wrap">
+  <h1>Rank</h1>
+  <ul id="tab-menu">
+    <li><a href="#tab1" class="active">週間いいね(単語)</a></li>
+    <li><a href="#tab2" class="">週間いいね(文法)</a></li>
+    <li><a href="#tab3" class="">月間いいね</a></li>
+    <li><a href="#tab4" class="">月間スコア</a></li>
+  </ul>
+  <div id="tab-contents">
+    <div id="tab1" class="tab">
+      <% @weekly_tango_likes.each_with_index do |wtl,i|%>
+      <div class = "weekly_tango_likes">
         <p><%= i + 1 %></p>
-        <p><%= ms.scores.sum(:score) %></p>
-        <%end%>
+        <p><%= wtl.user.name %></p>
+        <p><%= wtl.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+        <button type = "button" class="btn startBtn" data-id= <%= wtl.id %>>
+        <i class = "far fa-lightbulb fa-2x"></i>
+        </button>
+        <p><i class="fas fa-heart fa-lg"></i><%= wtl.likes.size %></p>
       </div>
+      <%end%>
     </div>
+
+    <div id="tab2" class="tab">
+      <% @weekly_bunpou_likes.each_with_index do |wbl,i|%>
+      <div class = "weekly_tango_likes">
+        <p><%= i + 1 %></p>
+        <p><%= wbl.user.name %></p>
+        <p><%= wbl.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+        <button type = "button" class="btn startBtn" data-id= <%= wbl.id %>>
+        <i class = "far fa-lightbulb fa-2x"></i>
+        </button>
+        <p><i class="fas fa-heart fa-lg"></i><%= wbl.likes.size %></p>
+      </div>
+      <%end%>
+    </div>
+
+    <div id="tab3" class="tab">
+      <% @monthly_likes.each_with_index do |ml,i|%>
+      <div class = "weekly_tango_likes">
+        <p><%= i + 1 %></p>
+        <p><%= ml.user.name %></p>
+        <p><%= ml.genre %></p>
+        <p><%= ml.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+        <button type = "button" class="btn startBtn" data-id= <%= ml.id %>>
+        <i class = "far fa-lightbulb fa-2x"></i>
+        </button>
+        <p><i class="fas fa-heart fa-lg"></i><%= ml.likes.size %></p>
+      </div>
+      <%end%>
+    </div>
+
+    <div id="tab4" class="tab">
+      <% @monthly_scores.each_with_index do |ms,i|%>
+      <p><%= i + 1 %></p>
+      <p><%= ms.scores.sum(:score) %></p>
+      <%end%>
+    </div>
+  </div>
+  <div class="question_list hidden">
+   <%= render partial: 'questions/show'%>
   </div>
 </div>
 

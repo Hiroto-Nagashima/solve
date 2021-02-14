@@ -3,27 +3,7 @@
        <h2>Confirmation</h2>
     </div>
 
-    <%= form_with model:@post, url:post_path(@post) ,method: :patch,local: true do |f| %>
-     <div class="row my-4">
-       <div class="col-3 mr-0">
-          <p>つぶやき</p>
-       </div>
-       <div class="col-7">
-          <%= f.text_area :content, autofocus: true %>
-       </div>
-     </div>
-
-     <div class="row my-4">
-       <div class="col-3 mr-0">
-          <p>ジャンル</p>
-       </div>
-       <div class="col-7">
-            <%= f.select :genre, [["単語", "単語"], ["文法", "文法"]], include_blank: "選択して下さい" %>
-       </div>
-     </div>
-
-    <%= f.fields_for :questions do |question| %>
-    <% unless question.object.confirmed? %>
+    <%= form_with model:@question, url:post_question_path(@question) ,method: :patch,local: true do |f| %>
      <div class="row my-4">
        <div class="col-3 mr-0">
           <p>問題文（指示）</p>
@@ -78,7 +58,7 @@
             <%= question.text_area :explanation %>
        </div>
      </div>
-     <% end %>
+
      <div class="row">
        <div class="col-4 mx-auto">
           <%= f.submit "内容を変更" ,class:"btn btn-warning"%>

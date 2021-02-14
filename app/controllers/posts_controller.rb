@@ -14,18 +14,18 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id
-    @post.questions.build(question_params)
-    @post.update
-
-    redirect_to posts_confirm_path
+    # @post = Post.new(post_params)
+    # @post.user_id = current_user.id
+    # @post.questions.build(question_params)
+    # @post.update
+    
+    # redirect_to posts_confirm_path
   end
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to new_question_path
+      redirect_to new_post_question_path(@post.id)
     else
       render "new"
     end

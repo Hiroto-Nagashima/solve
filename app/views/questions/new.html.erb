@@ -3,7 +3,7 @@
        <h2>New Question</h2>
     </div>
 
-    <%= form_with model:@question, url:questions_path, local: true do |f| %>
+    <%= form_with model:@question, url:post_questions_path(@post), local: true do |f| %>
 
 
      <div class="row my-4">

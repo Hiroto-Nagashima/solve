@@ -33,7 +33,7 @@ $(function(){
     let choice_class = $(this).attr("class");
 
     $.ajax({
-      url: 'questions/save_choice',
+      url: '/questions/save_choice',
       dataType : 'json',
       type:'POST',
       data : {"post_id" : post_id , "question_id" : question_id ,"choice_class" : choice_class, "currentNum": currentNum},
@@ -64,7 +64,7 @@ $(function(){
 
   $('#nextBtn').on('click', function() {
   $.ajax({
-      url: 'questions/continue',
+      url: '/questions/continue',
       dataType : 'json',
     }).done(function (data){
         currentNum++
@@ -80,7 +80,7 @@ $(function(){
 
    $('#lastBtn').on('click', function() {
   $.ajax({
-      url: 'questions/result',
+      url: '/questions/result',
       type:'PATCH',
       dataType : 'json',
     }).done(function (data){

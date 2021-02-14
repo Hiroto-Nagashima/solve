@@ -2,18 +2,23 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-    @posts = Post.where(user_id: current_user.id)
-    @question.post_id = @posts.last.id
+    @post = Post.find(params[:post_id])
+    @question.post_id = @post.id
     if @question.save
-      redirect_to posts_confirm_path
+      redirect_to questions_confirm_path
     else
       render "new"
     end
   end
 
   def confirm
-    @posts = Post.where(user_id: current_user.id)
-    @post = @posts.last
+    @post = Post.find(params[:post_id])
+    @question = Question.find(params[:id])
+
+  end
+
+  def update
+
   end
 
 
@@ -21,6 +26,7 @@ class QuestionsController < ApplicationController
   end
 
   def new
+    @post = Post.find(params[:post_id])
     @question = Question.new
   end
 

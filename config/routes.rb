@@ -12,13 +12,13 @@ Rails.application.routes.draw do
     get :following, :followers
   end
 
-  get '/questions/confirm', to: 'questions#confirm'
   resources :posts do
    resources :comments, only: [:create, :destroy ]
    resource :likes, only: [:create, :destroy]
-  resources :questions, only: [:create,:destroy,:new]
-
+   resources :questions, only: [:create,:update,:destroy,:new]
   end
+
+  get '/questions/confirm', to: 'questions#confirm'
   get '/questions/go', to: 'questions#go'
   post '/questions/save_choice', to: 'questions#save_choice'
   get '/questions/continue', to: 'questions#continue'
