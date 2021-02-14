@@ -23,6 +23,7 @@
      </div>
 
     <%= f.fields_for :questions do |question| %>
+    <% unless question.object.confirmed? %>
      <div class="row my-4">
        <div class="col-3 mr-0">
           <p>問題文（指示）</p>

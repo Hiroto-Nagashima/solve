@@ -5,7 +5,7 @@ $(function(){
      post_id = $(this).data('id');
 
     $.ajax({
-      url: `questions/go?post_id=${post_id}`,
+      url: `/questions/go?post_id=${post_id}`,
       dataType : 'json',
     }).done(function (data){
       questionAmount =　$(data).length - 1;

@@ -16,15 +16,16 @@ Rails.application.routes.draw do
   resources :posts do
    resources :comments, only: [:create, :destroy ]
    resource :likes, only: [:create, :destroy]
-  end
-
-  get '/likes/index', to: 'likes#index'
-
   resources :questions, only: [:create,:destroy,:new]
+
+  end
   get '/questions/go', to: 'questions#go'
   post '/questions/save_choice', to: 'questions#save_choice'
   get '/questions/continue', to: 'questions#continue'
   patch '/questions/result', to: 'questions#result'
+
+  get '/likes/index', to: 'likes#index'
+
 
   resources :scores, only: [:create, :destroy ]
 

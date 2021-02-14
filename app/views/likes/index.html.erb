@@ -1,0 +1,38 @@
+<div class="container">
+   <div class="row my-4">
+     <div class="col-8">
+         <h4>いいね一覧</h4>
+     </div>
+   </div>
+    <div class="row mx-auto">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th>日付</th>
+            <th >ユーザー名</th>
+            <th>クイズ</th>
+            <th>スコア</th>
+            <th></th>
+          </tr>
+        </thead>
+        <% @liked_posts.each do |liked_post| %>
+          <tbody>
+              <tr>
+                <td><%= liked_post.created_at.strftime('%Y/%m/%d') %></td>
+                <td><%= liked_post.user.name %></td>
+                <td>
+                  <button type = "button" class="btn startBtn" data-id= <%= liked_post.id %>>
+                    <i class = "far fa-lightbulb fa-2x"></i>
+                  </button>
+                </td>
+                <td><%= liked_post.scores.where(user_id: current_user.id).last.try(:score)%></td>
+
+              </tr>
+          </tbody>
+        <% end %>
+        </table>
+     </div>
+     <div class="question_list hidden">
+     <%= render partial: 'questions/show'%>
+     </div>
+ </div>
