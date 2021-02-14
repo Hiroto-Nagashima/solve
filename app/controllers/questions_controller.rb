@@ -11,6 +11,11 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def confirm
+    @posts = Post.where(user_id: current_user.id)
+    @post = @posts.last
+  end
+
 
   def destroy
   end
