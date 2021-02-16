@@ -2,7 +2,12 @@ class PostsController < ApplicationController
   def index
     @user = User.find(current_user.id)
     @comment = Comment.new
-    @posts = Post.all.order(created_at: :desc)
+
+    followings = current_user.followings
+    @posts = Post.all.where(user_id: followings).order(created_at: :desc)
+
+    recommended_users = User.all.where(created_at: Time.now.all_week).order("RANDOM()").limit(3)
+    @recommended_posts = Post.all.where(user_id: recommended_users).order(created_at: :desc)
   end
 
   def show
@@ -18,7 +23,7 @@ class PostsController < ApplicationController
     # @post.user_id = current_user.id
     # @post.questions.build(question_params)
     # @post.update
-    
+
     # redirect_to posts_confirm_path
   end
   def create

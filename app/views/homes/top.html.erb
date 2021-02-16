@@ -1,26 +1,35 @@
 <div class = "home-wrap">
-    <div class = "container">
+    <div class = "container  ml-1">
         <div class = "row">
-          <div class = "col-3">
-            <h1 class = "title">SOLVE</h1>
+          <div class = "col-md-5 text-center mt-5">
+            <h1 class = "solve text-white">SOLVE</h1>
           </div>
         </div>
         <div class = "row my-4">
-          <div class = "col-3 text-white">
+          <div class = "col-md-5 text-center text-white ">
             <h1 class = "text-white">解けば解る</h1>
           </div>
         </div>
         <div class = "row my-4">
-          <div class = "col-5 text-white">
+          <div class = "col-md-5 text-center text-white">
             <h1 class = "text-white">さあ、試してみよう</h1>
           </div>
-          <div class="d-grid col-1 ">
-            <button type = "button" class="btn btn-warning btn-lg">
-              <i class = "far fa-lightbulb"></i>
-            </button>
-          </div>
         </div>
-        <%= link_to 'ログイン', new_user_session_path , class: "btn btn-warning btn-lg"%>
-        <%= link_to '新規登録', new_user_registration_path ,class: "btn btn-warning btn-lg"%>
+          <div class="row">
+            <div class= "col-md-5 text-center my-4">
+              <button type = "button" class="btn" id = "aboutBtn">
+                <i class = "far fa-lightbulb fa-2x"></i>
+              </button>
+            </div>
+          </div>
+          <div class = "row">
+            <div class = "col-5 text-center">
+              <%= link_to 'ログイン', new_user_session_path , class: "btn btn-warning btn-lg"%>
+              <%= link_to '新規登録', new_user_registration_path ,class: "btn btn-warning btn-lg"%>
+            </div>
+          </div>
+    </div>
+    <div class="question_list hidden">
+     <%= render partial: 'questions/show'%>
     </div>
 </div>

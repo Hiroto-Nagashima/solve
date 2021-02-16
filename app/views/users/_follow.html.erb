@@ -1,4 +1,5 @@
-<%= form_for(current_user, url: relationships_path, method: :post, remote: true) do |f| %>
+<%= form_for(@user, url: relationships_path, method: :post, remote: true) do |f| %>
+  <%= logger.debug("@@@@: #{@user.inspect}") %>
   <%= hidden_field_tag :user_id, @user.id %>
   <%= f.submit "フォローする", class: "btn" %>
 <% end %>

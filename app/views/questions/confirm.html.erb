@@ -3,14 +3,13 @@
        <h2>Confirmation</h2>
     </div>
 
-    <%= form_with model:@question, url:post_question_path(@question) ,method: :patch,local: true do |f| %>
+    <%= form_with model:@question, url:post_question_path(@post,@question) ,method: :patch,local: true do |f| %>
      <div class="row my-4">
        <div class="col-3 mr-0">
           <p>問題文（指示）</p>
        </div>
        <div class="col-7">
-          <%= question.text_field :direction %>
-
+          <%= f.text_field :direction %>
        </div>
      </div>
 
@@ -19,7 +18,7 @@
           <p>問題</p>
        </div>
        <div class="col-7">
-            <%= question.text_field :question %>
+            <%= f.text_field :question %>
        </div>
      </div>
 
@@ -29,7 +28,7 @@
        </div>
        <div class="col-7">
 
-            <%= question.text_field :correct_choice %>
+            <%= f.text_field :correct_choice %>
 
        </div>
      </div>
@@ -40,12 +39,12 @@
        </div>
        <div class="col-3">
 
-            <%= question.text_field :first_wrong_choice%>
+            <%= f.text_field :first_wrong_choice%>
 
        </div>
        <div class="col-3">
 
-            <%= question.text_field :second_wrong_choice%>
+            <%= f.text_field :second_wrong_choice%>
 
        </div>
      </div>
@@ -55,7 +54,7 @@
           <p>解説</p>
        </div>
        <div class="col-7">
-            <%= question.text_area :explanation %>
+            <%= f.text_area :explanation %>
        </div>
      </div>
 
@@ -68,7 +67,7 @@
 
      <div class="row">
        <div class="col-4 mx-auto">
-          <%= link_to "問題追加", new_question_path, class: "btn",data: {"turbolinks"=>false}%>
+          <%= link_to "問題追加", new_post_question_path(@question.post), class: "btn",data: {"turbolinks"=>false}%>
        </div>
      </div>
 
@@ -77,5 +76,7 @@
           <%= link_to "確定", users_path, class: "btn" ,data: {"turbolinks"=>false}%>
        </div>
      </div>
-
+     <% if flash[:notice] %>
+      <p class="text-success"><%= flash[:notice] %></p>
+     <% end %>
 </div>

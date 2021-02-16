@@ -1,38 +1,57 @@
-<div class="container">
-   <div class="row my-4">
-     <div class="col-8">
-         <h4>いいね一覧</h4>
-     </div>
-   </div>
-    <div class="row mx-auto">
-      <table class="table table-bordered">
-        <thead class="thead-light">
-          <tr>
-            <th>日付</th>
-            <th >ユーザー名</th>
-            <th>クイズ</th>
-            <th>スコア</th>
-            <th></th>
-          </tr>
-        </thead>
-        <% @liked_posts.each do |liked_post| %>
-          <tbody>
-              <tr>
-                <td><%= liked_post.created_at.strftime('%Y/%m/%d') %></td>
-                <td><%= liked_post.user.name %></td>
-                <td>
-                  <button type = "button" class="btn startBtn" data-id= <%= liked_post.id %>>
-                    <i class = "far fa-lightbulb fa-2x"></i>
-                  </button>
-                </td>
-                <td><%= liked_post.scores.where(user_id: current_user.id).last.try(:score)%></td>
+<% @liked_posts.each do |liked_post| %>
+  <div class = "eachPost">
 
-              </tr>
-          </tbody>
-        <% end %>
-        </table>
-     </div>
-     <div class="question_list hidden">
-     <%= render partial: 'questions/show'%>
-     </div>
- </div>
+    <div class = "post-wrapper">
+      <div class = "post-head">
+        <%= attachment_image_tag liked_post.user ,:profile_image ,size: "40x40" ,class:"userImg"%>
+        <p><%= link_to liked_post.user.name , user_path(liked_post.user) ,class: "userName",data: {"turbolinks"=>false}%></p>
+        <p class = "postedGenre"><<%= liked_post.genre %>></p>
+        <p class = "postedDate"><%= liked_post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+      </div>
+
+      <p class = "postedContent"><%= liked_post.content %></p>
+
+      <div class = "post-footer">
+        <div id="likes_buttons_<%= liked_post.id %>" class = "likesInPost">
+            <%= render partial: 'likes/like', locals: { post: liked_post} %>
+        </div>
+
+        <button type = "button" class="btn startBtn" data-id= <%= liked_post.id %>>
+          <i class = "far fa-lightbulb fa-2x"></i>
+        </button>
+
+        <div class="commentBtn" data-id= <%= liked_post.id %>>
+          <i class="far fa-comment fa-lg"></i>
+          <p class = "commentAmount_<%= liked_post.id %>"><%= liked_post.comments.count %>件</p>
+        </div>
+
+        <div>
+          <p>previous score</p>
+          <%= liked_post.scores.where(user_id: current_user.id).last.try(:score) %>/<%=liked_post.questions.size%>
+        </div>
+
+        </div>
+    </div>
+
+    <div class="comment-list comment-list_<%= liked_post.id %> ">
+      <div class = "comments_area_<%= liked_post.id %> comment-box">
+        <%= render partial: 'comments/index', locals: { comments: liked_post.comments.order(created_at: :desc) , post: liked_post ,comment: @comment} %>
+      </div>
+      <% if user_signed_in? %>
+          <div class="comment-create">
+              <h5>Create Comments</h5>
+              <%= render partial: 'comments/form', locals: {comment: @comment, post: liked_post } %>
+          </div>
+      <% end %>
+    </div>
+
+</div>
+
+<% end %>
+<div class="question_list hidden">
+  <%= render partial: 'questions/show'%>
+</div>
+
+
+
+

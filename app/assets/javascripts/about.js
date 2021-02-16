@@ -1,12 +1,12 @@
 let currentNum = 0
-let post_id = 0
+let post_id = 17
 let questionAmount = 0
 $(function(){
-  $('.startBtn').on('click', function() {
-     post_id = $(this).data('id');
+  $('#aboutBtn').on('click', function() {
+     post_id = 17
 
     $.ajax({
-      url: `/questions/go?post_id=${post_id}`,
+      url: '/homes/go',
       dataType : 'json',
     }).done(function (data){
       questionAmount =　$(data).length - 1;
@@ -17,7 +17,7 @@ $(function(){
 
       array = shuffle(["correct_choice","first_wrong_choice","second_wrong_choice"]);
       $.each(array, function(index, val) {
-      $('#choices').append("<li post_id =" + post_id  + " question_id =" + data[0]['id']  + " class =" + val + " currentNum =" + currentNum + ">" + data[0][val] +"</li>");
+      $('#choices').append("<li question_id =" + data[0]['id']  + " class =" + val + " currentNum =" + currentNum + ">" + data[0][val] +"</li>");
     });
 
       $('.question_list').removeClass('hidden');
@@ -29,15 +29,14 @@ $(function(){
 
 
   $('#choices').on('click',"li", function() {
-    let post_id = $(this).attr("post_id");
     let question_id = $(this).attr("question_id");
     let choice_class = $(this).attr("class");
 
     $.ajax({
-      url: '/questions/save_choice',
+      url: '/homes/save_choice',
       dataType : 'json',
       type:'POST',
-      data : {"post_id" : post_id , "question_id" : question_id ,"choice_class" : choice_class, "currentNum": currentNum},
+      data : {"post_id" : post_id , "question_id" : question_id ,"choice_class" : choice_class,"currentNum": currentNum}
     }).done(function (data){
         console.log(data)
       if(data['choice_class'] == 'correct_choice'){
@@ -65,7 +64,7 @@ $(function(){
 
   $('#nextBtn').on('click', function() {
   $.ajax({
-      url: '/questions/continue',
+      url: '/homes/continue',
       dataType : 'json',
     }).done(function (data){
         currentNum++
@@ -81,8 +80,7 @@ $(function(){
 
    $('#lastBtn').on('click', function() {
   $.ajax({
-      url: '/questions/result',
-      type:'PATCH',
+      url: '/homes/result',
       dataType : 'json',
     }).done(function (data){
       console.log(data)

@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
     @post = Post.find(params[:post_id])
     @question.post_id = @post.id
     if @question.save
-      redirect_to questions_confirm_path
+      redirect_to confirm_post_question_path(@post, @question)
     else
       render "new"
     end
@@ -18,6 +18,15 @@ class QuestionsController < ApplicationController
   end
 
   def update
+    @post = Post.find(params[:post_id])
+    @question = Question.find(params[:id])
+    @question.post_id = @post.id
+    if @question.update(question_params)
+      flash[:notice] = "You have updated question successfully."
+      redirect_to confirm_post_question_path(@post, @question)
+    else
+      render "confirm"
+    end
 
   end
 
@@ -81,6 +90,14 @@ class QuestionsController < ApplicationController
     score.score = correct_answers.size
     score.save
     render json: score.to_json
+  end
+
+  def replay
+    score = current_user.scores.last
+    post_id = score.post_id
+    target_question_list = Question.where(post_id: post_id)
+    render json: target_question_list.to_json
+
   end
 
   def question_params
