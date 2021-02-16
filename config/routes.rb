@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   resources :users do
     get :following, :followers
+    get '/users/follow_list', to: 'users#follow_list'
+    get '/users/follower_list', to: 'users#follower_list'
   end
 
   resources :posts do

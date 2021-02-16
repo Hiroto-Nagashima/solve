@@ -21,19 +21,18 @@
          <th><%= @current_todays_score %></th>
        </tr>
        <tr>
-         <th>Follow</th>
+         <th><%= link_to "Follow" ,user_users_follow_list_path(current_user) ,data: {"turbolinks"=>false} ,class: "text-dark"%></th>
          <th><%= current_user.followings.size %></th>
        </tr>
        <tr>
-         <th>Follower</th>
+         <th><%= link_to "Follower" ,user_users_follower_list_path(current_user) ,data: {"turbolinks"=>false},class: "text-dark"  %></th>
          <th><%= current_user.followers.size %></th>
-       </tr>
-       <tr>
-         <th>introduction</th>
-         <th><%= current_user.introduction %></th>
        </tr>
      </tbody>
    </table>
+   <div class = "sidebar-footer">
+     <div class = ""><%= current_user.introduction %></div>
+   </div>
   </div>
   <%end%>
 
@@ -73,13 +72,13 @@
         </header>
       <% end %>
     </div>
-    
+
     <% if (user_signed_in?) %>
     <div id = "rightSideWrapper">
     <% else %>
     <div>
     <% end %>
-  
+
     <body>
       <%= yield %>
       <%= link_to new_post_path do %>
