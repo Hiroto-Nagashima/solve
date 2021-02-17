@@ -43,10 +43,6 @@ Rails.application.routes.draw do
 
   resources :relationships, only: [:create, :destroy ]
 
-
-  get '/homes/go', to: 'homes#go'
-  post '/homes/save_choice', to: 'homes#save_choice'
-  get '/homes/continue', to: 'homes#continue'
   root 'homes#top'
 
   get '/comments/eachComment', to: 'comments#eachComment'

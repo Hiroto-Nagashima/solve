@@ -56,7 +56,11 @@ class QuestionsController < ApplicationController
     question = Question.find(params[:question_id])
     score = Score.new
     score.post_id = params[:post_id]
-    score.user_id = current_user.id
+    unless user_signed_in?
+      score.user_id = 1
+    else
+      score.user_id = current_user.id
+    end
     score.score = 0
     if currentNum == "0"
       score.save
@@ -69,15 +73,24 @@ class QuestionsController < ApplicationController
       answer = Answer.new
       answer.personal_answer = params[:choice_class]
       answer.question_id = params[:question_id]
-      answer.score_id = current_user.scores.last.id
+      unless user_signed_in?
+        user = User.find(1)
+        answer.score_id = user.scores.last.id
+      else
+        answer.score_id = current_user.scores.last.id
+      end
       answer.save
     end
-
       render json: {choice_class: choice_class , question: question ,questions: @post.questions}.to_json
   end
 
   def continue
-    score = current_user.scores.last
+    unless user_signed_in?
+      user = User.find(1)
+      score = user.scores.last
+    else
+      score = current_user.scores.last
+    end
     post_id = score.post_id
     @post = Post.find_by(id: post_id)
     questions = @post.questions
@@ -85,7 +98,12 @@ class QuestionsController < ApplicationController
   end
 
   def result
-    score = current_user.scores.last
+    unless user_signed_in?
+      user = User.find(1)
+      score = user.scores.last
+    else
+      score = current_user.scores.last
+    end
     correct_answers = Answer.where(score_id: score.id , personal_answer: "correct_choice")
     score.score = correct_answers.size
     score.save
@@ -93,7 +111,12 @@ class QuestionsController < ApplicationController
   end
 
   def replay
-    score = current_user.scores.last
+    unless user_signed_in?
+      user = User.find(1)
+      score = user.scores.last
+    else
+      score = current_user.scores.last
+    end
     post_id = score.post_id
     target_question_list = Question.where(post_id: post_id)
     render json: target_question_list.to_json
