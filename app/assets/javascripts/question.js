@@ -22,6 +22,7 @@ $(function(){
 
       $('.question_list').removeClass('hidden');
 
+
     }).fail(function (data) {
       alert('Bye');
      });

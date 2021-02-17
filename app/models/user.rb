@@ -5,17 +5,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   attachment :profile_image
-  has_many :relationships
+  has_many :relationships,dependent: :destroy
 
-  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follower_id'
-  has_many :followings, through: :relationships, source: :user
+  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follower_id',dependent: :destroy
+  has_many :followings, through: :relationships, source: :follower
 
-  has_many :followers, through: :relationships, source: :follower
+  has_many :followers, through: :reverse_of_relationships, source: :user
 
-  has_many :scores
-  has_many :comments
-  has_many :lilks
-  has_many :posts
+  has_many :scores,dependent: :destroy
+  has_many :comments,dependent: :destroy
+  has_many :likes,dependent: :destroy
+  has_many :posts,dependent: :destroy
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
@@ -25,12 +25,13 @@ class User < ApplicationRecord
   end
 
   def following?(user)
-    relationships.find_by(follower_id: user.id)
+    self.followings.include?(user)
   end
 
   def follow(user)
     # relationships.create!(user_id: user.id, follower_id: 8) # user.id = 3
-    relationships.create!(follower_id: user.id) # user.id = 8
+    relationships.create!(follower_id: user.id).save() # user.id = 8
+
   end
 
   def unfollow(user)

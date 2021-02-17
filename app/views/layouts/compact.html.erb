@@ -21,12 +21,20 @@
          <th><%= @current_todays_score%></th>
        </tr>
        <tr>
-         <th>Follow</th>
-         <th><%= @user.followings.size %></th>
+         <th><%= link_to "Follow" ,user_users_follow_list_path(@user) ,data: {"turbolinks"=>false} ,class: "text-dark"%></th>
+         <% if @user == current_user %>
+           <th id = "follow"><%= @user.followings.size %></th>
+         <% else %>
+           <th><%= @user.followings.size %></th>
+         <% end %>
        </tr>
        <tr>
-         <th>Follower</th>
-         <th><%= @user.followers.size %></th>
+         <th><%= link_to "Follower" ,user_users_follower_list_path(@user) ,data: {"turbolinks"=>false},class: "text-dark"  %></th>
+         <% if @user == current_user %>
+          <th id = "follower"><%= @user.followers.size %></th>
+         <% else %>
+          <th><%= @user.followers.size %></th>
+         <% end %>
        </tr>
        <tr>
          <th>introduction</th>
@@ -35,11 +43,11 @@
      </tbody>
    </table>
      <% if user_signed_in? && @user != current_user %>
-    <div id="follow_form">
+    <div id="follow_<%= @user.id %>" class="follow_form">
       <% if current_user.following?(@user) %>
-        <%= render "unfollow" %>
+        <%= render "unfollow" ,{user: @user}%>
       <% else %>
-        <%= render "follow" %>
+        <%= render "follow" ,{user: @user}%>
       <% end %>
     </div>
     <% end %>

@@ -1,1 +1,3 @@
-$("#follow_form").html("<%= j(render partial: 'users/follow') %>");
+$("#follow_<%= @user.id %>").html("<%= j(render partial: 'users/follow',locals: {user: @user}) %>");
+$("#follower").html("<%= current_user.followers.size %>");
+$("#follow").html("<%= current_user.followings.size %>");

@@ -8,11 +8,13 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
 
+  get '/users/delete', to: 'users#delete'
   resources :users do
     get :following, :followers
     get '/users/follow_list', to: 'users#follow_list'
     get '/users/follower_list', to: 'users#follower_list'
   end
+
 
   resources :posts do
 

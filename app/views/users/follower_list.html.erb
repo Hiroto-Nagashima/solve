@@ -1,19 +1,19 @@
-<h2 class = "follower_list">Follow</h2>
+<h2 class = "follower_list">Follower</h2>
   <% @followers.each do |f| %>
     <div class = "eachUser">
         <div class = "follow-head">
-          <%= attachment_image_tag f ,:profile_image ,size: "40x40" ,class:"userImg"%>
+          <%= attachment_image_tag f ,:profile_image ,size: "40x40" ,class:"userImg", fallback: "no_image.jpg"%>
           <p><%= link_to f.name , user_path(f) ,class: "userName",data: {"turbolinks"=>false}%></p>
            <% if user_signed_in? && f != current_user %>
-          <div class ="follow_forms">
+          <div id="follow_<%= f.id %>" class ="follow_form" data-id= <%= f.id %>>
             <% if current_user.following?(f) %>
-              <%= render "unfollow" %>
+              <%= render "unfollow" ,{user: f}%>
             <% else %>
-              <%= render "follow" %>
+              <%= render "follow" ,{user: f} %>
             <% end %>
            </div>
           <% end %>
         </div>
         <p class = "follow_intro"><%= f.introduction %></p>
     </div>
-  <% end %>
+<% end %>

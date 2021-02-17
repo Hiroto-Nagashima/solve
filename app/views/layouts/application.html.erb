@@ -22,11 +22,11 @@
        </tr>
        <tr>
          <th><%= link_to "Follow" ,user_users_follow_list_path(current_user) ,data: {"turbolinks"=>false} ,class: "text-dark"%></th>
-         <th><%= current_user.followings.size %></th>
+         <th id = "my_follow"><%= current_user.followings.size %></th>
        </tr>
        <tr>
          <th><%= link_to "Follower" ,user_users_follower_list_path(current_user) ,data: {"turbolinks"=>false},class: "text-dark"  %></th>
-         <th><%= current_user.followers.size %></th>
+         <th id = "my_follower"><%= current_user.followers.size %></th>
        </tr>
      </tbody>
    </table>
@@ -54,7 +54,7 @@
                     <%= link_to "Ranking" ,ranks_index_path,class: 'fas fa-trophy',data: {"turbolinks"=>false}%>
                   </li>
                   <li>
-                    <%= link_to "Edit",edit_user_path(current_user.id) ,class: 'fas fa-user-cog' ,data: {"turbolinks"=>false}%>
+                    <%= link_to "Edit", edit_user_path(current_user) ,class: 'fas fa-user-cog' ,data: {"turbolinks"=>false}%>
                   </li>
                    <li>
                     <%= link_to "logout", destroy_user_session_path, method: :delete ,class: 'fas fa-sign-out-alt' %>

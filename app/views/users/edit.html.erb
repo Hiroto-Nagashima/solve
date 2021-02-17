@@ -1,4 +1,4 @@
-<div class="container mt-3 mr-0">
+<div class="container edit-user">
     <div class="row">
       <div class="col-md-5">
           <%= form_with model:@user, local:true do |f| %>
@@ -12,5 +12,8 @@
           <%= f.submit "Update User" ,class:"btn btn-secondary my-3"%>
           <% end %>
        </div>
+    </div>
+    <div class="row">
+      <p><%=link_to"退会する",users_delete_path ,class: "btn btn-danger"%></p>
     </div>
 </div>

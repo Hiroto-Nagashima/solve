@@ -41,23 +41,36 @@ class UsersController < ApplicationController
   def follow_list
     @user = User.find(params[:user_id])
     @follows = @user.followings
+    render :layout => 'compact'
   end
 
   def follower_list
     @user = User.find(params[:user_id])
     @followers = @user.followers
+    render :layout => 'compact'
   end
 
-  def following
-    @user  = User.find(params[:id])
-    @users = @user.followings
-    render 'show_follow'
+  # def following
+  #   @user  = User.find(params[:id])
+  #   @users = @user.followings
+  #   render 'show_follow'
+  # end
+
+  # def followers
+  #   @user  = User.find(params[:id])
+  #   @users = @user.followers
+  #   render 'show_follower'
+  # end
+
+  def delete
+
   end
 
-  def followers
-    @user  = User.find(params[:id])
-    @users = @user.followers
-    render 'show_follower'
+  def destroy
+    @user = User.find(params[:id])
+
+    @user.destroy
+    redirect_to root_path
   end
 
   private
