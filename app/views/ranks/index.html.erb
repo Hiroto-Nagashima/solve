@@ -6,18 +6,25 @@
     <li><a href="#tab3" class="">月間いいね</a></li>
     <li><a href="#tab4" class="">月間スコア</a></li>
   </ul>
+
   <div id="tab-contents">
+
     <div id="tab1" class="tab">
       <% @weekly_tango_likes.each_with_index do |wtl,i|%>
       <div class = "weekly_tango_likes">
-        <p><%= i + 1 %></p>
-        <p><%= link_to wtl.user.name, user_path(wtl.user) ,data: {"turbolinks"=>false}%></p>
-        <p><%= wtl.content %></p>
-        <p><%= wtl.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-        <button type = "button" class="btn startBtn" data-id= <%= wtl.id %>>
-        <i class = "far fa-lightbulb fa-2x"></i>
-        </button>
-        <p><i class="fas fa-heart fa-lg"></i><%= wtl.likes.size %></p>
+        <div>
+          <div class = "weekly_tango_likes">
+            <p class = "rank_number"><%= i + 1 %></p>
+            <p class = "rank_name"><%= link_to wtl.user.name, user_path(wtl.user) ,data: {"turbolinks"=>false} %></p>
+          </div>
+          <p><%= wtl.content %></p>
+        </div>
+        <div class= "rank_button">
+          <button type = "button" class="btn startBtn" data-id= <%= wtl.id %>>
+          <i class = "far fa-lightbulb fa-2x"></i>
+          </button>
+          <p class = "rank_heart"><i class="fas fa-heart fa-lg"></i><%= wtl.likes.size %></p>
+        </div>
       </div>
       <%end%>
     </div>
@@ -25,14 +32,19 @@
     <div id="tab2" class="tab">
       <% @weekly_bunpou_likes.each_with_index do |wbl,i|%>
       <div class = "weekly_tango_likes">
-        <p><%= i + 1 %></p>
-        <p><%= link_to wbl.user.name , user_path(wbl.user) ,data: {"turbolinks"=>false}%></p>
-        <p><%= wbl.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-        <p><%= wbl.content %></p>
-        <button type = "button" class="btn startBtn" data-id= <%= wbl.id %>>
-        <i class = "far fa-lightbulb fa-2x"></i>
-        </button>
-        <p><i class="fas fa-heart fa-lg"></i><%= wbl.likes.size %></p>
+        <div>
+          <div class = "weekly_tango_likes">
+            <p class = "rank_number"><%= i + 1 %></p>
+            <p class = "rank_name"><%= link_to wbl.user.name, user_path(wbl.user) ,data: {"turbolinks"=>false} %></p>
+          </div>
+          <p><%= wbl.content %></p>
+        </div>
+        <div class= "rank_button">
+          <button type = "button" class="btn startBtn" data-id= <%= wbl.id %>>
+          <i class = "far fa-lightbulb fa-2x"></i>
+          </button>
+          <p class = "rank_heart"><i class="fas fa-heart fa-lg"></i><%= wbl.likes.size %></p>
+        </div>
       </div>
       <%end%>
     </div>
@@ -40,15 +52,19 @@
     <div id="tab3" class="tab">
       <% @monthly_likes.each_with_index do |ml,i|%>
       <div class = "weekly_tango_likes">
-        <p><%= i + 1 %></p>
-        <p><%= link_to ml.user.name , user_path(ml.user) ,data: {"turbolinks"=>false}%></p>
-        <p><%= ml.genre %></p>
-        <p><%= ml.content %></p>
-        <p><%= ml.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-        <button type = "button" class="btn startBtn" data-id= <%= ml.id %>>
-        <i class = "far fa-lightbulb fa-2x"></i>
-        </button>
-        <p><i class="fas fa-heart fa-lg"></i><%= ml.likes.size %></p>
+        <div>
+          <div class = "weekly_tango_likes">
+            <p class = "rank_number"><%= i + 1 %></p>
+            <p class = "rank_name"><%= link_to ml.user.name, user_path(ml.user) ,data: {"turbolinks"=>false} %></p>
+          </div>
+          <p><%= ml.content %></p>
+        </div>
+        <div class= "rank_button">
+          <button type = "button" class="btn startBtn" data-id= <%= ml.id %>>
+          <i class = "far fa-lightbulb fa-2x"></i>
+          </button>
+          <p class = "rank_heart"><i class="fas fa-heart fa-lg"></i><%= ml.likes.size %></p>
+        </div>
       </div>
       <%end%>
     </div>
