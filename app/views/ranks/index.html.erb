@@ -11,9 +11,9 @@
 
     <div id="tab1" class="tab">
       <% @weekly_tango_likes.each_with_index do |wtl,i|%>
-      <div class = "weekly_tango_likes">
+      <div class = "RANK">
         <div>
-          <div class = "weekly_tango_likes">
+          <div class = "RANK">
             <p class = "rank_number"><%= i + 1 %></p>
             <p class = "rank_name"><%= link_to wtl.user.name, user_path(wtl.user) ,data: {"turbolinks"=>false} %></p>
           </div>
@@ -31,9 +31,9 @@
 
     <div id="tab2" class="tab">
       <% @weekly_bunpou_likes.each_with_index do |wbl,i|%>
-      <div class = "weekly_tango_likes">
+      <div class = "RANK">
         <div>
-          <div class = "weekly_tango_likes">
+          <div class = "RANK">
             <p class = "rank_number"><%= i + 1 %></p>
             <p class = "rank_name"><%= link_to wbl.user.name, user_path(wbl.user) ,data: {"turbolinks"=>false} %></p>
           </div>
@@ -51,9 +51,9 @@
 
     <div id="tab3" class="tab">
       <% @monthly_likes.each_with_index do |ml,i|%>
-      <div class = "weekly_tango_likes">
+      <div class = "RANK">
         <div>
-          <div class = "weekly_tango_likes">
+          <div class = "RANK">
             <p class = "rank_number"><%= i + 1 %></p>
             <p class = "rank_name"><%= link_to ml.user.name, user_path(ml.user) ,data: {"turbolinks"=>false} %></p>
           </div>
@@ -71,13 +71,14 @@
 
     <div id="tab4" class="tab">
       <% @monthly_scores.each_with_index do |ms,i|%>
-      <p><%= i + 1 %></p>
-
-      <p><%= link_to ms.name , user_path(ms) ,data: {"turbolinks"=>false}%></p>
-
-      <p><%= ms.scores.sum(:score) %>点</p>
+      <div class = "RANK">
+        <p class = "rank_number"><%= i + 1 %></p>
+        <p class = "rank_name"><%= link_to ms.name , user_path(ms) ,data: {"turbolinks"=>false}%></p>
+        <p><%= ms.scores.sum(:score) %>点</p>
+      </div>
       <%end%>
     </div>
+
   </div>
   <div class="question_list hidden">
    <%= render partial: 'questions/show'%>

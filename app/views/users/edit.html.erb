@@ -9,11 +9,13 @@
           <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
           <p class="my-2">Introduction</p>
           <%= f.text_area :introduction ,class:"form-control" %>
-          <%= f.submit "Update User" ,class:"btn btn-secondary my-3"%>
+          <%= f.submit "Update User" ,class:"btn my-3"%>
           <% end %>
        </div>
     </div>
     <div class="row">
-      <p><%=link_to"退会する",users_delete_path ,class: "btn btn-danger"%></p>
+      <div class = "col">
+        <p><%=link_to"退会する",users_delete_path ,class: "btn"%></p>
+      </div>
     </div>
 </div>
