@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     followings = current_user.followings
     @posts = Post.all.where(user_id: followings).order(created_at: :desc)
 
-    recommended_users = User.all.where(created_at: Time.now.all_week).order("RANDOM()").limit(3)
+    recommended_users = User.all.where(created_at: Time.now.all_week).order("RANDOM()").first(3)
     @recommended_posts = Post.all.where(user_id: recommended_users).order(created_at: :desc)
   end
 
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
 
   def destroy
   end
-  
+
   def search
     @posts = Post.search(params[:search])
   end
