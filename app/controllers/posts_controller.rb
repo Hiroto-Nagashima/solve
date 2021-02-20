@@ -38,6 +38,10 @@ class PostsController < ApplicationController
 
   def destroy
   end
+  
+  def search
+    @posts = Post.search(params[:search])
+  end
 
   private
   def post_params

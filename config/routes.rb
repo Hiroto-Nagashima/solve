@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     get :following, :followers
     get '/users/follow_list', to: 'users#follow_list'
     get '/users/follower_list', to: 'users#follower_list'
+    collection do
+      get 'search'
+    end
   end
 
 
@@ -20,6 +23,10 @@ Rails.application.routes.draw do
 
    resources :comments, only: [:create, :destroy ]
    resource :likes, only: [:create, :destroy]
+   
+   collection do
+      get 'search'
+   end
 
    resources :questions, only: [:create,:update,:destroy,:new] do
     member do

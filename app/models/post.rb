@@ -8,6 +8,14 @@ class Post < ApplicationRecord
   accepts_nested_attributes_for :questions, allow_destroy: true
   validates :content,:genre, presence: true
 
+  def self.search(search)
+    if search
+      Post.where('content LIKE (?)', "%#{search}%")
+    else
+      Post.all
+    end
+  end
+
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
   end

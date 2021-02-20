@@ -8,7 +8,8 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <% if user_signed_in?  && !(controller.action_name == "top" && controller.controller_name == "homes")%>
+  <body>
+  <% if user_signed_in? %>
   <div class = "side-bar">
    <div class = "sidebar-head">
      <div><%= attachment_image_tag current_user, :profile_image ,size: "100x100", fallback: "no_image.jpg"%></div>
@@ -36,12 +37,16 @@
   </div>
   <%end%>
 
-  <% if user_signed_in? && !(controller.action_name == "top" && controller.controller_name == "homes") %>
+  <% if user_signed_in? %>
     <div>
         <header>
             <%= link_to posts_path ,data: {"turbolinks"=>false} do %>
              <%= image_tag 'logo.jpg',size:'80x80'  %>
             <%end%>
+            <%= form_with(url: search_posts_path, method: :get, local: true) do |f| %>
+              <%= f.text_field :content, placeholder: "例）TOEIC"%>
+              <%= f.submit "Search" , class: "btn" %>
+            <% end %>
             <div id="sp-menu">
               <ul>
                   <li>
@@ -79,7 +84,7 @@
     <div>
     <% end %>
 
-    <body>
+
       <%= yield %>
       <%= link_to new_post_path do %>
           <i class="fas fa-plus-circle fa-4x add-question"></i>
