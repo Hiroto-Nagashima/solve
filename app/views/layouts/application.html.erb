@@ -9,7 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-  <% if user_signed_in?  && !(controller.action_name == "top" && controller.controller_name == "homes") %>
+  <% if user_signed_in? && current_user.present? && !(controller.action_name == "top" && controller.controller_name == "homes") %>
   <div class = "side-bar">
    <div class = "sidebar-head">
      <div><%= attachment_image_tag current_user, :profile_image ,size: "100x100", fallback: "no_image.jpg"%></div>
@@ -37,7 +37,7 @@
   </div>
   <%end%>
 
-  <% if user_signed_in? && !(controller.action_name == "top" && controller.controller_name == "homes") %>
+  <% if user_signed_in?  && current_user.present? && !(controller.action_name == "top" && controller.controller_name == "homes") %>
     <div>
         <header>
             <%= link_to posts_path ,data: {"turbolinks"=>false} do %>
@@ -78,7 +78,7 @@
       <% end %>
     </div>
 
-    <% if user_signed_in?  && !(controller.action_name == "top" && controller.controller_name == "homes") %>
+    <% if user_signed_in? && current_user.present? && !(controller.action_name == "top" && controller.controller_name == "homes") %>
     <div id = "rightSideWrapper">
     <% else %>
     <div>
