@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   has_many :followers, through: :reverse_of_relationships, source: :user
 
-  has_many :scores,dependent: :destroy
+  has_many :day_scores,dependent: :destroy
   has_many :comments,dependent: :destroy
   has_many :likes,dependent: :destroy
   has_many :posts,dependent: :destroy

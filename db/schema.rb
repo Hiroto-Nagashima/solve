@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_20_084917) do
+ActiveRecord::Schema.define(version: 2021_02_21_091408) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "score_id"
@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(version: 2021_02_20_084917) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "content"
+  end
+
+  create_table "day_scores", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "day_score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "likes", force: :cascade do |t|
@@ -65,10 +72,10 @@ ActiveRecord::Schema.define(version: 2021_02_20_084917) do
 
   create_table "scores", force: :cascade do |t|
     t.integer "post_id"
-    t.integer "user_id"
     t.integer "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "day_score_id"
   end
 
   create_table "users", force: :cascade do |t|
