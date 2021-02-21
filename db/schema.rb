@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_11_232925) do
+ActiveRecord::Schema.define(version: 2021_02_20_084917) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "score_id"
@@ -44,16 +44,15 @@ ActiveRecord::Schema.define(version: 2021_02_11_232925) do
   end
 
   create_table "questions", force: :cascade do |t|
+    t.integer "post_id"
     t.string "correct_choice"
     t.text "explanation"
+    t.string "direction"
+    t.text "question"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "question"
-    t.text "direction"
-    t.integer "post_id"
     t.string "first_wrong_choice"
     t.string "second_wrong_choice"
-    t.index ["post_id"], name: "index_questions_on_post_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -81,8 +80,8 @@ ActiveRecord::Schema.define(version: 2021_02_11_232925) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "introduction"
     t.string "profile_image_id"
+    t.text "introduction"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
