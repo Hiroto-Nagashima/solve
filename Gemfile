@@ -76,3 +76,4 @@ group :production do
 end
 
 gem "simple_calendar", "~> 2.4"
+gem 'whenever', require: false

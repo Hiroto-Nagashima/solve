@@ -18,7 +18,7 @@
      <tbody>
        <tr>
          <th>Today's Score</th>
-         <th><%= @current_todays_score%></th>
+         <th><%= @user.day_scores.last.day_score %></th>
        </tr>
        <tr>
          <th><%= link_to "Follow" ,user_users_follow_list_path(@user) ,data: {"turbolinks"=>false} ,class: "text-dark"%></th>

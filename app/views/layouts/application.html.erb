@@ -12,14 +12,14 @@
   <% if user_signed_in? && current_user.present? && !(controller.action_name == "top" && controller.controller_name == "homes") %>
   <div class = "side-bar">
    <div class = "sidebar-head">
-     <!--<div><%#= attachment_image_tag current_user, :profile_image ,size: "100x100", fallback: "no_image.jpg"%></div>-->
+     <div><%= attachment_image_tag current_user, :profile_image ,size: "100x100", fallback: "no_image.jpg"%></div>
      <div class = "name"><%= current_user.name %></div>
    </div>
    <table class="table">
      <tbody>
        <tr>
          <th>Today's Score</th>
-         <th><%= @current_todays_score %></th>
+         <th><%= @user.day_scores.last.day_score %></th>
        </tr>
        <tr>
          <th><%= link_to "Follow" ,user_users_follow_list_path(current_user) ,data: {"turbolinks"=>false} ,class: "text-dark"%></th>
