@@ -12,7 +12,7 @@
   <% if user_signed_in? && current_user.present? && !(controller.action_name == "top" && controller.controller_name == "homes") %>
   <div class = "side-bar">
    <div class = "sidebar-head">
-     <div><%= attachment_image_tag current_user, :profile_image ,size: "100x100", fallback: "no_image.jpg"%></div>
+     <!--<div><%#= attachment_image_tag current_user, :profile_image ,size: "100x100", fallback: "no_image.jpg"%></div>-->
      <div class = "name"><%= current_user.name %></div>
    </div>
    <table class="table">
@@ -43,10 +43,12 @@
             <%= link_to posts_path ,data: {"turbolinks"=>false} do %>
              <%= image_tag 'logo.jpg',size:'80x80'  %>
             <%end%>
+
             <%= form_with(url: search_posts_path, method: :get, local: true) do |f| %>
               <%= f.text_field :content, placeholder: "例）TOEIC"%>
               <%= f.submit "Search" , class: "btn" %>
             <% end %>
+
             <div id="sp-menu">
               <ul>
                   <li>

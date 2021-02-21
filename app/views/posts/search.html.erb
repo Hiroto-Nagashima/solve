@@ -2,7 +2,7 @@
     <div class = "eachPost">
   <div class = "post-wrapper">
     <div class = "post-head">
-      <%= attachment_image_tag post.user ,:profile_image ,size: "40x40" ,class:"userImg"%>
+      <%#= attachment_image_tag post.user ,:profile_image ,size: "40x40" ,class:"userImg"%>
       <p><%= link_to post.user.name , user_path(post.user) ,class: "userName",data: {"turbolinks"=>false}%></p>
       <p class = "postedGenre"><<%= post.genre %>></p>
       <p class = "postedDate"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
