@@ -1,50 +1,93 @@
-<%#= month_calendar do |date| %>
-  <%#= date %>
-<%# end %>
+<div id="mypage-wrap">
+  <h1 class = "mypage">MyPage</h1>
+  <ul id="tab-menu">
+    <li class = "tab-list"><a href="#tab1" class="active">MyPost</a></li>
+    <li class = "tab-list"><a href="#tab2" class="">MyScore</a></li>
+  </ul>
 
-<% current_user.posts.order(created_at: :desc).each do |post| %>
-<div class = "eachPost">
-  <div class = "post-wrapper">
-    <div class = "post-head">
-      <%= attachment_image_tag post.user ,:profile_image ,size: "40x40" ,class:"userImg"%>
-      <p><%= link_to post.user.name , user_path(post.user) ,class: "userName" ,data: {"turbolinks"=>false} %></p>
-      <p class = "postedGenre"><<%= post.genre %>></p>
-      <p class = "postedDate"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-    </div>
+  <div id="tab-contents">
 
-    <p class = "postedContent"><%= post.content %></p>
+    <div id="tab1" class="tab">
+      <% current_user.posts.order(created_at: :desc).each do |post| %>
+      <div class = "eachPost">
+        <div class = "post-wrapper">
+          <div class = "post-head">
+            <%= attachment_image_tag post.user ,:profile_image ,size: "40x40" ,class:"userImg"%>
+            <p><%= link_to post.user.name , user_path(post.user) ,class: "userName" ,data: {"turbolinks"=>false} %></p>
+            <p class = "postedGenre"><<%= post.genre %>></p>
+            <p class = "postedDate"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+          </div>
 
-    <div class = "post-footer">
-      <div id="likes_buttons_<%= post.id %>" class = "likesInPost">
-          <%= render partial: 'likes/like', locals: { post: post} %>
-      </div>
+          <p class = "postedContent"><%= post.content %></p>
 
-      <button type = "button" class="btn startBtn" data-id= <%= post.id %>>
-        <i class = "far fa-lightbulb fa-2x"></i>
-      </button>
+          <div class = "post-footer">
+            <div id="likes_buttons_<%= post.id %>" class = "likesInPost">
+                <%= render partial: 'likes/like', locals: { post: post} %>
+            </div>
 
-      <div class="commentBtn" data-id= <%= post.id %>>
-        <i class="far fa-comment fa-lg"></i>
-        <p class = "commentAmount_<%= post.id %>"><%= post.comments.count %>件</p>
-      </div>
+            <button type = "button" class="btn startBtn" data-id= <%= post.id %>>
+              <i class = "far fa-lightbulb fa-2x"></i>
+            </button>
 
-    </div>
-  </div>
-  <div class="comment-list comment-list_<%= post.id %> ">
-    <div class = "comments_area_<%= post.id %>">
-      <%= render partial: 'comments/index', locals: { comments: post.comments.order(created_at: :desc) , post: post ,comment: @comment} %>
-    </div>
-    <% if user_signed_in? %>
-        <div class="comment-create">
-            <h5>Comment</h5>
-            <%= render partial: 'comments/form', locals: {comment: @comment, post: post } %>
+            <div class="commentBtn" data-id= <%= post.id %>>
+              <i class="far fa-comment fa-lg"></i>
+              <p class = "commentAmount_<%= post.id %>"><%= post.comments.count %>件</p>
+            </div>
+
+          </div>
         </div>
-    <% end %>
+        <div class="comment-list comment-list_<%= post.id %> ">
+          <div class = "comments_area_<%= post.id %>">
+            <%= render partial: 'comments/index', locals: { comments: post.comments.order(created_at: :desc) , post: post ,comment: @comment} %>
+          </div>
+          <% if user_signed_in? %>
+              <div class="comment-create">
+                  <h5>Comment</h5>
+                  <%= render partial: 'comments/form', locals: {comment: @comment, post: post } %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+    <div id="tab2" class="tab">
+      <%= month_calendar do |date| %>
+        <%= date %>
+      <% end %>
+    </div>
+
+    <div class="question_list hidden">
+     <%= render partial: 'questions/show'%>
+    </div>
+
   </div>
-</div>
-<% end %>
-<div class="question_list hidden">
-  <%= render partial: 'questions/show'%>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

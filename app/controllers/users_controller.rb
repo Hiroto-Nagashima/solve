@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
     @comment = Comment.new
     @posts = Post.all.order(created_at: :desc)
-
+    render :layout => 'mypage'
 
   end
 
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     # end
     # @current_todays_score = current_todays_score_box.inject(:+)
 
-    render :layout => 'compact'
+    render :layout => 'mypage'
   end
 
   def edit

@@ -74,7 +74,7 @@
       <div class = "RANK">
         <p class = "rank_number"><%= i + 1 %></p>
         <p class = "rank_name"><%= link_to ms.name , user_path(ms) ,data: {"turbolinks"=>false}%></p>
-        <p><%= ms.scores.sum(:score) %>点</p>
+        <p><%= ms.day_scores.sum(:day_score) %>点</p>
       </div>
       <%end%>
     </div>
