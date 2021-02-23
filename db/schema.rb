@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_21_091408) do
+ActiveRecord::Schema.define(version: 2021_02_22_060351) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "score_id"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_091408) do
     t.integer "day_score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "start_time"
   end
 
   create_table "likes", force: :cascade do |t|

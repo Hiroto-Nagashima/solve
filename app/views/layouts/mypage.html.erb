@@ -51,7 +51,7 @@
   <% end %>
     <div>
       <%= yield %>
-      <%= link_to new_post_path do %>
+      <%= link_to new_post_path, data: {"turbolinks"=>false} do%>
           <i class="fas fa-plus-circle fa-4x add-question"></i>
       <% end %>
     </div>

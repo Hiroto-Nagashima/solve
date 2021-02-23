@@ -1,5 +1,26 @@
-<div id="mypage-wrap">
+<div class="mypage-wrap">
+
   <h1 class = "mypage">MyPage</h1>
+
+  <div class = "mypage-top">
+    <div><%= attachment_image_tag current_user, :profile_image ,size: "100x100", fallback: "no_image.jpg"%></div>
+    <div class = "my_name"><%= current_user.name %></div>
+
+    <div class = "mypage_follow">
+     <%= link_to "Follow" ,user_users_follow_list_path(current_user) ,data: {"turbolinks"=>false} ,class: "text-dark"%>
+     <div id = ""><%= current_user.followings.size %></div>
+    </div>
+    <div class = "mypage_follower">
+      <%= link_to "Follower" ,user_users_follower_list_path(current_user) ,data: {"turbolinks"=>false},class: "text-dark"  %>
+      <div id = ""><%= current_user.followers.size %></div>
+    </div>
+  </div>
+
+  <div class = "mypage_introduction"><%= current_user.introduction %></div>
+
+</div>
+
+
   <ul id="tab-menu">
     <li class = "tab-list"><a href="#tab1" class="active">MyPost</a></li>
     <li class = "tab-list"><a href="#tab2" class="">MyScore</a></li>
@@ -13,7 +34,7 @@
         <div class = "post-wrapper">
           <div class = "post-head">
             <%= attachment_image_tag post.user ,:profile_image ,size: "40x40" ,class:"userImg"%>
-            <p><%= link_to post.user.name , user_path(post.user) ,class: "userName" ,data: {"turbolinks"=>false} %></p>
+            <p><%= post.user.name %></p>
             <p class = "postedGenre"><<%= post.genre %>></p>
             <p class = "postedDate"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
           </div>
@@ -33,28 +54,32 @@
               <i class="far fa-comment fa-lg"></i>
               <p class = "commentAmount_<%= post.id %>"><%= post.comments.count %>件</p>
             </div>
-
           </div>
+
         </div>
+
         <div class="comment-list comment-list_<%= post.id %> ">
           <div class = "comments_area_<%= post.id %>">
             <%= render partial: 'comments/index', locals: { comments: post.comments.order(created_at: :desc) , post: post ,comment: @comment} %>
           </div>
           <% if user_signed_in? %>
-              <div class="comment-create">
-                  <h5>Comment</h5>
-                  <%= render partial: 'comments/form', locals: {comment: @comment, post: post } %>
-              </div>
+            <div class="comment-create">
+              <h5>Comment</h5>
+              <%= render partial: 'comments/form', locals: {comment: @comment, post: post } %>
+            </div>
           <% end %>
         </div>
+
       </div>
       <% end %>
     </div>
 
+
+
     <div id="tab2" class="tab">
-      <%= month_calendar do |date| %>
-        <%= date %>
-      <% end %>
+      <div id="events_calendar">
+        <%= render partial: "calendar", locals: {user: @user} %>
+      </div>
     </div>
 
     <div class="question_list hidden">
@@ -62,6 +87,7 @@
     </div>
 
   </div>
+
 
 
 

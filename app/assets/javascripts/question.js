@@ -15,6 +15,8 @@ $(function(){
 
       $('#question_sentense').text(data[0]['question']);
 
+      $('#question_number').text((currentNum + 1) + "/" + $(data).length);
+
       array = shuffle(["correct_choice","first_wrong_choice","second_wrong_choice"]);
       $.each(array, function(index, val) {
       $('#choices').append("<li post_id =" + post_id  + " question_id =" + data[0]['id']  + " class =" + val + " currentNum =" + currentNum + ">" + data[0][val] +"</li>");
@@ -133,6 +135,8 @@ $(function(){
       $('#direction').text(data[currentNum]['direction']);
 
       $('#question_sentense').text(data[currentNum]['question']);
+
+      $('#question_number').text((currentNum + 1) + "/" + $(data).length);
 
       $('#choices').empty();
       array = shuffle(["correct_choice","first_wrong_choice","second_wrong_choice"]);

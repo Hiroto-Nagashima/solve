@@ -18,11 +18,19 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+require 'active_support/core_ext/time'
+
+def jst(time)
+  Time.zone = 'Asia/Tokyo'
+  Time.zone.parse(time).localtime($system_utc_offset)
+end
+
 require File.expand_path(File.dirname(__FILE__) + "/environment")
 rails_env = Rails.env.to_sym
 set :environment, rails_env
 set :output, 'log/cron.log'
-every 1.day, :at => '0:00' do
+# every 1.day, :at => jst('00:00 am') do
+  every 1.minute do
   begin
     runner "Batch::DataCreate.data_create"
   rescue => e
