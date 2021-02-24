@@ -1,4 +1,13 @@
 <div class="container edit-user">
+  <% if @user.errors.any? %>
+      <div class="alert alert-warning">
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="row">
       <div class="col-md-5">
           <%= form_with model:@user, local:true do |f| %>
@@ -8,7 +17,7 @@
           <p class="my-2">Image</p>
           <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
           <p class="my-2">Introduction</p>
-          <%= f.text_area :introduction ,class:"form-control" %>
+          <%= f.text_area :introduction ,class:"form-control" , placeholder: "(200字以内)"%>
           <%= f.submit "Update User" ,class:"btn my-3"%>
           <% end %>
        </div>

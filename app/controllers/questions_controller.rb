@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-
+before_action :authenticate_user!
   def create
     @question = Question.new(question_params)
     @post = Post.find(params[:post_id])

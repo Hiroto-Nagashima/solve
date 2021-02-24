@@ -5,19 +5,22 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   attachment :profile_image
+  after_create :create_day_score
   has_many :relationships,dependent: :destroy
-
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follower_id',dependent: :destroy
   has_many :followings, through: :relationships, source: :follower
-
   has_many :followers, through: :reverse_of_relationships, source: :user
   has_many :comments,dependent: :destroy
   has_many :likes,dependent: :destroy
   has_many :posts,dependent: :destroy
   has_many :day_scores
 
-  after_create :create_day_score
 
+  validates :encrypted_password , presence: true, length: { minimum: 6 }
+  validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i}
+  validates :password, confirmation: true
+  validates :name , presence: true, length: { maximum: 30 }
+  validates :introduction , length: { maximum: 200 }
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|

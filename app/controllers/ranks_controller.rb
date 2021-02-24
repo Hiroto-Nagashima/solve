@@ -1,4 +1,5 @@
 class RanksController < ApplicationController
+  before_action :authenticate_user!
   def index
     @weekly_tango_likes = Post.joins(:likes).where(likes: {created_at: Time.now.all_week},genre: 0).group(:id).order('count(likes.id) desc').sample(5);
     @weekly_bunpou_likes = Post.joins(:likes).where(likes: {created_at: Time.now.all_week},genre: 1).group(:id).order('count(likes.id) desc').sample(5);
