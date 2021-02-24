@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_22_060351) do
+ActiveRecord::Schema.define(version: 2021_02_23_122352) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "score_id"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2021_02_22_060351) do
 
   create_table "day_scores", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "day_score"
+    t.integer "day_score", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "start_time"

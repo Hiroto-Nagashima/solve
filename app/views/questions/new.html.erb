@@ -5,13 +5,16 @@
 
     <%= form_with model:@question, url:post_questions_path(@post), local: true do |f| %>
 
-
      <div class="row my-4">
        <div class="col-3 mr-0">
           <p>問題文（指示）</p>
        </div>
        <div class="col-7">
-          <%= f.text_field :direction %>
+        <% if @post.genre == "単語"%>
+          <%= f.text_field :direction , placeholder: "例）単語の意味を答えろ" , class: "form-control"%>
+        <% else %>
+        　<%= f.text_field :direction , placeholder: "例）カッコに入るワードを答えろ", class: "form-control"%>
+        <% end %>
        </div>
      </div>
 
@@ -20,7 +23,11 @@
           <p>問題</p>
        </div>
        <div class="col-7">
-         <%= f.text_field :question %>
+        <% if @post.genre == "単語"%>
+         <%= f.text_field :question , placeholder: "例）dog" ,class: "form-control w-50"%>
+        <% else %>
+         <%= f.text_field :question , placeholder: "例）He (    ) baseball.", class: "form-control"%>
+        <% end %>
        </div>
      </div>
 
@@ -29,7 +36,11 @@
           <p>正解</p>
        </div>
        <div class="col-7">
-            <%= f.text_field :correct_choice %>
+         <% if @post.genre == "単語"%>
+           <%= f.text_field :correct_choice , placeholder: "例）犬"  ,class: "form-control w-50"%>
+         <% else %>
+           <%= f.text_field :correct_choice , placeholder: "例）likes"  ,class: "form-control w-75"%>
+         <% end %>
        </div>
      </div>
 
@@ -38,10 +49,18 @@
           <p>不正解</p>
        </div>
        <div class="col-3">
-          <%= f.text_field :first_wrong_choice%>
+         <% if @post.genre == "単語"%>
+           <%= f.text_field :first_wrong_choice , placeholder: "例）猫"  ,class: "form-control w-50"%>
+         <% else %>
+           <%= f.text_field :first_wrong_choice , placeholder: "例）like"  ,class: "form-control w-75"%>
+         <% end %>
        </div>
        <div class="col-3">
-            <%= f.text_field :second_wrong_choice%>
+         <% if @post.genre == "単語"%>
+           <%= f.text_field :second_wrong_choice , placeholder: "例）猿"  ,class: "form-control w-50"%>
+         <% else %>
+           <%= f.text_field :second_wrong_choice , placeholder: "例）liking"  ,class: "form-control w-75"%>
+         <% end %>
        </div>
      </div>
 
@@ -50,7 +69,11 @@
           <p>解説</p>
        </div>
        <div class="col-7">
-          <%= f.text_area :explanation %>
+         <% if @post.genre == "単語"%>
+           <%= f.text_area :explanation , placeholder: "例）猫はcat,猿はmonkeyだよ(※空欄でもよい）"  ,class: "form-control"%>
+         <% else %>
+           <%= f.text_area :explanation, placeholder: "例）Heは三人称単数だよ(※空欄でもよい）"  ,class: "form-control" %>
+         <% end %>
        </div>
      </div>
 

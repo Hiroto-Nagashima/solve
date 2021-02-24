@@ -433,7 +433,13 @@ body {
   margin-left: 3%;
 }
 .setquiz{
-  margin: 150px auto;
+  margin: 150px 8%;
+}
+.setquiz_buttons{
+  display: flex;
+}
+.setquiz_button{
+  margin: 0 3%;
 }
 #hm-icon {
   position: fixed;

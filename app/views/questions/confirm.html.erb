@@ -1,7 +1,10 @@
-<div class="container mt-5 setquiz">
+<div class="container setquiz">
     <div class="row my-3">
        <h2>Confirmation</h2>
     </div>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:p, value, class: key) %>
+    <% end %>
 
     <%= form_with model:@question, url:post_question_path(@post,@question) ,method: :patch,local: true do |f| %>
      <div class="row my-4">
@@ -9,7 +12,7 @@
           <p>問題文（指示）</p>
        </div>
        <div class="col-7">
-          <%= f.text_field :direction %>
+          <%= f.text_field :direction , class: "form-control"%>
        </div>
      </div>
 
@@ -18,7 +21,7 @@
           <p>問題</p>
        </div>
        <div class="col-7">
-            <%= f.text_field :question %>
+          <%= f.text_field :question , class: "form-control"%>
        </div>
      </div>
 
@@ -27,9 +30,7 @@
           <p>正解</p>
        </div>
        <div class="col-7">
-
-            <%= f.text_field :correct_choice %>
-
+          <%= f.text_field :correct_choice , class: "form-control"%>
        </div>
      </div>
 
@@ -38,14 +39,10 @@
           <p>不正解</p>
        </div>
        <div class="col-3">
-
-            <%= f.text_field :first_wrong_choice%>
-
+          <%= f.text_field :first_wrong_choice , class: "form-control"%>
        </div>
        <div class="col-3">
-
-            <%= f.text_field :second_wrong_choice%>
-
+          <%= f.text_field :second_wrong_choice , class: "form-control"%>
        </div>
      </div>
 
@@ -54,29 +51,23 @@
           <p>解説</p>
        </div>
        <div class="col-7">
-            <%= f.text_area :explanation %>
+          <%= f.text_area :explanation , class: "form-control"%>
        </div>
      </div>
+　　<div class = "setquiz_buttons">
 
-     <div class="row">
-       <div class="col-4 mx-auto">
-          <%= f.submit "内容を変更" ,class:"btn btn-warning"%>
-       </div>
-     </div>
-    <% end %>
+      <div class="setquiz_button">
+         <%= f.submit "内容を変更" ,class:"btn" ,data: {"turbolinks"=>false}%>
+      </div>
+   <% end %>
+      <div class="setquiz_button">
+         <%= link_to "問題追加", new_post_question_path(@question.post), class: "btn",data: {"turbolinks"=>false}%>
+      </div>
 
-     <div class="row">
-       <div class="col-4 mx-auto">
-          <%= link_to "問題追加", new_post_question_path(@question.post), class: "btn",data: {"turbolinks"=>false}%>
-       </div>
-     </div>
+      <div class="setquiz_button">
+         <%= link_to "確定", users_path, class: "btn" ,data: {"turbolinks"=>false}%>
+      </div>
 
-     <div class="row">
-       <div class="col-4 mx-auto">
-          <%= link_to "確定", users_path, class: "btn" ,data: {"turbolinks"=>false}%>
-       </div>
-     </div>
-     <% if flash[:notice] %>
-      <p class="text-success"><%= flash[:notice] %></p>
-     <% end %>
+　　</div>
+
 </div>

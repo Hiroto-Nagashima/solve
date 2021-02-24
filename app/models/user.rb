@@ -11,11 +11,13 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :follower
 
   has_many :followers, through: :reverse_of_relationships, source: :user
-
-  has_many :day_scores,dependent: :destroy
   has_many :comments,dependent: :destroy
   has_many :likes,dependent: :destroy
   has_many :posts,dependent: :destroy
+  has_many :day_scores
+
+  after_create :create_day_score
+
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
@@ -38,6 +40,9 @@ class User < ApplicationRecord
     relationships.find_by(follower_id: user.id).destroy
   end
 
+  def create_day_score
+     DayScore.create!(user_id: self.id, start_time: Time.zone.now)
+  end
   # => "SELECT \"users\".* FROM \"users\" INNER JOIN \"relationships\" ON \"users\".\"id\" = \"relationships\".\"user_id\" WHERE \"relationships\".\"user_id\" = 1"
   # => "SELECT \"users\".* FROM \"users\" INNER JOIN \"relationships\" ON \"users\".\"id\" = \"relationships\".\"follower_id\" WHERE \"relationships\".\"user_id\" = 1"
 end

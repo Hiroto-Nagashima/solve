@@ -77,6 +77,10 @@
 
 
     <div id="tab2" class="tab">
+      <%# byebug %>
+      <h3>Today's Score : <%= @day_score %></h3>
+      <!--<h3>Monthly Score : <%#= @monthly_scores.sum() %></h3>-->
+
       <div id="events_calendar">
         <%= render partial: "calendar", locals: {user: @user} %>
       </div>

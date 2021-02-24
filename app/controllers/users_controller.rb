@@ -4,6 +4,9 @@ class UsersController < ApplicationController
     @comment = Comment.new
     @posts = Post.all.order(created_at: :desc)
     render :layout => 'mypage'
+    @day_score = @user.day_scores.last.day_score
+    # @day_scores = @user.day_scores
+    # @monthly_scores = @day_scores.where(day_scores: {created_at: Time.now.all_month})
 
   end
 
@@ -11,6 +14,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @comment = Comment.new
     @posts = Post.all.order(created_at: :desc)
+    @day_score = @user.day_scores.last.day_score
 
     # current_todays_score_box = []
     # @current_todays_scores = @user.scores.where(created_at: Time.zone.now.all_day)

@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.post_id = @post.id
     if @question.update(question_params)
-      flash[:notice] = "You have updated question successfully."
+      flash[:success] = "You have updated your question successfully."
       redirect_to confirm_post_question_path(@post, @question)
     else
       render "confirm"
@@ -55,9 +55,13 @@ class QuestionsController < ApplicationController
     choice_class = params[:choice_class]
     question = Question.find(params[:question_id])
     score = Score.new
-    post_user = @post.user
     score.post_id = params[:post_id]
-    score.day_score_id = post_user.day_scores.last.id
+    unless user_signed_in?
+      user = User.find(2)
+      score.day_score_id = user.day_scores.last.id
+    else
+      score.day_score_id = current_user.day_scores.last.id
+    end
     score.score = "0"
 
     if currentNum == "0"
@@ -73,7 +77,7 @@ class QuestionsController < ApplicationController
       answer.personal_answer = params[:choice_class]
       answer.question_id = params[:question_id]
       unless user_signed_in?
-        user = User.find(1)
+        user = User.find(2)
         day_score = user.day_scores.last
         score = day_score.scores.last
         answer.score_id = score.id
@@ -88,14 +92,12 @@ class QuestionsController < ApplicationController
 
   def continue
     unless user_signed_in?
-      user = User.find(1)
-      day_score = user.day_scores.last
-      score = day_score.scores.last
+      post_id = "1"
     else
       day_score = current_user.day_scores.last
       score = day_score.scores.last
+      post_id = score.post_id
     end
-    post_id = score.post_id
     @post = Post.find_by(id: post_id)
     questions = @post.questions
     render json: questions.to_json
@@ -103,7 +105,7 @@ class QuestionsController < ApplicationController
 
   def result
     unless user_signed_in?
-      user = User.find(1)
+      user = User.find(2)
       day_score = user.day_scores.last
       score = day_score.scores.last
     else
@@ -120,7 +122,7 @@ class QuestionsController < ApplicationController
 
   def replay
     unless user_signed_in?
-      user = User.find(1)
+      user = User.find(2)
       day_score = user.day_scores.last
       score = day_score.scores.last
     else
