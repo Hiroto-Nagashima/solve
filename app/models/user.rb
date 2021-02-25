@@ -15,7 +15,6 @@ class User < ApplicationRecord
   has_many :posts,dependent: :destroy
   has_many :day_scores
 
-
   validates :encrypted_password , presence: true, length: { minimum: 6 }
   validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i}
   validates :password, confirmation: true

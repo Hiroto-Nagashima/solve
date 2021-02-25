@@ -1,3 +1,82 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.likesInPost{
+  display: flex;
+}
+
+.commentBtn{
+  cursor: pointer;
+  display: flex;
+}
+.comment-list{
+  margin: 0 auto;
+  background: #fff;
+
+}
+.comment-box{
+  padding: 3%;
+  margin: 3%;
+  border-top: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+}
+
+.recommend-users,.follow_list,.follower_list{
+  margin-top: 100px;
+  text-align: center;
+}
+.eachPost,.eachUser{
+  width: 70%;
+  border: 2px solid #ccc;
+  margin: 3% auto;
+  background: #fff;
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+.follow_form{
+  margin-left: auto;
+}
+.post-wrapper{
+  min-height: 200px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 4px;
+  padding: 16px;
+
+  // z-index: 100;
+}
+.eachPost:first-child{
+   margin-top: 120px;
+ }
+.postedContent,.follow_intro{
+  font-size: 20px;
+  padding: 10px;
+  margin: 10px auto;
+
+}
+.postedGenre{
+  margin: 0 auto;
+  font-size: 20px;
+}
+.post-head,.follow-head{
+  display: flex;
+  flex-direction: row;
+}
+.userName{
+  font-size: 20px;
+  color: black;
+}
+.userImg{
+  margin-left: 0;
+  margin-right: 5%;
+}
+.postedDate{
+  margin-left: auto;
+}
+.post-footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

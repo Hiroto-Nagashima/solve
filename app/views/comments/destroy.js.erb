@@ -1,1 +1,2 @@
 $(".eachComment_<%= @comment.id %>").remove()
+$(".commentAmount_<%= @post.id %>").html("<%= @post.comments.count %>件")

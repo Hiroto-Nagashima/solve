@@ -1,10 +1,10 @@
 let currentNum = 0
 let post_id = 0
 let questionAmount = 0
-$(function(){
-  $('.startBtn').on('click', function() {
-     post_id = $(this).data('id');
 
+function insertQuestion() {
+  $('.startBtn').on('click', function() {
+    post_id = $(this).data('id');
     $.ajax({
       url: `/questions/go?post_id=${post_id}`,
       dataType : 'json',
@@ -19,17 +19,13 @@ $(function(){
 
       array = shuffle(["correct_choice","first_wrong_choice","second_wrong_choice"]);
       $.each(array, function(index, val) {
-      $('#choices').append("<li post_id =" + post_id  + " question_id =" + data[0]['id']  + " class =" + val + " currentNum =" + currentNum + ">" + data[0][val] +"</li>");
-    });
-
+        $('#choices').append("<li post_id =" + post_id  + " question_id =" + data[0]['id']  + " class =" + val + " currentNum =" + currentNum + ">" + data[0][val] +"</li>");
+      });
       $('.question_list').removeClass('hidden');
-
-
     }).fail(function (data) {
       alert('Bye');
-     });
     });
-
+  });
 
   $('#choices').on('click',"li", function() {
     let post_id = $(this).attr("post_id");
@@ -42,7 +38,7 @@ $(function(){
       type:'POST',
       data : {"post_id" : post_id , "question_id" : question_id ,"choice_class" : choice_class, "currentNum": currentNum},
     }).done(function (data){
-        console.log(data)
+      console.log(data)
       if(data['choice_class'] == 'correct_choice'){
         $('.Correct_or_Wrong').text("正解！！");
         $('.detail').text(data['question']['explanation']);
@@ -67,23 +63,20 @@ $(function(){
   });
 
   $('#nextBtn').on('click', function() {
-  $.ajax({
+    $.ajax({
       url: '/questions/continue',
       dataType : 'json',
     }).done(function (data){
-        currentNum++
-        setquiz(data);
-
+      currentNum++
+      setquiz(data);
     }).fail(function (data) {
       alert('Bye');
     });
-      $('#answer').addClass('hidden');
+    $('#answer').addClass('hidden');
+  });
 
-   });
-
-
-   $('#lastBtn').on('click', function() {
-  $.ajax({
+  $('#lastBtn').on('click', function() {
+    $.ajax({
       url: '/questions/result',
       type:'PATCH',
       dataType : 'json',
@@ -91,32 +84,25 @@ $(function(){
       console.log(data)
       let total_question = questionAmount + 1
      $('#total_score').text(data['score'] + "/" + total_question);
-
     }).fail(function (data) {
       alert('Bye');
     });
-      $('#result').removeClass('hidden');
+    $('#result').removeClass('hidden');
+  });
 
-   });
-
-   $('#replayBtn').on('click', function() {
-  $.ajax({
+  $('#replayBtn').on('click', function() {
+    $.ajax({
       url: '/questions/replay',
       dataType : 'json',
     }).done(function (data){
       currentNum = 0
       setquiz(data);
-
     }).fail(function (data) {
       alert('Bye');
     });
-      $('#result').addClass('hidden');
-      $('#final-answer').addClass('hidden');
-
-   });
-
- });
-
+    $('#result').addClass('hidden');
+    $('#final-answer').addClass('hidden');
+  });
 
   const shuffle =(arr) => {
     ///最後の要素は合計要素数-1で取得できる
@@ -125,20 +111,15 @@ $(function(){
       //0から1までの少数を吐き出すもの(Math.random）に2をかければ1から2までの少数を取り出せる
       const j = Math.floor(Math.random()*(i+1));
       [arr[j], arr[i]] = [arr[i], arr[j]];
-
     }
-
     return arr;
   }
 
   const setquiz =(data)=> {
-      $('#direction').text(data[currentNum]['direction']);
-
-      $('#question_sentense').text(data[currentNum]['question']);
-
-      $('#question_number').text((currentNum + 1) + "/" + $(data).length);
-
-      $('#choices').empty();
+    $('#direction').text(data[currentNum]['direction']);
+    $('#question_sentense').text(data[currentNum]['question']);
+    $('#question_number').text((currentNum + 1) + "/" + $(data).length);
+    $('#choices').empty();
       array = shuffle(["correct_choice","first_wrong_choice","second_wrong_choice"]);
       $.each(array, function(index, val) {
       $('#choices').append("<li post_id =" + post_id  + " question_id =" + data[currentNum]['id']  + " class =" + val + ">" + data[currentNum][val] + "</li>");
@@ -147,8 +128,13 @@ $(function(){
 
   const nextBtn =()=>{
     if(currentNum == questionAmount){
-          $('#lastBtn').text("Show Score");
-        }else{
-           $('#nextBtn').text("Next");
-        }
+      $('#lastBtn').text("Show Score");
+    }else{
+      $('#nextBtn').text("Next");
     }
+  }
+}
+
+document.addEventListener('turbolinks:load',function() {
+  insertQuestion();
+})

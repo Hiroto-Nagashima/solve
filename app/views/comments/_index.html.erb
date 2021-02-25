@@ -2,8 +2,8 @@
 <% unless comment.id.nil? %>
 <div class = "eachComment_<%= comment.id %>">
     <div class="comment-head">
-        <%#= attachment_image_tag comment.user, :profile_image, fallback: "no_image.jpeg", class:"comment-image", size: "30x30" %>
-        <p class = "comment-user-name"><%= link_to "#{comment.user.name}" ,user_path(comment.user),data: {"turbolinks"=>false} %></p>
+        <%= attachment_image_tag comment.user, :profile_image, fallback: "no_image.jpeg", class:"comment-image", size: "30x30" %>
+        <p class = "comment-user-name"><%= link_to "#{comment.user.name}" ,user_path(comment.user)%></p>
     </div>
     <div>
         <div class="comment-text">
@@ -15,7 +15,7 @@
             </div>
             <div class = "comment-dust">
                 <% if comment.user == current_user %>
-                    <%= link_to post_comment_path(post, comment), method: :delete, remote: true,data: {"turbolinks"=>false}, class: "comment_destroy" do %>
+                    <%= link_to post_comment_path(post, comment), method: :delete, remote: true, class: "comment_destroy" do %>
                         <i class="fas fa-trash" style="color: black;"></i>
                     <% end %>
                 <% end %>
