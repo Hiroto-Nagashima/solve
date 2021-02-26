@@ -37,12 +37,11 @@
             <th><%= @user.followers.size %></th>
            <% end %>
          </tr>
-         <tr>
-           <th>introduction</th>
-           <th><%= @user.introduction %></th>
-         </tr>
        </tbody>
      </table>
+     <div class = "sidebar-footer">
+       <div><%= @user.introduction %></div>
+     </div>
        <% if user_signed_in? && @user != current_user %>
       <div id="follow_<%= @user.id %>" class="follow_form">
         <% if current_user.following?(@user) %>

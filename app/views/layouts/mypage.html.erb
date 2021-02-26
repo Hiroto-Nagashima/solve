@@ -11,7 +11,7 @@
   <body>
   <% if user_signed_in? && !(controller.action_name == "top" && controller.controller_name == "homes") %>
   <header>
-      <%= link_to posts_path ,data: {"turbolinks"=>false} do %>
+      <%= link_to posts_path do %>
        <%= image_tag 'logo.jpg',size:'80x80'  %>
       <%end%>
 
@@ -22,16 +22,16 @@
       <div id="sp-menu">
         <ul>
             <li>
-              <%= link_to "MyPage", users_path ,class: 'fas fa-home',data: {"turbolinks"=>false}%></i>
+              <%= link_to "MyPage", users_path ,class: 'fas fa-home'%></i>
             </li>
              <li>
-              <%= link_to "Favorites" ,likes_index_path,class: 'fas fa-heart',data: {"turbolinks"=>false} %>
+              <%= link_to "Favorites" ,likes_index_path,class: 'fas fa-heart' %>
             </li>
              <li>
-              <%= link_to "Ranking" ,ranks_index_path,class: 'fas fa-trophy' ,data: {"turbolinks"=>false} %>
+              <%= link_to "Ranking" ,ranks_index_path,class: 'fas fa-trophy'  %>
             </li>
             <li>
-              <%= link_to "Edit",edit_user_path(current_user.id) ,class: 'fas fa-user-cog' ,data: {"turbolinks"=>false}%>
+              <%= link_to "Edit",edit_user_path(current_user.id) ,class: 'fas fa-user-cog' %>
             </li>
              <li>
               <%= link_to "logout", destroy_user_session_path, method: :delete ,class: 'fas fa-sign-out-alt' %>
@@ -51,7 +51,7 @@
   <% end %>
     <div>
       <%= yield %>
-      <%= link_to new_post_path, data: {"turbolinks"=>false} do%>
+      <%= link_to new_post_path do%>
           <i class="fas fa-plus-circle fa-4x add-question"></i>
       <% end %>
     </div>

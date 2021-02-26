@@ -6,8 +6,9 @@
 # end
 
 FactoryBot.define do
-  factory :book do
-    title { Faker::Lorem.characters(number:5) }
-    body { Faker::Lorem.characters(number:20) }
+  factory :user do
+    name { Faker::Name.name(number:5) }
+    email { Faker::Internet.email(number:20) }
+    password { Faker::Lorem.characters(number:10) }
   end
 end

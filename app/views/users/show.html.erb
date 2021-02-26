@@ -18,11 +18,11 @@
 
     <div class = "mypage_follow">
      <%= link_to "Follow" ,user_users_follow_list_path(@user) ,data: {"turbolinks"=>false} ,class: "text-dark"%>
-     <div id = ""><%= @user.followings.size %></div>
+     <div id = "show_follow"><%= @user.followings.size %></div>
     </div>
     <div class = "mypage_follower">
       <%= link_to "Follower" ,user_users_follower_list_path(@user) ,data: {"turbolinks"=>false},class: "text-dark"  %>
-      <div id = ""><%= @user.followers.size %></div>
+      <div id = "show_follower"><%= @user.followers.size %></div>
     </div>
   </div>
 

@@ -8,11 +8,11 @@
 
     <div class = "mypage_follow">
      <%= link_to "Follow" ,user_users_follow_list_path(current_user) ,class: "text-dark"%>
-     <div id = ""><%= current_user.followings.size %></div>
+     <div id = "follow"><%= current_user.followings.size %></div>
     </div>
     <div class = "mypage_follower">
       <%= link_to "Follower" ,user_users_follower_list_path(current_user) ,class: "text-dark"  %>
-      <div id = ""><%= current_user.followers.size %></div>
+      <div id = "follower"><%= current_user.followers.size %></div>
     </div>
   </div>
 
