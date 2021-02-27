@@ -2,7 +2,7 @@
 <% unless comment.id.nil? %>
 <div class = "eachComment_<%= comment.id %>">
     <div class="comment-head">
-        <%= attachment_image_tag comment.user, :profile_image, fallback: "no_image.jpeg", class:"comment-image", size: "30x30" %>
+        <%= attachment_image_tag comment.user, :profile_image, fallback: "no_image.jpg", class:"comment-image", size: "30x30" %>
         <p class = "comment-user-name"><%= link_to "#{comment.user.name}" ,user_path(comment.user)%></p>
     </div>
     <div>

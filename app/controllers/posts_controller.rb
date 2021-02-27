@@ -7,8 +7,8 @@ before_action :authenticate_user!
     followings = current_user.followings
     @posts = Post.all.where(user_id: followings).order(created_at: :desc).page(params[:page]).per(50)
 
-    recommended_users = User.all.where(created_at: Time.now.all_week).where.not(id: current_user.id).sample(3)
-    @recommended_posts = Post.all.where(user_id: recommended_users).order(created_at: :desc).page(params[:page]).per(50)
+    recommended_users = User.all.where(created_at: Time.now.all_week).where.not(id: current_user.id).sample(5)
+    @recommended_posts = Post.all.where(user_id: recommended_users).order(created_at: :desc).page(params[:page]).per(10)
 
   end
 
@@ -20,14 +20,6 @@ before_action :authenticate_user!
     @post = Post.new
   end
 
-  def update
-    # @post = Post.new(post_params)
-    # @post.user_id = current_user.id
-    # @post.questions.build(question_params)
-    # @post.update
-
-    # redirect_to posts_confirm_path
-  end
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
