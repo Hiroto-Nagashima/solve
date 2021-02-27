@@ -4,10 +4,16 @@ before_action :authenticate_user!
     @user = User.find(current_user.id)
     @comment = Comment.new
     @posts = Post.all.order(created_at: :desc)
-    render :layout => 'mypage'
     @day_score = @user.day_scores.last.day_score
-    # @day_scores = @user.day_scores
-    # @monthly_scores = @day_scores.where(day_scores: {created_at: Time.now.all_month})
+
+    weekly_score_box = []
+    @weekly_scores = @user.day_scores.where(created_at: Time.zone.now.all_week)
+    @weekly_scores.each do |weekly_score|
+      weekly_score_box << weekly_score.day_score
+    end
+    @weekly_score = weekly_score_box.inject(:+)
+
+    render :layout => 'mypage'
 
   end
 
@@ -17,12 +23,12 @@ before_action :authenticate_user!
     @posts = Post.all.order(created_at: :desc)
     @day_score = @user.day_scores.last.day_score
 
-    # current_todays_score_box = []
-    # @current_todays_scores = @user.scores.where(created_at: Time.zone.now.all_day)
-    # @current_todays_scores.each do |current_todays_score|
-    #   current_todays_score_box << current_todays_score.score
-    # end
-    # @current_todays_score = current_todays_score_box.inject(:+)
+    weekly_score_box = []
+    @weekly_scores = @user.day_scores.where(created_at: Time.zone.now.all_week)
+    @weekly_scores.each do |weekly_score|
+      weekly_score_box << weekly_score.day_score
+    end
+    @weekly_score = weekly_score_box.inject(:+)
 
     render :layout => 'mypage'
   end

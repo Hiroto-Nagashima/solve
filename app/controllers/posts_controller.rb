@@ -7,7 +7,7 @@ before_action :authenticate_user!
     followings = current_user.followings
     @posts = Post.all.where(user_id: followings).order(created_at: :desc).page(params[:page]).per(50)
 
-    recommended_users = User.all.where(created_at: Time.now.all_week).sample(3)
+    recommended_users = User.all.where(created_at: Time.now.all_week).where.not(id: current_user.id).sample(3)
     @recommended_posts = Post.all.where(user_id: recommended_users).order(created_at: :desc).page(params[:page]).per(50)
 
   end

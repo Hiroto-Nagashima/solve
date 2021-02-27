@@ -87,6 +87,10 @@
 
 
     <div id="tab2" class="tab">
+      <div class = "tab2-head">
+        <h3>Today's Score : <%= @day_score %></h3>
+        <h3>weekly Score : <%= @weekly_score %></h3>
+      </div>
       <div id="events_calendar">
         <%= render partial: "calendar", locals: {user: @user} %>
       </div>

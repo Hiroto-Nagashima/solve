@@ -27,10 +27,10 @@
 
         <div>
           <p>previous score</p>
-          <%= liked_post.scores.where(user_id: current_user.id).last.try(:score) %>/<%=liked_post.questions.size%>
+          <% @liked_post_score = liked_post.scores.where(day_score_id: @day_score.id).last %>
+          <%= @liked_post_score.present? ? @liked_post_score.score : '0' %>/<%=liked_post.questions.size%>
         </div>
-
-        </div>
+      </div>
     </div>
 
     <div class="comment-list comment-list_<%= liked_post.id %> ">
