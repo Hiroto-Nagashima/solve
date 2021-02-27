@@ -1,3 +1,202 @@
 // Place all the styles related to the questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.setquiz{
+  margin: 150px 8%;
+}
+.setquiz_buttons{
+  display: flex;
+}
+.setquiz_button{
+  margin: 0 3%;
+}
+
+.question_list.hidden{
+  transform: translateY(-3000px);
+}
+.question_list{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2000;
+  // display: none;
+}
+#container {
+  width: 400px;
+  margin: 8px auto;
+  background: #fff;
+  border-radius: 4px;
+  padding: 16px;
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3000;
+  background: #C2EEFF;
+}
+
+// #container.hidden {
+//   transform: translateY(-1500px);
+// }
+#question {
+  margin-bottom: 16px;
+  font-weight: bold;
+  min-height: 300px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  position: relative;
+  background: white;
+}
+#question > p:nth-of-type(1){
+  position: fixed;
+  right: 40px;
+  top: 20px;
+}
+#question > p:nth-of-type(2){
+  padding-left: 10px;
+}
+#question > p:nth-of-type(3){
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform : translate(-50%,-50%);
+  transform : translate(-50%,-50%);
+  width: 100%;
+  text-align: center;
+}
+
+#choices {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 16px;
+  text-align: center;
+
+}
+
+#choices > li {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  background-color: white;
+}
+
+#choices > li:hover {
+  background-color: #FFCC33;
+}
+
+
+#replayBtn {
+  background: #6495ED;
+  width: 150px;
+  max-height: 60px;
+  font-size: 16px;
+  color: #FFF;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 5px;
+  border-radius: 10px;
+  border-bottom: 4px solid #4169E1;
+  margin-right: 2%;
+}
+#startBtn {
+  background: #3498db;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 4px 0 #2880b9;
+  width: 120px;
+  height: 30px;
+}
+.exitBtn {
+  background: #FF82B2;
+  width: 150px;
+  max-height: 60px;
+  font-size: 16px;
+  color: #FFF;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border-bottom: 4px solid #FF5192;
+  margin-left: auto;
+  text-decoration: none;
+}
+
+.btn-wrap{
+  display: flex;
+}
+
+#result {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: #fff;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  top: 120px;
+  /* 絶対配置ではmargin: auto;だけではだめで、left: 0;、right: 0が必要 */
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+  transition: 0.4s;
+  z-index: 6000;
+}
+#answer {
+  position: absolute;
+  width: 400px;
+  background: #fff;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  top: 180px;
+  /* 絶対配置ではmargin: auto;だけではだめで、left: 0;、right: 0が必要 */
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+  min-height: 400px;
+  z-index: 4000;
+  /* transition: 0.4s; */
+}
+#final-answer {
+  position: absolute;
+  width: 400px;
+  background: #fff;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  top: 200px;
+  /* 絶対配置ではmargin: auto;だけではだめで、left: 0;、right: 0が必要 */
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+  min-height: 400px;
+  z-index: 5000;
+  /* transition: 0.4s; */
+}
+
+#result.hidden {
+  transform: translateY(-1500px);
+}
+#answer.hidden {
+  transform: translateY(-800px);
+}
+
+#final-answer.hidden {
+  transform: translateY(-4000px);
+}
+
+#result > p {
+  font-size: 24px;
+}

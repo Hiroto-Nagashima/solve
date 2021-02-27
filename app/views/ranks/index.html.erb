@@ -1,3 +1,5 @@
+
+
 <div id="rank-wrap">
   <h1>Rank</h1>
   <ul id="tab-menu">
@@ -70,11 +72,11 @@
     </div>
 
     <div id="tab4" class="tab">
-      <% @monthly_scores.each_with_index do |ms,i|%>
+      <% @weekly_scores.each_with_index do |ws,i|%>
       <div class = "RANK">
         <p class = "rank_number"><%= i + 1 %></p>
-        <p class = "rank_name"><%= link_to ms.name , user_path(ms) ,data: {"turbolinks"=>false}%></p>
-        <p><%= ms.scores.sum(:score) %>点</p>
+        <p class = "rank_name"><%= link_to ws.name , user_path(ws.user_id) ,data: {"turbolinks"=>false}%></p>
+        <p><%= ws.sum_day_score %>点</p>
       </div>
       <%end%>
     </div>

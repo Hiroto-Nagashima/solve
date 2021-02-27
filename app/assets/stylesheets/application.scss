@@ -19,7 +19,6 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-
 * {
   margin: 0;
   padding: 0;
@@ -30,32 +29,16 @@
 body,html{
   height: 100%;
 }
-.home-wrap {
-    position: relative;
-    height: 100vh;
-    min-height: 300px;
-    min-height: 300px;
-    background: image-url("bulb.jpg") no-repeat center center;
-    background-size: cover;
-    padding: 100px;
-}
-.solve{
-  font-size: 70px;
-}
-.devise{
-  background-color: #C2EEFF;
-  margin: 50px;
-}
 
 .form-control{
   width: 100%;
 }
 
 header {
-	/*Strictly Necessary */
 	position: fixed;
+  top: 0;
 	width: 100%;
-	height: 85px; /*Adjust the hight to your purposes*/
+	height: 85px;
 	background: white;
 	z-index: 1000;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -74,42 +57,30 @@ header {
 }
 
 #rightSideWrapper {
-	/*Strictly Necessary */
+
 	width: 75%;
 	float: right;
 	min-height: 100%;
 	background: #C2EEFF;
 }
 
-
 .side-bar {
-	/*Strictly Necessary */
 	position: fixed;
 	height: 100%;
 	width: 25%;
 	margin: 0px;
 	margin-top: 85px;
   padding: 3%;
-  /*Aesthetics*/
-  // background: #F8F8FF;
   border-radius: 7px;
 }
 
-.sidebar-head{
-  // position: relative;
-  // display: flex;
-  // margin: 3% auto;
-}
 .name{
 margin: 20px auto;
-// margin-left: 5%;
 font-size: 20px;
 }
 
 body {
-  /*Strictly Necessary */
   flex: 0 1 100%;
-
 }
 .makeBtn{
   margin: 30px auto;
@@ -135,288 +106,6 @@ body {
     border-bottom: none;
 }
 
-.question_list.hidden{
-  transform: translateY(-3000px);
-}
-.question_list{
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 2000;
-  // display: none;
-}
-#container {
-  width: 400px;
-  margin: 8px auto;
-  background: #fff;
-  border-radius: 4px;
-  padding: 16px;
-  position: fixed;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3000;
-}
-.container.hidden {
-  transform: translateY(-1500px);
-}
-#question > p:nth-of-type(1){
-  padding-left: 10px;
-}
-#question {
-  margin-bottom: 16px;
-  font-weight: bold;
-  min-height: 300px;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  position: relative;
-}
-#question > p:nth-of-type(2){
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform : translate(-50%,-50%);
-  transform : translate(-50%,-50%);
-  width: 100%;
-  text-align: center;
-}
-
-#choices {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-#choices > li {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-
-#choices > li:hover {
-  background: #f8f8f8;
-}
-
-
-#btn,#replayBtn {
-  background: #3498db;
-  padding: 8px;
-  border-radius: 4px;
-  cursor: pointer;
-  text-align: center;
-  color: #fff;
-  box-shadow: 0 4px 0 #2880b9;
-}
-#startBtn {
-  background: #3498db;
-  padding: 8px;
-  border-radius: 4px;
-  cursor: pointer;
-  text-align: center;
-  color: #fff;
-  box-shadow: 0 4px 0 #2880b9;
-  width: 120px;
-  height: 30px;
-}
-#exitBtn {
-  background: red;
-  padding: 8px;
-  margin-top: 5px;
-  border-radius: 4px;
-  cursor: pointer;
-  text-align: center;
-  color: #fff;
-}
-
-
-
-#result {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: #fff;
-  padding: 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  top: 100px;
-  /* 絶対配置ではmargin: auto;だけではだめで、left: 0;、right: 0が必要 */
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  border-radius: 4px;
-  text-align: center;
-  transition: 0.4s;
-  z-index: 6000;
-}
-#answer {
-  position: absolute;
-  width: 400px;
-  background: #fff;
-  padding: 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  top: 200px;
-  /* 絶対配置ではmargin: auto;だけではだめで、left: 0;、right: 0が必要 */
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  border-radius: 4px;
-  text-align: center;
-  min-height: 400px;
-  z-index: 4000;
-  /* transition: 0.4s; */
-}
-#final-answer {
-  position: absolute;
-  width: 400px;
-  background: #fff;
-  padding: 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  top: 200px;
-  /* 絶対配置ではmargin: auto;だけではだめで、left: 0;、right: 0が必要 */
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  border-radius: 4px;
-  text-align: center;
-  min-height: 400px;
-  z-index: 5000;
-  /* transition: 0.4s; */
-}
-
-#result.hidden {
-  transform: translateY(-1500px);
-}
-#answer.hidden {
-  transform: translateY(-800px);
-}
-
-#final-answer.hidden {
-  transform: translateY(-4000px);
-}
-
-#result > p {
-  font-size: 24px;
-}
-
-#result > a {
-  display: block;
-  text-decoration: none;
-}
-.recommend-users,.follow_list,.follower_list{
-  margin-top: 100px;
-  text-align: center;
-}
-.eachPost,.eachUser{
-  width: 70%;
-  border: 2px solid #ccc;
-  margin: 3% auto;
-  background: #fff;
-  border-radius: 4px;
-  padding: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-}
-.follow_form{
-  margin-left: auto;
-}
-.post-wrapper{
-  min-height: 200px;
-  margin: 0 auto;
-  background: #fff;
-  border-radius: 4px;
-  padding: 16px;
-
-  // z-index: 100;
-}
-.eachPost:first-child{
-   margin-top: 120px;
- }
-.postedContent,.follow_intro{
-  font-size: 20px;
-  padding: 10px;
-  margin: 10px auto;
-
-}
-.postedGenre{
-  margin: 0 auto;
-  font-size: 20px;
-}
-.post-head,.follow-head{
-  display: flex;
-  flex-direction: row;
-}
-.userName{
-  font-size: 20px;
-  color: black;
-}
-.userImg{
-  margin-left: 0;
-  margin-right: 5%;
-}
-.postedDate{
-  margin-left: auto;
-}
-.post-footer{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-.commentBtn{
-  cursor: pointer;
-  display: flex;
-}
-.comment-list{
-  margin: 0 auto;
-  background: #fff;
-
-}
-.comment-head{
-  display: flex;
-}
-.comment-box{
-  padding: 3%;
-  margin: 3%;
-  border-top: 2px solid #ccc;
-  border-bottom: 2px solid #ccc;
-}
-.comment-footer{
-  display: flex;
-  justify-content: flex-end;
-}
-.comment-text{
-  margin: 5% auto;
-}
-.comment-user-name > a{
-  margin: 0 30px;
-  width: 70%;
-  color: black;
-}
-.input-area{
-  width: 80%;
-
-}
-// .fa-lg{
-//   color: black;
-// }
-.likes-amount > a{
-  color: black;
-}
-.likesInPost{
-  display: flex;
-}
-.fas.fa-heart{
-  color: #FF66FF;
-  margin-left: 3%;
-}
-.setquiz{
-  margin: 150px auto;
-}
 #hm-icon {
   position: fixed;
   right: 20px;
@@ -465,7 +154,6 @@ body {
   background-color: #000;
 }
 
-
 #sp-menu {
   position: fixed;
   top: 0;
@@ -490,105 +178,3 @@ body {
   color: black;
 }
 
-#rank-wrap{
-  width: 90%;
-  max-width: 800px;
-  margin: 100px;
-}
-.rank_button{
-  margin-top: 5%;
-  margin-left: auto;
-  display: flex;
-  width: 20%;
-}
-.rank_heart{
-  width: 100px;
-}
-.rank_name{
-  width: 399px;
-}
-.rank_name > a{
-  font-size: 25px;
-  color: black;
-}
-.rank_number{
-  margin-right: 4%;
-}
-#tab-menu {
-  display: flex;
-  margin-bottom: 0;
-}
-
-#tab-menu li {
-  list-style-type: none;
-  width: 25%;
-}
-
-#tab-menu li a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  padding: 20px;
-  text-align: center;
-  background: #000;
-  border: 1px solid #000;
-  border-bottom: none;
-}
-
-#tab-menu .active {
-  background: #fff;
-  color: #000;
-}
-
-#tab-contents {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-#tab-contents .tab {
-  width: 100%;
-  padding: 30px;
-  background: #fff;
-  border: 1px solid #000;
-  border-top: none;
-}
-
-#tab-contents p {
-  color: #000;
-  line-height: 2.5;
-}
-.RANK{
-  display: flex;
-}
-.edit-user{
-  margin: 20%;
-}
-
-.delete{
-  margin-top: 150px;
-}
-
-.simple-calendar {
-  .day {}
-
-  .wday-0 {}
-  .wday-1 {}
-  .wday-2 {}
-  .wday-3 {}
-  .wday-4 {}
-  .wday-5 {}
-  .wday-6 {}
-
-  .today {}
-  .past {}
-  .future {}
-
-  .start-date {}
-
-  .prev-month {}
-  .next-month { }
-  .current-month {}
-
-  .has-events {}
-  margin: 120px 10%;
-}

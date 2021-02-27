@@ -1,13 +1,15 @@
 class PostsController < ApplicationController
+before_action :authenticate_user!
   def index
     @user = User.find(current_user.id)
     @comment = Comment.new
 
     followings = current_user.followings
-    @posts = Post.all.where(user_id: followings).order(created_at: :desc)
+    @posts = Post.all.where(user_id: followings).order(created_at: :desc).page(params[:page]).per(50)
 
     recommended_users = User.all.where(created_at: Time.now.all_week).sample(3)
-    @recommended_posts = Post.all.where(user_id: recommended_users).order(created_at: :desc)
+    @recommended_posts = Post.all.where(user_id: recommended_users).order(created_at: :desc).page(params[:page]).per(50)
+
   end
 
   def show

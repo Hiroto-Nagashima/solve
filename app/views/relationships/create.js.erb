@@ -3,3 +3,6 @@ $("#follow_<%= @user.id %>").html("<%= j(render partial: 'users/unfollow',locals
 $("#follower").html("<%= current_user.followers.size %>");
 $("#follow").html("<%= current_user.followings.size %>");
 
+$("#show_follower").html("<%= @user.followers.size %>");
+$("#show_follow").html("<%= @user.followings.size %>");
+

@@ -30,7 +30,7 @@
   </div>
   <div class="comment-list comment-list_<%= post.id %> ">
     <div class = "comments_area_<%= post.id %> comment-box">
-      <%= render partial: 'comments/index', locals: { comments: post.comments.order(created_at: :desc) , post: post ,comment: @comment} %>
+      <%= render partial: 'comments/index', locals: { comments: post.comments.order(created_at: :desc).sample(5), post: post ,comment: @comment} %>
     </div>
     <% if user_signed_in? %>
         <div class="comment-create">
@@ -40,14 +40,14 @@
     <% end %>
   </div>
 </div>
-
+<%= paginate @recommended_posts %>
   <% end %>
 <% else %>
   <% @posts.each do |post| %>
     <div class = "eachPost">
   <div class = "post-wrapper">
     <div class = "post-head">
-      <%#= attachment_image_tag post.user ,:profile_image ,size: "40x40" ,class:"userImg"%>
+      <%= attachment_image_tag post.user ,:profile_image ,size: "40x40" ,class:"userImg"%>
       <p><%= link_to post.user.name , user_path(post.user) ,class: "userName",data: {"turbolinks"=>false}%></p>
       <p class = "postedGenre"><<%= post.genre %>></p>
       <p class = "postedDate"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
@@ -73,7 +73,7 @@
   </div>
   <div class="comment-list comment-list_<%= post.id %> ">
     <div class = "comments_area_<%= post.id %> comment-box">
-      <%= render partial: 'comments/index', locals: { comments: post.comments.order(created_at: :desc) , post: post ,comment: @comment} %>
+      <%= render partial: 'comments/index', locals: { comments: post.comments.order(created_at: :desc).sample(5) , post: post ,comment: @comment} %>
     </div>
     <% if user_signed_in? %>
         <div class="comment-create">
@@ -84,10 +84,11 @@
   </div>
 </div>
 
-
   <% end %>
 <% end %>
+
 
 <div class="question_list hidden">
   <%= render partial: 'questions/show'%>
 </div>
+<%= paginate @posts %>

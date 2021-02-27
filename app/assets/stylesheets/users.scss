@@ -1,3 +1,76 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.mypage-wrap{
+  margin: 5% 15%;
+}
+.mypage-head{
+  // display: flex;
+}
+.mypage-top{
+  display: flex;
+}
+.my_name{
+  font-size: 40px;
+  margin: 0 15% 0 5%;
+}
+.mypage_follow{
+  font-size: 30px;
+  margin-right: 5%;
+}
+.mypage_follower{
+  font-size: 30px;
+}
+.mypage_introduction{
+  font-size: 20px;
+}
+.mypage{
+  margin-top: 130px;
+  margin-bottom: 3%;
+}
+#tab-menu >.tab-list {
+  list-style-type: none;
+  width: 50%;
+}
+
+.simple-calendar {
+  .day {}
+
+  .wday-0 {}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {}
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {}
+  .next-month { }
+  .current-month {}
+
+  .has-events {}
+  margin: 120px 10%;
+}
+
+
+.edit-user{
+  margin: 20%;
+}
+
+.delete{
+  margin-top: 150px;
+}
+.devise{
+  background-color: #C2EEFF;
+  margin: 50px;
+}
+.day_score {
+  font-size: 20px;
+  text-align: center;
+}

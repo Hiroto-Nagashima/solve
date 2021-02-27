@@ -1,6 +1,16 @@
+
 <div class="container edit-user">
+  <% if @user.errors.any? %>
+      <div class="alert alert-warning">
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="row">
-      <div class="col-md-5">
+      <div class="col-md-5 offset-md-3">
           <%= form_with model:@user, local:true do |f| %>
           <h2>User info</h2>
           <p>Name</p>
@@ -8,13 +18,13 @@
           <p class="my-2">Image</p>
           <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
           <p class="my-2">Introduction</p>
-          <%= f.text_area :introduction ,class:"form-control" %>
+          <%= f.text_area :introduction ,class:"form-control" , placeholder: "(200字以内)"%>
           <%= f.submit "Update User" ,class:"btn my-3"%>
           <% end %>
        </div>
     </div>
     <div class="row">
-      <div class = "col">
+      <div class = "col-md-3 offset-md-3">
         <p><%=link_to"退会する",users_delete_path ,class: "btn"%></p>
       </div>
     </div>

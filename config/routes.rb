@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get 'ranks/index'
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
    resources :comments, only: [:create, :destroy ]
    resource :likes, only: [:create, :destroy]
-   
+
    collection do
       get 'search'
    end

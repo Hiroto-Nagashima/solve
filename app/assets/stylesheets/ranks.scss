@@ -1,3 +1,74 @@
 // Place all the styles related to the ranks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#rank-wrap{
+  width: 90%;
+  max-width: 800px;
+  margin: 100px;
+}
+.rank_button{
+  margin-top: 5%;
+  margin-left: auto;
+  display: flex;
+  width: 20%;
+}
+.rank_heart{
+  width: 100px;
+}
+.rank_name{
+  width: 399px;
+}
+.rank_name > a{
+  font-size: 25px;
+  color: black;
+}
+.rank_number{
+  margin-right: 4%;
+}
+#tab-menu {
+  display: flex;
+  margin-bottom: 0;
+}
+
+#tab-menu li {
+  list-style-type: none;
+  width: 25%;
+}
+
+#tab-menu li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 20px;
+  text-align: center;
+  background: #000;
+  border: 1px solid #000;
+  border-bottom: none;
+}
+
+#tab-menu .active {
+  background: #fff;
+  color: #000;
+}
+
+#tab-contents {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#tab-contents .tab {
+  width: 100%;
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #000;
+  border-top: none;
+}
+
+#tab-contents p {
+  color: #000;
+  line-height: 2.5;
+}
+
+.RANK{
+  display: flex;
+}

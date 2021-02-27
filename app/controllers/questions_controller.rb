@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-
+before_action :authenticate_user!
   def create
     @question = Question.new(question_params)
     @post = Post.find(params[:post_id])
@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.post_id = @post.id
     if @question.update(question_params)
-      flash[:notice] = "You have updated question successfully."
+      flash[:success] = "You have updated your question successfully."
       redirect_to confirm_post_question_path(@post, @question)
     else
       render "confirm"
@@ -57,13 +57,16 @@ class QuestionsController < ApplicationController
     score = Score.new
     score.post_id = params[:post_id]
     unless user_signed_in?
-      score.user_id = 1
+      user = User.find(2)
+      score.day_score_id = user.day_scores.last.id
     else
-      score.user_id = current_user.id
+      score.day_score_id = current_user.day_scores.last.id
     end
-    score.score = 0
+    score.score = "0"
+
     if currentNum == "0"
-      score.save
+
+      score.save!
       answer = Answer.new
       answer.personal_answer = params[:choice_class]
       answer.question_id = params[:question_id]
@@ -74,10 +77,13 @@ class QuestionsController < ApplicationController
       answer.personal_answer = params[:choice_class]
       answer.question_id = params[:question_id]
       unless user_signed_in?
-        user = User.find(1)
-        answer.score_id = user.scores.last.id
+        user = User.find(2)
+        day_score = user.day_scores.last
+        score = day_score.scores.last
+        answer.score_id = score.id
       else
-        answer.score_id = current_user.scores.last.id
+        day_score = current_user.day_scores.last
+        answer.score_id = day_score.scores.last.id
       end
       answer.save
     end
@@ -86,12 +92,12 @@ class QuestionsController < ApplicationController
 
   def continue
     unless user_signed_in?
-      user = User.find(1)
-      score = user.scores.last
+      post_id = "1"
     else
-      score = current_user.scores.last
+      day_score = current_user.day_scores.last
+      score = day_score.scores.last
+      post_id = score.post_id
     end
-    post_id = score.post_id
     @post = Post.find_by(id: post_id)
     questions = @post.questions
     render json: questions.to_json
@@ -99,23 +105,29 @@ class QuestionsController < ApplicationController
 
   def result
     unless user_signed_in?
-      user = User.find(1)
-      score = user.scores.last
+      user = User.find(2)
+      day_score = user.day_scores.last
+      score = day_score.scores.last
     else
-      score = current_user.scores.last
+      day_score = current_user.day_scores.last
+      score = day_score.scores.last
     end
     correct_answers = Answer.where(score_id: score.id , personal_answer: "correct_choice")
     score.score = correct_answers.size
     score.save
+    day_score.day_score += score.score
+    day_score.save
     render json: score.to_json
   end
 
   def replay
     unless user_signed_in?
-      user = User.find(1)
-      score = user.scores.last
+      user = User.find(2)
+      day_score = user.day_scores.last
+      score = day_score.scores.last
     else
-      score = current_user.scores.last
+      day_score = current_user.day_scores.last
+      score = day_score.scores.last
     end
     post_id = score.post_id
     target_question_list = Question.where(post_id: post_id)

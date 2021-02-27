@@ -12,21 +12,21 @@
   <% if user_signed_in? && current_user.present? && !(controller.action_name == "top" && controller.controller_name == "homes") %>
   <div class = "side-bar">
    <div class = "sidebar-head">
-     <!--<div><%#= attachment_image_tag current_user, :profile_image ,size: "100x100", fallback: "no_image.jpg"%></div>-->
+     <div><%= attachment_image_tag current_user, :profile_image ,size: "100x100", fallback: "no_image.jpg"%></div>
      <div class = "name"><%= current_user.name %></div>
    </div>
    <table class="table">
      <tbody>
        <tr>
          <th>Today's Score</th>
-         <th><%= @current_todays_score %></th>
+         <th><%= current_user.day_scores.last.day_score %></th>
        </tr>
        <tr>
-         <th><%= link_to "Follow" ,user_users_follow_list_path(current_user) ,data: {"turbolinks"=>false} ,class: "text-dark"%></th>
+         <th><%= link_to "Follow" ,user_users_follow_list_path(current_user) ,class: "text-dark"%></th>
          <th id = "my_follow"><%= current_user.followings.size %></th>
        </tr>
        <tr>
-         <th><%= link_to "Follower" ,user_users_follower_list_path(current_user) ,data: {"turbolinks"=>false},class: "text-dark"  %></th>
+         <th><%= link_to "Follower" ,user_users_follower_list_path(current_user) ,class: "text-dark"  %></th>
          <th id = "my_follower"><%= current_user.followers.size %></th>
        </tr>
      </tbody>
@@ -40,7 +40,7 @@
   <% if user_signed_in?  && current_user.present? && !(controller.action_name == "top" && controller.controller_name == "homes") %>
     <div>
         <header>
-            <%= link_to posts_path ,data: {"turbolinks"=>false} do %>
+            <%= link_to posts_path  do %>
              <%= image_tag 'logo.jpg',size:'80x80'  %>
             <%end%>
 
@@ -52,16 +52,16 @@
             <div id="sp-menu">
               <ul>
                   <li>
-                    <%= link_to "MyPage", users_path ,class: 'fas fa-home',data: {"turbolinks"=>false}%></i>
+                    <%= link_to "MyPage", users_path ,class: 'fas fa-home'%></i>
                   </li>
                    <li>
-                    <%= link_to "Favorites" ,likes_index_path,class: 'fas fa-heart',data: {"turbolinks"=>false}%>
+                    <%= link_to "Favorites" ,likes_index_path,class: 'fas fa-heart'%>
                   </li>
                    <li>
-                    <%= link_to "Ranking" ,ranks_index_path,class: 'fas fa-trophy',data: {"turbolinks"=>false}%>
+                    <%= link_to "Ranking" ,ranks_index_path,class: 'fas fa-trophy'%>
                   </li>
                   <li>
-                    <%= link_to "Edit", edit_user_path(current_user) ,class: 'fas fa-user-cog' ,data: {"turbolinks"=>false}%>
+                    <%= link_to "Edit", edit_user_path(current_user) ,class: 'fas fa-user-cog' %>
                   </li>
                    <li>
                     <%= link_to "logout", destroy_user_session_path, method: :delete ,class: 'fas fa-sign-out-alt' %>

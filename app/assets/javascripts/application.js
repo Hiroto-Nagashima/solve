@@ -16,21 +16,24 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-$(function() {
-  $('.menu-trigger').on('click', function(event) {
-    $(this).toggleClass('active');
-    $('#sp-menu').slideToggle();
-    event.preventDefault();
-  });
-});
 
-$(function() {
-  $('#tab-contents .tab[id != "tab1"]').hide();
-  $('#tab-menu a').on('click', function(event) {
-    $("#tab-contents .tab").hide();
-    $("#tab-menu .active").removeClass("active");
-    $(this).addClass("active");
-    $($(this).attr("href")).show();
-    event.preventDefault();
+document.addEventListener('turbolinks:load',function(){
+  $(function() {
+    $('.menu-trigger').on('click', function(event) {
+      $(this).toggleClass('active');
+      $('#sp-menu').slideToggle();
+      event.preventDefault();
+    });
   });
-});
+
+  $(function() {
+    $('#tab-contents .tab[id != "tab1"]').hide();
+    $('#tab-menu a').on('click', function(event) {
+      $("#tab-contents .tab").hide();
+      $("#tab-menu .active").removeClass("active");
+      $(this).addClass("active");
+      $($(this).attr("href")).show();
+      event.preventDefault();
+    });
+  });
+})

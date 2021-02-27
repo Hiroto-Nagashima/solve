@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Solve</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+  <% if user_signed_in? && !(controller.action_name == "top" && controller.controller_name == "homes") %>
+  <header>
+      <%= link_to posts_path do %>
+       <%= image_tag 'logo.jpg',size:'80x80'  %>
+      <%end%>
+
+      <%= form_with(url: search_posts_path, method: :get, local: true) do |f| %>
+        <%= f.text_field :content, placeholder: "例）TOEIC"%>
+        <%= f.submit "Search" , class: "btn" %>
+      <% end %>
+      <div id="sp-menu">
+        <ul>
+            <li>
+              <%= link_to "MyPage", users_path ,class: 'fas fa-home'%></i>
+            </li>
+             <li>
+              <%= link_to "Favorites" ,likes_index_path,class: 'fas fa-heart' %>
+            </li>
+             <li>
+              <%= link_to "Ranking" ,ranks_index_path,class: 'fas fa-trophy'  %>
+            </li>
+            <li>
+              <%= link_to "Edit",edit_user_path(current_user.id) ,class: 'fas fa-user-cog' %>
+            </li>
+             <li>
+              <%= link_to "logout", destroy_user_session_path, method: :delete ,class: 'fas fa-sign-out-alt' %>
+            </li>
+        </ul>
+      </div>
+
+      <div id="hm-icon">
+        <a class="menu-trigger" href="#">
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+      </div>
+
+    </header>
+  <% end %>
+    <div>
+      <%= yield %>
+      <%= link_to new_post_path do%>
+          <i class="fas fa-plus-circle fa-4x add-question"></i>
+      <% end %>
+    </div>
+  </body>
+</html>

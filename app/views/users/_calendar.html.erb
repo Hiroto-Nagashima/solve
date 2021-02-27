@@ -1,0 +1,6 @@
+<%= month_calendar events: @user.day_scores do |date, day_scores| %>
+  <%= date.day %>
+  <% day_scores.each do |ds| %>
+    <div class = "day_score"><%= ds.day_score%></div>
+  <% end %>
+<% end %>
