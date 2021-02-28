@@ -17,7 +17,7 @@
         <div>
           <div class = "RANK">
             <p class = "rank_number"><%= i + 1 %></p>
-            <p class = "rank_name"><%= link_to wtl.user.name, user_path(wtl.user) ,data: {"turbolinks"=>false} %></p>
+            <p class = "rank_name"><%= link_to wtl.user.name, user_path(wtl.user)  %></p>
           </div>
           <p><%= wtl.content %></p>
         </div>
@@ -25,7 +25,7 @@
           <button type = "button" class="btn startBtn" data-id= <%= wtl.id %>>
           <i class = "far fa-lightbulb fa-2x"></i>
           </button>
-          <p class = "rank_heart"><i class="fas fa-heart fa-lg"></i><%= wtl.likes.size %></p>
+          <p class = "rank_heart"><i class="fas fa-heart fa-lg"></i><%= wtl.likes.where(likes: {created_at: Time.now.all_day}).size %></p>
         </div>
       </div>
       <%end%>
@@ -37,7 +37,7 @@
         <div>
           <div class = "RANK">
             <p class = "rank_number"><%= i + 1 %></p>
-            <p class = "rank_name"><%= link_to wbl.user.name, user_path(wbl.user) ,data: {"turbolinks"=>false} %></p>
+            <p class = "rank_name"><%= link_to wbl.user.name, user_path(wbl.user) %></p>
           </div>
           <p><%= wbl.content %></p>
         </div>
@@ -45,7 +45,7 @@
           <button type = "button" class="btn startBtn" data-id= <%= wbl.id %>>
           <i class = "far fa-lightbulb fa-2x"></i>
           </button>
-          <p class = "rank_heart"><i class="fas fa-heart fa-lg"></i><%= wbl.likes.size %></p>
+          <p class = "rank_heart"><i class="fas fa-heart fa-lg"></i><%= wbl.likes.where(likes: {created_at: Time.now.all_week}).size %></p>
         </div>
       </div>
       <%end%>
@@ -57,7 +57,7 @@
         <div>
           <div class = "RANK">
             <p class = "rank_number"><%= i + 1 %></p>
-            <p class = "rank_name"><%= link_to ml.user.name, user_path(ml.user) ,data: {"turbolinks"=>false} %></p>
+            <p class = "rank_name"><%= link_to ml.user.name, user_path(ml.user) %></p>
           </div>
           <p><%= ml.content %></p>
         </div>
@@ -65,7 +65,7 @@
           <button type = "button" class="btn startBtn" data-id= <%= ml.id %>>
           <i class = "far fa-lightbulb fa-2x"></i>
           </button>
-          <p class = "rank_heart"><i class="fas fa-heart fa-lg"></i><%= ml.likes.size %></p>
+          <p class = "rank_heart"><i class="fas fa-heart fa-lg"></i><%= ml.likes.where(likes: {created_at: Time.now.all_month}).size %></p>
         </div>
       </div>
       <%end%>
@@ -75,7 +75,7 @@
       <% @weekly_scores.each_with_index do |ws,i|%>
       <div class = "RANK">
         <p class = "rank_number"><%= i + 1 %></p>
-        <p class = "rank_name"><%= link_to ws.name , user_path(ws.user_id) ,data: {"turbolinks"=>false}%></p>
+        <p class = "rank_name"><%= link_to ws.name , user_path(ws.user_id)%></p>
         <p><%= ws.sum_day_score %>点</p>
       </div>
       <%end%>
