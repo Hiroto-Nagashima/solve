@@ -1,15 +1,17 @@
 <div class="mypage-wrap">
 <div class = "mypage-head">
   <h1 class = "mypage">MyPage</h1>
-  <% if user_signed_in? && @user != current_user %>
-  <div id="follow_<%= @user.id %>" class="follow_form">
-    <% if current_user.following?(@user) %>
-      <%= render "unfollow" ,{user: @user}%>
-    <% else %>
-      <%= render "follow" ,{user: @user}%>
+  <div class = "follow_botton">
+    <% if user_signed_in? && @user != current_user %>
+    <div id="follow_<%= @user.id %>" class="follow_form">
+      <% if current_user.following?(@user) %>
+        <%= render "unfollow" ,{user: @user}%>
+      <% else %>
+        <%= render "follow" ,{user: @user}%>
+      <% end %>
+    </div>
     <% end %>
   </div>
-  <% end %>
 </div>
 
   <div class = "mypage-top">
@@ -83,8 +85,6 @@
       </div>
       <% end %>
     </div>
-
-
 
     <div id="tab2" class="tab">
       <div class = "tab2-head">

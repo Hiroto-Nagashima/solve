@@ -4,11 +4,17 @@ before_action :authenticate_user!
     @user = User.find(current_user.id)
     @comment = Comment.new
 
-    followings = current_user.followings
-    @posts = Post.all.where(user_id: followings).order(created_at: :desc).page(params[:page]).per(50)
+    followings = current_user.followings.ids
+    # フォローしているユーザーにカレントユーザーのIDを追加
+    followings.push(current_user.id)
+    @posts = Post.where(user_id: followings).order(created_at: :desc).page(params[:page]).per(50)
 
-    recommended_users = User.all.where(created_at: Time.now.all_week).where.not(id: current_user.id).sample(5)
-    @recommended_posts = Post.all.where(user_id: recommended_users).order(created_at: :desc).page(params[:page]).per(10)
+    @recommended_posts = []
+    @recommended_users = User.where(created_at: Time.now.all_month ).where.not(id: current_user.id)
+    @recommended_users.each do |ru|
+      @recommended_posts << ru.posts.last if ru.posts.count > 0
+      break if @recommended_posts.size == 4
+    end
 
   end
 

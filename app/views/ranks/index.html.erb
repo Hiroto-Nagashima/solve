@@ -5,8 +5,7 @@
   <ul id="tab-menu">
     <li><a href="#tab1" class="active">週間いいね(単語)</a></li>
     <li><a href="#tab2" class="">週間いいね(文法)</a></li>
-    <li><a href="#tab3" class="">月間いいね</a></li>
-    <li><a href="#tab4" class="">週間スコア</a></li>
+    <li><a href="#tab3" class="">週間スコア</a></li>
   </ul>
 
   <div id="tab-contents">
@@ -25,7 +24,7 @@
           <button type = "button" class="btn startBtn" data-id= <%= wtl.id %>>
           <i class = "far fa-lightbulb fa-2x"></i>
           </button>
-          <p class = "rank_heart"><i class="fas fa-heart fa-lg"></i><%= wtl.likes.where(likes: {created_at: Time.now.all_day}).size %></p>
+          <p class = "rank_heart"><i class="fas fa-heart fa-lg"></i><%= wtl.likes.where(likes: {created_at: Time.now.all_week}).size %></p>
         </div>
       </div>
       <%end%>
@@ -52,26 +51,6 @@
     </div>
 
     <div id="tab3" class="tab">
-      <% @monthly_likes.each_with_index do |ml,i|%>
-      <div class = "RANK">
-        <div>
-          <div class = "RANK">
-            <p class = "rank_number"><%= i + 1 %></p>
-            <p class = "rank_name"><%= link_to ml.user.name, user_path(ml.user) %></p>
-          </div>
-          <p><%= ml.content %></p>
-        </div>
-        <div class= "rank_button">
-          <button type = "button" class="btn startBtn" data-id= <%= ml.id %>>
-          <i class = "far fa-lightbulb fa-2x"></i>
-          </button>
-          <p class = "rank_heart"><i class="fas fa-heart fa-lg"></i><%= ml.likes.where(likes: {created_at: Time.now.all_month}).size %></p>
-        </div>
-      </div>
-      <%end%>
-    </div>
-
-    <div id="tab4" class="tab">
       <% @weekly_scores.each_with_index do |ws,i|%>
       <div class = "RANK">
         <p class = "rank_number"><%= i + 1 %></p>
