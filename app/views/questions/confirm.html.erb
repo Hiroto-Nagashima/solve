@@ -2,9 +2,7 @@
     <div class="row my-3">
        <h2>Confirmation</h2>
     </div>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:p, value, class: key) %>
-    <% end %>
+    <%= flash[:success] %>
 
     <%= form_with model:@question, url:post_question_path(@post,@question) ,method: :patch,local: true do |f| %>
      <div class="row my-4">
@@ -61,7 +59,7 @@
       </div>
    <% end %>
       <div class="setquiz_button">
-         <%= link_to "問題追加", new_post_question_path(@question.post), class: "btn",data: {"turbolinks"=>false}%>
+         <%= link_to "問題追加", new_post_question_path(@question.post), class: "btn"%>
       </div>
 
       <div class="setquiz_button">
