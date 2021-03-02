@@ -30,10 +30,8 @@ rails_env = Rails.env.to_sym
 set :environment, rails_env
 set :output, 'log/cron.log'
 every 1.day, :at => jst('00:00 am') do
-  begin
-    runner "Batch::DataCreate.data_create"
-  rescue => e
-    Rails.logger.error("aborted rails runner")
-    raise e
-  end
+  runner "Batch::DataCreate.data_create"
+rescue => e
+  Rails.logger.error("aborted rails runner")
+  raise e
 end

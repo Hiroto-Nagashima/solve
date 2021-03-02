@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   get 'ranks/index'
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
@@ -18,37 +17,33 @@ Rails.application.routes.draw do
     end
   end
 
-
   resources :posts do
+    resources :comments, only: [:create, :destroy]
+    resource :likes, only: [:create, :destroy]
 
-   resources :comments, only: [:create, :destroy ]
-   resource :likes, only: [:create, :destroy]
-
-   collection do
+    collection do
       get 'search'
-   end
-
-   resources :questions, only: [:create,:update,:destroy,:new] do
-    member do
-      get :confirm
     end
-   end
-  end
 
+    resources :questions, only: [:create, :update, :destroy, :new] do
+      member do
+        get :confirm
+      end
+    end
+  end
 
   get '/questions/go', to: 'questions#go'
   post '/questions/save_choice', to: 'questions#save_choice'
   get '/questions/continue', to: 'questions#continue'
   patch '/questions/result', to: 'questions#result'
-   get '/questions/replay', to: 'questions#replay'
+  get '/questions/replay', to: 'questions#replay'
 
   get '/likes/index', to: 'likes#index'
 
+  resources :scores, only: [:create, :destroy]
+  resources :answers, only: [:create, :destroy]
 
-  resources :scores, only: [:create, :destroy ]
-  resources :answers, only: [:create, :destroy ]
-
-  resources :relationships, only: [:create, :destroy ]
+  resources :relationships, only: [:create, :destroy]
 
   root 'homes#top'
 

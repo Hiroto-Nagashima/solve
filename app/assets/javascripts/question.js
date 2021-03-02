@@ -1,4 +1,4 @@
-let currentNum = 0
+let current_num = 0
 let post_id = 0
 let questionAmount = 0
 
@@ -15,11 +15,11 @@ function insertQuestion() {
 
       $('#question_sentense').text(data[0]['question']);
 
-      $('#question_number').text((currentNum + 1) + "/" + $(data).length);
+      $('#question_number').text((current_num + 1) + "/" + $(data).length);
 
       array = shuffle(["correct_choice","first_wrong_choice","second_wrong_choice"]);
       $.each(array, function(index, val) {
-        $('#choices').append("<li post_id =" + post_id  + " question_id =" + data[0]['id']  + " class =" + val + " currentNum =" + currentNum + ">" + data[0][val] +"</li>");
+        $('#choices').append("<li post_id =" + post_id  + " question_id =" + data[0]['id']  + " class =" + val + " current_num =" + current_num + ">" + data[0][val] +"</li>");
       });
       $('.question_list').removeClass('hidden');
     }).fail(function (data) {
@@ -36,7 +36,7 @@ function insertQuestion() {
       url: '/questions/save_choice',
       dataType : 'json',
       type:'POST',
-      data : {"post_id" : post_id , "question_id" : question_id ,"choice_class" : choice_class, "currentNum": currentNum},
+      data : {"post_id" : post_id , "question_id" : question_id ,"choice_class" : choice_class, "current_num": current_num},
     }).done(function (data){
       console.log(data)
       if(data['choice_class'] == 'correct_choice'){
@@ -51,7 +51,7 @@ function insertQuestion() {
         nextBtn();
 
       }
-      if(currentNum == questionAmount){
+      if(current_num == questionAmount){
         $('#final-answer').removeClass('hidden');
       }else{
         $('#answer').removeClass('hidden');
@@ -67,7 +67,7 @@ function insertQuestion() {
       url: '/questions/continue',
       dataType : 'json',
     }).done(function (data){
-      currentNum++
+      current_num++
       setquiz(data);
     }).fail(function (data) {
       alert('Bye');
@@ -95,7 +95,7 @@ function insertQuestion() {
       url: '/questions/replay',
       dataType : 'json',
     }).done(function (data){
-      currentNum = 0
+      current_num = 0
       setquiz(data);
     }).fail(function (data) {
       alert('Bye');
@@ -116,18 +116,18 @@ function insertQuestion() {
   }
 
   const setquiz =(data)=> {
-    $('#direction').text(data[currentNum]['direction']);
-    $('#question_sentense').text(data[currentNum]['question']);
-    $('#question_number').text((currentNum + 1) + "/" + $(data).length);
+    $('#direction').text(data[current_num]['direction']);
+    $('#question_sentense').text(data[current_num]['question']);
+    $('#question_number').text((current_num + 1) + "/" + $(data).length);
     $('#choices').empty();
       array = shuffle(["correct_choice","first_wrong_choice","second_wrong_choice"]);
       $.each(array, function(index, val) {
-      $('#choices').append("<li post_id =" + post_id  + " question_id =" + data[currentNum]['id']  + " class =" + val + ">" + data[currentNum][val] + "</li>");
+      $('#choices').append("<li post_id =" + post_id  + " question_id =" + data[current_num]['id']  + " class =" + val + ">" + data[current_num][val] + "</li>");
     });
   }
 
   const nextBtn =()=>{
-    if(currentNum == questionAmount){
+    if(current_num == questionAmount){
       $('#lastBtn').text("Show Score");
     }else{
       $('#nextBtn').text("Next");

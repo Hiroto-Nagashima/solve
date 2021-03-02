@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-before_action :authenticate_user!
+  before_action :authenticate_user!
   def index
     @user = User.find(current_user.id)
     @comment = Comment.new
@@ -14,7 +14,6 @@ before_action :authenticate_user!
     @weekly_score = weekly_score_box.inject(:+)
 
     render :layout => 'mypage'
-
   end
 
   def show
@@ -41,12 +40,12 @@ before_action :authenticate_user!
   end
 
   def update
-   @user = User.find(params[:id])
-     if @user.update(user_params)
-       redirect_to users_path
-     else
-       render "edit"
-     end
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to users_path
+    else
+      render "edit"
+    end
   end
 
   def follow_list
@@ -74,7 +73,6 @@ before_action :authenticate_user!
   # end
 
   def delete
-
   end
 
   def destroy
@@ -85,7 +83,8 @@ before_action :authenticate_user!
   end
 
   private
+
   def user_params
-    params.require(:user).permit(:name, :introduction ,:profile_image)
+    params.require(:user).permit(:name, :introduction, :profile_image)
   end
 end
